@@ -37,3 +37,16 @@ POST https://github.com/login/oauth/access_token    请求体:client_id=xx&clien
 论坛使用访问令牌访问GitHub API
 GET https://api.github.com/user?access_token=xxx
 获取到用户信息，是JSON格式的，很多只拿想要的信息
+
+#### 持久化登录状态
+1. 分析:先前生产环境下，每一次服务器重新启动，用户都需要去点击登录。这主要是因为在后台session中存储的是gitHubUser
+这个对象，这个是根据令牌获取到的。只要服务器一重新启动，这个对象就为空了，在前台页面中他就是根据session域中的user是否
+为空来做逻辑判断的。
+因此必须要将登录状态持久化到数据库中！！！
+    前台逻辑不去碰，还让他去判断session域; 从后台入手，铁定不能存gitHubUser了，要存自己的持久化的user对象，借助cookie去实现 
+2. 实现步骤
+    1. 用户登录成功，即gitHubUser不为空，就将它存储到数据库中；存完后，添加一个cookie信息，里边是自己生成的token
+    2. （此时用户登录成功，我们是让他重定向到根路径/下）来到indexController，之前没有任何逻辑只是简单跳转，现在在
+    方法中遍历cookie信息，查找名为token的cookie
+    3. 根据value去数据库中查找该用户，如果此时查出来的user不为空，再将session中存储user(我们将第一步的存session
+    延迟到了第三步，中间夹杂了持久化操作)
