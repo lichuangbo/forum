@@ -1,0 +1,17 @@
+package cn.edu.tit.forum.mapper;
+
+import cn.edu.tit.forum.model.User;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+
+/**
+ * @author lichuangbo
+ * @version 1.0
+ * @created 2019/12/8
+ */
+@Mapper
+public interface UserMapper {
+    @Insert("insert into user(name, account_id, token, gmt_create, gmt_modified) " +
+            "values(#{name}, #{accountId}, #{token}, #{gmtCreate}, #{gmtModified})")
+    void insertUser(User user);
+}
