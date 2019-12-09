@@ -15,6 +15,9 @@
 
 [GitHub API文档](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
 
+[Spring Boot + MyBatis](https://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/)
+
+[flyway](https://flywaydb.org/getstarted/firststeps/maven)
 
 #### GitHub登录流程
     > 第三方登录，要OAuth授权。如用户想登录论坛，但是论坛让用户提供第三方网站的数据，这样用户可以不用注册新账号，就可以证明自己的身份
