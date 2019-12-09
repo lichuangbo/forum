@@ -1,14 +1,16 @@
-package cn.edu.tit.forum.model;
+package cn.edu.tit.forum.dto;
 
+import cn.edu.tit.forum.model.User;
 import lombok.Data;
 
 /**
+ * 查询工具，封装一对一关系
  * @author lichuangbo
  * @version 1.0
- * @created 2019/12/8
+ * @created 2019/12/9
  */
 @Data
-public class Question {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -19,4 +21,6 @@ public class Question {
     private Integer viewCount;
     private Integer likeCount;
     private String tag;
+
+    private User user;
 }

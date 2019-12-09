@@ -19,6 +19,10 @@
 
 [flyway](https://flywaydb.org/getstarted/firststeps/maven)
 
+[lombok坐标](https://projectlombok.org/setup/maven)
+
+[IDEA安装lombok插件](https://www.cnblogs.com/iathanasy/p/9262689.html)
+
 #### GitHub登录流程
     > 第三方登录，要OAuth授权。如用户想登录论坛，但是论坛让用户提供第三方网站的数据，这样用户可以不用注册新账号，就可以证明自己的身份
 0. 要获取OAuth授权，必须去GitHub上登记，填写登记表

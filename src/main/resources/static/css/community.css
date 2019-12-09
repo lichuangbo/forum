@@ -8,3 +8,13 @@ body{
 .btn-publish{
     float: right;
 }
+
+.img-size {
+    width: 38px;
+    height: 38px;
+}
+.text-desc{
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}

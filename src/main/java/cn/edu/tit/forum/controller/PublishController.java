@@ -4,7 +4,6 @@ import cn.edu.tit.forum.mapper.QuestionMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.Question;
 import cn.edu.tit.forum.model.User;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,14 +61,16 @@ public class PublishController {
         // 用户是否登录判断
         User user = null;
         Cookie[] cookies = request.getCookies();
-        for (Cookie cookie: cookies) {
-            if (("token").equals(cookie.getName())){
-                String token = cookie.getValue();
-                user = userMapper.findByToken(token);
-                if (user != null) {
-                    request.getSession().setAttribute("user", user);
+        if (cookies != null && cookies.length > 0) {
+            for (Cookie cookie : cookies) {
+                if (("token").equals(cookie.getName())) {
+                    String token = cookie.getValue();
+                    user = userMapper.findByToken(token);
+                    if (user != null) {
+                        request.getSession().setAttribute("user", user);
+                    }
+                    break;
                 }
-                break;
             }
         }
         if (user == null) {
