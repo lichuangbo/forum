@@ -1,5 +1,6 @@
 package cn.edu.tit.forum.service;
 
+import cn.edu.tit.forum.dto.PageNationDTO;
 import cn.edu.tit.forum.dto.QuestionDTO;
 import cn.edu.tit.forum.mapper.QuestionMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
@@ -26,8 +27,30 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public List<QuestionDTO> queryList() {
-        List<Question> questionList = questionMapper.list();
+    public PageNationDTO queryList(Integer page, Integer size) {
+        PageNationDTO pageNationDTO = new PageNationDTO();
+
+        /*  将page和totalPage封装
+            1. 根据totalCount计算出totalPage
+            2. 对page进行容错处理
+            3. 将page和totalPage封装进pageNationDTO中
+         */
+        int totalCount = questionMapper.count();
+        int totalPage = (totalCount % size == 0) ? totalCount / size : totalCount / size + 1;
+        if (page < 1)
+            page = 1;
+        if (page > totalPage)
+            page = totalPage;
+        pageNationDTO.setPageNation(totalPage, page);
+
+        /*  将questionDTOS封装(他是一个混合集合，要进行组装)
+            1. 根据偏移量offset和页大小size，查询出questionList
+            2. 遍历questionList，根据creater属性，拿到user
+            3. 将每一个question和user封装进questionDTO查询体中，最后放入questionDTOS集合
+            4. 把集合封装进pageNationDTO中
+         */
+        int offset = size * (page - 1);
+        List<Question> questionList = questionMapper.list(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : questionList) {
             User user = userMapper.findById(question.getCreater());
@@ -38,6 +61,9 @@ public class QuestionService {
 
             questionDTOList.add(questionDTO);
         }
-        return questionDTOList;
+
+        pageNationDTO.setQuestionDTOS(questionDTOList);
+
+        return pageNationDTO;
     }
 }
