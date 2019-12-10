@@ -66,4 +66,32 @@ public class QuestionService {
 
         return pageNationDTO;
     }
+
+    public PageNationDTO list(Integer userid, Integer page, Integer size) {
+        PageNationDTO pageNationDTO = new PageNationDTO();
+
+        int totalCount = questionMapper.countByUserId(userid);
+        int totalPage = (totalCount % size == 0) ? totalCount / size : totalCount / size + 1;
+        if (page < 1)
+            page = 1;
+        if (page > totalPage)
+            page = totalPage;
+        pageNationDTO.setPageNation(totalPage, page);
+
+        int offset = size * (page - 1);
+        List<Question> questionList = questionMapper.listById(userid, offset, size);
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        for (Question question : questionList) {
+            User user = userMapper.findById(question.getCreater());
+            QuestionDTO questionDTO = new QuestionDTO();
+            // Spring提供的，快速封装查询体
+            BeanUtils.copyProperties(question, questionDTO);
+            questionDTO.setUser(user);
+
+            questionDTOList.add(questionDTO);
+        }
+
+        pageNationDTO.setQuestionDTOS(questionDTOList);
+        return pageNationDTO;
+    }
 }
