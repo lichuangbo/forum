@@ -2,8 +2,11 @@ package cn.edu.tit.forum.service;
 
 import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.User;
+import cn.edu.tit.forum.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author lichuangbo
@@ -18,18 +21,32 @@ public class UserService {
 
     public void createOrUpdate(User user) {
         // 用户登录，先判断用户是否存在
-        User dbUser = userMapper.finByAccountId(user.getAccountId());
-        if (dbUser == null) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria()
+                .andAccountIdEqualTo(user.getAccountId());
+        List<User> users = userMapper.selectByExample(userExample);
+
+        if (users.size() == 0) {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-            userMapper.insertUser(user);
+            userMapper.insert(user);
         } else {
-            dbUser.setGmtModified(System.currentTimeMillis());
-            dbUser.setAvatarUrl(user.getAvatarUrl());
-            dbUser.setName(user.getName());
-            dbUser.setBio(user.getBio());
-            dbUser.setToken(user.getToken());
-            userMapper.update(dbUser);
+            User dbUser = users.get(0);
+
+            // 更新体
+            User updateUser = new User();
+            updateUser.setGmtModified(System.currentTimeMillis());
+            updateUser.setAvatarUrl(user.getAvatarUrl());
+            updateUser.setName(user.getName());
+            updateUser.setBio(user.getBio());
+            updateUser.setToken(user.getToken());
+
+            // 更新条件
+            UserExample updateUserExample = new UserExample();
+            updateUserExample.createCriteria()
+                    .andIdEqualTo(dbUser.getId());
+
+            userMapper.updateByExampleSelective(updateUser, updateUserExample);
         }
     }
 }
