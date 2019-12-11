@@ -7,6 +7,8 @@ import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.Question;
 import cn.edu.tit.forum.model.QuestionExample;
 import cn.edu.tit.forum.model.User;
+import exception.CustomizeErrorCode;
+import exception.CustomizeException;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,6 +109,12 @@ public class QuestionService {
 
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+
+        // 异常处理
+        if (question == null) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
+
         User user = userMapper.selectByPrimaryKey(question.getCreater());
 
         QuestionDTO questionDTO = new QuestionDTO();
@@ -133,7 +141,11 @@ public class QuestionService {
             QuestionExample updateQuestionExample = new QuestionExample();
             updateQuestionExample.createCriteria()
                     .andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, updateQuestionExample);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, updateQuestionExample);
+            // 处理当一个页面在修改，另起一个窗口将问题删除的情况 提交不成功
+            if (updated != 1) {
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }

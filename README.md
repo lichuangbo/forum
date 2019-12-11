@@ -57,3 +57,11 @@ GET https://api.github.com/user?access_token=xxx
     方法中遍历cookie信息，查找名为token的cookie
     3. 根据value去数据库中查找该用户，如果此时查出来的user不为空，再将session中存储user(我们将第一步的存session
     延迟到了第三步，中间夹杂了持久化操作)
+
+#### 异常处理
+1. Spring Boot自动提供了一种/error的错误信息映射,出现错误会自动去找error.html，但是他不能处理404/500这样的异常
+    如果我们想要利用好他的映射机制，需要自己去实现，在类上配上@ControllerAdvice注解和处理的异常类型@ExceptionHandler(xxx)，
+    想要拿到信息并在客户端展示，也可以添加Model域。这样Spring Boot会自动为进行映射
+2. 拦截像404/500这样的异常
+    必须自己写Controller，路径也必须是/error，在指定拦截的方法上getMapping注解要加上produces明确指出是html的
+    还是JSON格式的。在方法的内部通过提供的方法提取status，根据status（如is4xxClientError）在Model域中添加错误信息
