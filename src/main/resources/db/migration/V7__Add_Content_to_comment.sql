@@ -1,0 +1,1 @@
+ALTER TABLE comment ADD content varchar(1024) NOT NULL;

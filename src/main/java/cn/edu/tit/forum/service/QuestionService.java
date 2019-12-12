@@ -2,6 +2,7 @@ package cn.edu.tit.forum.service;
 
 import cn.edu.tit.forum.dto.PageNationDTO;
 import cn.edu.tit.forum.dto.QuestionDTO;
+import cn.edu.tit.forum.mapper.QuestionExtMapper;
 import cn.edu.tit.forum.mapper.QuestionMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.Question;
@@ -29,8 +30,12 @@ public class QuestionService {
     private QuestionMapper questionMapper;
 
     @Autowired
+    private QuestionExtMapper questionExtMapper;
+
+    @Autowired
     private UserMapper userMapper;
 
+    // index页 话题列表展示
     public PageNationDTO queryList(Integer page, Integer size) {
         PageNationDTO pageNationDTO = new PageNationDTO();
 
@@ -67,11 +72,11 @@ public class QuestionService {
         }
 
         pageNationDTO.setQuestionDTOS(questionDTOList);
-
         return pageNationDTO;
     }
 
-    public PageNationDTO list(Integer userid, Integer page, Integer size) {
+    // 我的问题页 问题列表展示
+    public PageNationDTO list(Long userid, Integer page, Integer size) {
         PageNationDTO pageNationDTO = new PageNationDTO();
 
         QuestionExample example = new QuestionExample();
@@ -107,10 +112,10 @@ public class QuestionService {
         return pageNationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
 
-        // 异常处理
+        // 处理 question/{id} id手动输入，但查找不到的异常
         if (question == null) {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
@@ -123,6 +128,7 @@ public class QuestionService {
         return questionDTO;
     }
 
+    // 处理发布页 和 编辑页两种发布语境
     public void createOrUpdate(Question question) {
         if (question.getId() == null) {
             question.setGmtCreate(System.currentTimeMillis());
@@ -142,10 +148,20 @@ public class QuestionService {
             updateQuestionExample.createCriteria()
                     .andIdEqualTo(question.getId());
             int updated = questionMapper.updateByExampleSelective(updateQuestion, updateQuestionExample);
+
             // 处理当一个页面在修改，另起一个窗口将问题删除的情况 提交不成功
             if (updated != 1) {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    // 增加阅读数， 根据问题ID
+    public void incView(Long id) {
+        Question question = new Question();
+        question.setId(id);
+        // 从数据库中更新，而不是查出来在更新+1
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }

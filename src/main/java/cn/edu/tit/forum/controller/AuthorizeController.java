@@ -2,7 +2,6 @@ package cn.edu.tit.forum.controller;
 
 import cn.edu.tit.forum.dto.AccessTokenDTO;
 import cn.edu.tit.forum.dto.GitHubUser;
-import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.provider.GitHubProvider;
 import cn.edu.tit.forum.service.UserService;

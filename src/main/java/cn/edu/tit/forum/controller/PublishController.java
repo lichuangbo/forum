@@ -30,11 +30,11 @@ public class PublishController {
         return "publish";
     }
 
-    @PostMapping("/publish")
+    @PostMapping("/publish")// 通过请求方式来区分调用哪个方法
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            @RequestParam("id") Integer id,
+                            @RequestParam("id") Long id,
                             HttpServletRequest request,
                             Model model) {
         // 表单值回显（用户写入一部分，就点击提交，会得到不合法信息，同时保留了先前填入的值）
@@ -42,7 +42,7 @@ public class PublishController {
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
 
-        // 表单是否为空的判断，为空写入error，让它在publish页面展示
+        // 表单是否为空的判断，为空写入error，让它在publish页面展示   前端的处理是一个提示框，统一显示这些警告信息，所以要放入error域
         if (title == null || "".equals(title)) {
             model.addAttribute("error", "标题不能为空");
             return "publish";
@@ -67,13 +67,14 @@ public class PublishController {
         question.setTitle(title);
         question.setTag(tag);
         question.setCreater(user.getId());
+        // 前端的处理是一个隐藏输入框，为了将它传到后端   后端要利用它来判断question是编辑还是发布
         question.setId(id);
         questionService.createOrUpdate(question);
         return "redirect:/";
     }
 
     @GetMapping("/publish/{id}")
-    public String edit(@PathVariable(name = "id") Integer id,
+    public String edit(@PathVariable(name = "id") Long id,
                        Model model) {
         QuestionDTO question = questionService.getById(id);
         model.addAttribute("title", question.getTitle());
