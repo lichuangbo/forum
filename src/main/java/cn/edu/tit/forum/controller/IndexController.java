@@ -23,7 +23,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model,
                         @RequestParam(value = "page", defaultValue = "1") Integer page,
-                        @RequestParam(value = "size", defaultValue = "3") Integer size) {
+                        @RequestParam(value = "size", defaultValue = "10") Integer size) {
 
         // 重定向到首页后，展示话题集合，将基本信息展示出来
         PageNationDTO pageNationDTO = questionService.queryList(page, size);

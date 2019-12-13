@@ -28,8 +28,10 @@ body{
 }
 
 .community-menu {
+    display: block;
     color: #999;
     font-size: 13px;
+    margin-bottom: 15px;
 }
 .comment {
     margin: 10px 0;
@@ -41,4 +43,28 @@ body{
 .btn-comment {
     float: right;
     margin-bottom: 10px;
+}
+
+.comment-sp{
+    margin-top: 2px;
+}
+#comment-section {
+    margin-top: 30px;
+}
+
+.comment-menu {
+    color: #999;
+    margin-top: 5px;
+}
+.comment-menu .icon {
+    margin-right: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.comment-menu .icon:hover {
+    color: #499ef3;
+}
+.comment-content {
+    padding: 14px 0;
+    border-bottom: 1px solid #f5f5f5;
 }

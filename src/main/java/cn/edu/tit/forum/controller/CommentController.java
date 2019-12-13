@@ -1,6 +1,6 @@
 package cn.edu.tit.forum.controller;
 
-import cn.edu.tit.forum.dto.CommentDTO;
+import cn.edu.tit.forum.dto.CommentCreateDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.model.Comment;
 import cn.edu.tit.forum.model.User;
@@ -25,7 +25,7 @@ public class CommentController {
 
     @RequestMapping(value = "/comment",method = RequestMethod.POST)
     @ResponseBody
-    public Object post(@RequestBody CommentDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request) {
         User user = (User)request.getSession().getAttribute("user");
         if (user == null) {
@@ -33,9 +33,9 @@ public class CommentController {
         }
 
         Comment comment = new Comment();
-        comment.setParentId(commentDTO.getParentId());
-        comment.setContent(commentDTO.getContent());
-        comment.setType(commentDTO.getType());
+        comment.setParentId(commentCreateDTO.getParentId());
+        comment.setContent(commentCreateDTO.getContent());
+        comment.setType(commentCreateDTO.getType());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(System.currentTimeMillis());
         comment.setLikeCount(0L);
