@@ -2,6 +2,7 @@ package cn.edu.tit.forum.controller;
 
 import cn.edu.tit.forum.dto.CommentDTO;
 import cn.edu.tit.forum.dto.QuestionDTO;
+import cn.edu.tit.forum.enums.CommentTypeEnum;
 import cn.edu.tit.forum.service.CommentService;
 import cn.edu.tit.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class QuestionController {
     public String question(@PathVariable(name = "id") Long id,
                            Model model) {
         QuestionDTO questionDTO = questionService.getById(id);
-        List<CommentDTO> commentDTOS = commentService.listByQuestionId(id);
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
         // 增加阅读数
         questionService.incView(id);
         model.addAttribute("question", questionDTO);

@@ -1,16 +1,20 @@
 package cn.edu.tit.forum.controller;
 
 import cn.edu.tit.forum.dto.CommentCreateDTO;
+import cn.edu.tit.forum.dto.CommentDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
+import cn.edu.tit.forum.enums.CommentTypeEnum;
 import cn.edu.tit.forum.model.Comment;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.service.CommentService;
 import exception.CustomizeErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author lichuangbo
@@ -31,6 +35,9 @@ public class CommentController {
         if (user == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
+        if (commentCreateDTO == null || StringUtils.isEmpty(commentCreateDTO.getContent())) {
+            return ResultDTO.errorOf(CustomizeErrorCode.CONTENT_IS_EMPTY);
+        }
 
         Comment comment = new Comment();
         comment.setParentId(commentCreateDTO.getParentId());
@@ -42,5 +49,12 @@ public class CommentController {
         comment.setCommentor(user.getId());
         commentService.insert(comment);
         return ResultDTO.okof();
+    }
+
+    @RequestMapping(value = "/comment/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id")Long id) {
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+        return ResultDTO.okof(commentDTOS);
     }
 }

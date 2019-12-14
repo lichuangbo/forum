@@ -10,11 +10,13 @@ import lombok.Data;
  * @created 2019/12/12
  */
 @Data
-public class ResultDTO {
+public class ResultDTO<T> {
     // 唯一标识的提示码
     private Integer code;
     // 提示信息
     private String message;
+    // 泛型T，期望它可以返回list或者Object类型
+    private T data;
 
     public static ResultDTO errorOf(Integer code, String message) {
         ResultDTO resultDTO = new ResultDTO();
@@ -27,6 +29,14 @@ public class ResultDTO {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(200);
         resultDTO.setMessage("请求成功");
+        return resultDTO;
+    }
+
+    public static <T> ResultDTO okof(T t) {
+        ResultDTO resultDTO = new ResultDTO();
+        resultDTO.setCode(200);
+        resultDTO.setMessage("请求成功");
+        resultDTO.setData(t);
         return resultDTO;
     }
 
