@@ -14,9 +14,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author lichuangbo
@@ -44,7 +46,7 @@ public class QuestionService {
             2. 对page进行容错处理
             3. 将page和totalPage封装进pageNationDTO中
          */
-        int totalCount = (int)questionMapper.countByExample(new QuestionExample());
+        int totalCount = (int) questionMapper.countByExample(new QuestionExample());
         int totalPage = (totalCount % size == 0) ? totalCount / size : totalCount / size + 1;
         if (page < 1)
             page = 1;
@@ -59,7 +61,9 @@ public class QuestionService {
             4. 把集合封装进pageNationDTO中
          */
         int offset = size * (page - 1);
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(new QuestionExample(), new RowBounds(offset, size));
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.setOrderByClause("gmt_create desc");
+        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : questions) {
             User user = userMapper.selectByPrimaryKey(question.getCreater());
@@ -82,7 +86,7 @@ public class QuestionService {
         QuestionExample example = new QuestionExample();
         example.createCriteria()
                 .andCreaterEqualTo(userid);
-        int totalCount = (int)questionMapper.countByExample(example);
+        int totalCount = (int) questionMapper.countByExample(example);
 
         int totalPage = (totalCount % size == 0) ? totalCount / size : totalCount / size + 1;
         if (page < 1)
@@ -166,5 +170,24 @@ public class QuestionService {
         // 从数据库中更新，而不是查出来在更新+1
         question.setViewCount(1);
         questionExtMapper.incView(question);
+    }
+
+    public List<QuestionDTO> selectRelative(QuestionDTO questionDTO) {
+        if (StringUtils.isEmpty(questionDTO.getTag())) {
+            return new ArrayList<>();
+        }
+        String regexTag = StringUtils.replace(questionDTO.getTag(), ",", "|");
+        Question question = new Question();
+        question.setTag(regexTag);
+        question.setId(questionDTO.getId());
+        List<Question> questions = questionExtMapper.selectRelative(question);
+        List<QuestionDTO> questionDTOS = questions.stream().map(
+                q -> {
+                    QuestionDTO qDTO = new QuestionDTO();
+                    BeanUtils.copyProperties(q, qDTO);
+                    return qDTO;
+                }
+        ).collect(Collectors.toList());
+        return questionDTOS;
     }
 }
