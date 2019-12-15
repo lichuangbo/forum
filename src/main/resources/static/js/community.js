@@ -118,3 +118,28 @@ function collapseComment(e) {
         }
     }
 }
+
+/**
+ * 点击标签追加到标签输入框中
+ * @param e 当前点击的标签
+ */
+function selectTag(e) {
+    // 拿到标签的值
+    var value = e.getAttribute("data-tag");
+    var inputValue = $("#tag").val();
+
+    if (previous.indexOf(value) == -1) {
+        if (inputValue) {
+            $("#tag").val(inputValue + ',' + value);
+        } else {
+            $("#tag").val(value);
+        }
+    }
+}
+
+/**
+ * 点击输入框，展开tag
+ */
+function showSelectTag(){
+    $("#select-tag").show();
+}

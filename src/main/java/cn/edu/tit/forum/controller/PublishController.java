@@ -1,5 +1,6 @@
 package cn.edu.tit.forum.controller;
 
+import cn.edu.tit.forum.cache.TagCache;
 import cn.edu.tit.forum.dto.QuestionDTO;
 import cn.edu.tit.forum.model.Question;
 import cn.edu.tit.forum.model.User;
@@ -7,6 +8,7 @@ import cn.edu.tit.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +28,8 @@ public class PublishController {
     private QuestionService questionService;
 
     @GetMapping("/publish")
-    public String publish() {
+    public String publish(Model model) {
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
@@ -41,6 +44,7 @@ public class PublishController {
         model.addAttribute("title", title);
         model.addAttribute("description", description);
         model.addAttribute("tag", tag);
+        model.addAttribute("tags", TagCache.get());
 
         // 表单是否为空的判断，为空写入error，让它在publish页面展示   前端的处理是一个提示框，统一显示这些警告信息，所以要放入error域
         if (title == null || "".equals(title)) {
@@ -59,6 +63,12 @@ public class PublishController {
         User user = (User)request.getSession().getAttribute("user");
         if (user == null) {
             model.addAttribute("error", "用户未登录");
+            return "publish";
+        }
+
+        String invalid = TagCache.filterInvalid(tag);
+        if (!StringUtils.isEmpty(invalid)) {
+            model.addAttribute("error", "输入非法标签:" + invalid);
             return "publish";
         }
 
@@ -81,6 +91,7 @@ public class PublishController {
         model.addAttribute("description", question.getDescription());
         model.addAttribute("tag", question.getTag());
         model.addAttribute("id", question.getId());
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 }
