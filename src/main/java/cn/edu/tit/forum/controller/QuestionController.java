@@ -32,7 +32,7 @@ public class QuestionController {
                            Model model) {
         QuestionDTO questionDTO = questionService.getById(id);
         List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
-        // 增加阅读数
+        // 每次访问都会增加阅读数，每次刷新也是   一个BUG，待解决
         questionService.incView(id);
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", commentDTOS);

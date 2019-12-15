@@ -112,6 +112,7 @@ public class QuestionService {
         return pageNationDTO;
     }
 
+    // 根据问题ID查询 dto
     public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
 
@@ -121,7 +122,6 @@ public class QuestionService {
         }
 
         User user = userMapper.selectByPrimaryKey(question.getCreater());
-
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question, questionDTO);
         questionDTO.setUser(user);

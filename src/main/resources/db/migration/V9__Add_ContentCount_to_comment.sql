@@ -1,0 +1,1 @@
+ALTER TABLE comment ADD content_count int default 0;
