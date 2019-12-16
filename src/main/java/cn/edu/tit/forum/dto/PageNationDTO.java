@@ -12,9 +12,9 @@ import java.util.List;
  * @created 2019/12/9
  */
 @Data
-public class PageNationDTO {
+public class PageNationDTO<T> {
     // 展示的数据集合
-    private List<QuestionDTO> questionDTOS;
+    private List<T> data;
     // 按钮是否显示
     private Boolean showPrePage;
     private Boolean showFirstPage;

@@ -3,6 +3,7 @@ package cn.edu.tit.forum.controller;
 import cn.edu.tit.forum.dto.PageNationDTO;
 import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.User;
+import cn.edu.tit.forum.service.NotifyService;
 import cn.edu.tit.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class ProfileController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private NotifyService notifyService;
+
     @GetMapping("/profile/{action}")
     public String profile(@PathVariable(name = "action") String action,
                           Model model,
@@ -39,13 +43,18 @@ public class ProfileController {
         if ("questions".equals(action)) {
             model.addAttribute("sections", "questions");
             model.addAttribute("sectionName", "我的提问");
+            PageNationDTO pageNationDTO = questionService.list(user.getId(), page, size);
+            model.addAttribute("pageNationDTO", pageNationDTO);
         } else if ("replies".equals(action)) {
+            PageNationDTO pageNationDTO = notifyService.list(user.getId(), page, size);
+
+            Long unreadCount = notifyService.unreadCount(user.getId());
+            model.addAttribute("pageNationDTO", pageNationDTO);
+            model.addAttribute("unreadCount", unreadCount);
             model.addAttribute("sections", "replies");
             model.addAttribute("sectionName", "最新回复");
         }
 
-        PageNationDTO pageNationDTO = questionService.list(user.getId(), page, size);
-        model.addAttribute("pageNationDTO", pageNationDTO);
         return "profile";
     }
 }

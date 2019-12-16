@@ -39,7 +39,7 @@ public class QuestionService {
 
     // index页 话题列表展示
     public PageNationDTO queryList(Integer page, Integer size) {
-        PageNationDTO pageNationDTO = new PageNationDTO();
+        PageNationDTO<QuestionDTO> pageNationDTO = new PageNationDTO<>();
 
         /*  将page和totalPage封装
             1. 根据totalCount计算出totalPage
@@ -75,13 +75,13 @@ public class QuestionService {
             questionDTOList.add(questionDTO);
         }
 
-        pageNationDTO.setQuestionDTOS(questionDTOList);
+        pageNationDTO.setData(questionDTOList);
         return pageNationDTO;
     }
 
     // 我的问题页 问题列表展示
     public PageNationDTO list(Long userid, Integer page, Integer size) {
-        PageNationDTO pageNationDTO = new PageNationDTO();
+        PageNationDTO<QuestionDTO> pageNationDTO = new PageNationDTO<>();
 
         QuestionExample example = new QuestionExample();
         example.createCriteria()
@@ -112,7 +112,7 @@ public class QuestionService {
             questionDTOList.add(questionDTO);
         }
 
-        pageNationDTO.setQuestionDTOS(questionDTOList);
+        pageNationDTO.setData(questionDTOList);
         return pageNationDTO;
     }
 

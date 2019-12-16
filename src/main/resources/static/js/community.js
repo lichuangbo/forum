@@ -128,7 +128,7 @@ function selectTag(e) {
     var value = e.getAttribute("data-tag");
     var inputValue = $("#tag").val();
 
-    if (previous.indexOf(value) == -1) {
+    if (inputValue.indexOf(value) == -1) {
         if (inputValue) {
             $("#tag").val(inputValue + ',' + value);
         } else {

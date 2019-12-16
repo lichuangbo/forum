@@ -1,0 +1,1 @@
+ALTER TABLE norification RENAME TO notify;

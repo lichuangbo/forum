@@ -2,6 +2,8 @@ package cn.edu.tit.forum.service;
 
 import cn.edu.tit.forum.dto.CommentDTO;
 import cn.edu.tit.forum.enums.CommentTypeEnum;
+import cn.edu.tit.forum.enums.NotifyStatusEnum;
+import cn.edu.tit.forum.enums.NotifyTypeEnum;
 import cn.edu.tit.forum.mapper.*;
 import cn.edu.tit.forum.model.*;
 import exception.CustomizeErrorCode;
@@ -40,13 +42,16 @@ public class CommentService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private NotifyMapper notifyMapper;
+
     /**
      * 对插入数据库的数据进行校验，做了充足的扩展如问题可删除、评论可删除
      *
      * @param comment Comment对象
      */
     @Transactional
-    public void insert(Comment comment) {
+    public void insert(Comment comment, User commentor) {
         // 未选中问题评论
         if (comment.getParentId() == null || comment.getParentId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_PARAM_NOT_FOUND);
@@ -62,12 +67,21 @@ public class CommentService {
             if (dbComment == null)
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
 
+            // 回复的是评论？这里传的是问题ID，可能是为了最后的点击跳转    不知道传评论内容能不能达到一样的效果
+            Question question = questionMapper.selectByPrimaryKey(dbComment.getParentId());
+            // 回复的问题找不到异常，此处复用了一个异常类型
+            if (question == null)
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+
             commentMapper.insert(comment);
             // 增加评论回复数
             Comment parentComment = new Comment();
             parentComment.setId(comment.getParentId());
             parentComment.setCommentCount(1);
             commentExtMapper.incCommentCount(parentComment);
+
+            // 添加通知
+            createNotify(comment, dbComment.getCommentor(), commentor.getName(), comment.getContent(), NotifyTypeEnum.REPLY_COMMENT, question.getId());
         } else {// 回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
             // 回复的问题找不到异常，此处复用了一个异常类型
@@ -77,7 +91,33 @@ public class CommentService {
             // 增加问题回复数
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
+
+            // 添加通知
+            createNotify(comment, question.getCreater(), commentor.getName(), question.getTitle(), NotifyTypeEnum.REPLY_QUESTION, question.getId());
         }
+    }
+
+    /**
+     * 创建一个通知       添加outerId是为了让profile页，能够发生跳转，太复杂了现在，这个方法
+     *
+     * @param comment        评论
+     * @param receiver       接收人ID
+     * @param commentorName  评论人名字
+     * @param outerTitle     评论问题的title或者评论的内容
+     * @param notifyTypeEnum 通知类型
+     * @param outerId         跳转目标
+     */
+    private void createNotify(Comment comment, Long receiver, String commentorName, String outerTitle, NotifyTypeEnum notifyTypeEnum, Long outerId) {
+        Notify notify = new Notify();
+        notify.setGmtCreate(System.currentTimeMillis());
+        notify.setType(notifyTypeEnum.getType());
+        notify.setOuterId(outerId);
+        notify.setNotifier(comment.getCommentor());
+        notify.setStatus(NotifyStatusEnum.UNREAD.getStatus());
+        notify.setReceiver(receiver);
+        notify.setOuterTitle(outerTitle);
+        notify.setNotifierName(commentorName);
+        notifyMapper.insert(notify);
     }
 
     /**
