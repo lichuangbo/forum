@@ -66,6 +66,12 @@
             <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
+        <!--OBS服务-->
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>esdk-obs-java</artifactId>
+            <version>3.19.7</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
