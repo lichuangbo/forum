@@ -3,6 +3,7 @@ package cn.edu.tit.forum.interceptor;
 import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.model.UserExample;
+import cn.edu.tit.forum.service.NotifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -24,6 +25,9 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private NotifyService notifyService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Cookie[] cookies = request.getCookies();
@@ -38,6 +42,8 @@ public class SessionInterceptor implements HandlerInterceptor {
 
                     if (users.size() != 0) {
                         request.getSession().setAttribute("user", users.get(0));
+                        Long unreadCount = notifyService.unreadCount(users.get(0).getId());
+                        request.getSession().setAttribute("unreadCount", unreadCount);
                     }
                     break;
                 }

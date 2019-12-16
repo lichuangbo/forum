@@ -47,10 +47,7 @@ public class ProfileController {
             model.addAttribute("pageNationDTO", pageNationDTO);
         } else if ("replies".equals(action)) {
             PageNationDTO pageNationDTO = notifyService.list(user.getId(), page, size);
-
-            Long unreadCount = notifyService.unreadCount(user.getId());
             model.addAttribute("pageNationDTO", pageNationDTO);
-            model.addAttribute("unreadCount", unreadCount);
             model.addAttribute("sections", "replies");
             model.addAttribute("sectionName", "最新回复");
         }

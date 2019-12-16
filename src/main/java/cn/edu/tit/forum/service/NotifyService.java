@@ -52,6 +52,7 @@ public class NotifyService {
         NotifyExample example1 = new NotifyExample();
         example1.createCriteria()
                 .andReceiverEqualTo(id);
+        example1.setOrderByClause("gmt_create desc");
         List<Notify> notifies = notifyMapper.selectByExampleWithRowbounds(example1, new RowBounds(offset, size));
 
         // 如果没有通知，返回空集合
