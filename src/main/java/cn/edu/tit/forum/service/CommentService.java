@@ -87,6 +87,7 @@ public class CommentService {
             // 回复的问题找不到异常，此处复用了一个异常类型
             if (question == null)
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            comment.setCommentCount(0);
             commentMapper.insert(comment);
             // 增加问题回复数
             question.setCommentCount(1);
@@ -108,6 +109,10 @@ public class CommentService {
      * @param outerId         跳转目标
      */
     private void createNotify(Comment comment, Long receiver, String commentorName, String outerTitle, NotifyTypeEnum notifyTypeEnum, Long outerId) {
+        // 自己评论自己不用通知
+        if (receiver == comment.getCommentor()) {
+            return;
+        }
         Notify notify = new Notify();
         notify.setGmtCreate(System.currentTimeMillis());
         notify.setType(notifyTypeEnum.getType());

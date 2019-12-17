@@ -37,11 +37,6 @@ public class FileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        FileDTO fileDTO = new FileDTO();
-        fileDTO.setSuccess(1);
-        fileDTO.setMessage("返回信息");
-        fileDTO.setUrl("/images/女.jpg");
-        return fileDTO;
+        return null;
     }
 }

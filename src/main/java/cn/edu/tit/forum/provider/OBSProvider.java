@@ -2,19 +2,13 @@ package cn.edu.tit.forum.provider;
 
 import com.obs.services.ObsClient;
 import com.obs.services.ObsConfiguration;
-import com.obs.services.internal.utils.ServiceUtils;
 import com.obs.services.model.*;
 import exception.CustomizeErrorCode;
 import exception.CustomizeException;
-import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -52,22 +46,19 @@ public class OBSProvider {
         // 设置metadata
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentType(contentType);
-        System.out.println("metadata:" + metadata);
         // 创建ObsClient实例
         ObsClient obsClient = new ObsClient(accessKey, secretKey, config);
         // 创建对象
         PutObjectResult response = obsClient.putObject(bucketName, generatedFileName, fileStream, metadata);
 
         if (response != null) {
-            // URL有效期，3600秒
-            long expireSeconds = 60L;
+            Long expireSeconds = 365 * 24 * 60 * 60L;
 
             TemporarySignatureRequest request = new TemporarySignatureRequest(HttpMethodEnum.GET, expireSeconds);
             request.setBucketName(bucketName);
             request.setObjectKey(generatedFileName);
 
             TemporarySignatureResponse signatureResponse = obsClient.createTemporarySignature(request);
-
             return signatureResponse.getSignedUrl();
         }
         return generatedFileName;
