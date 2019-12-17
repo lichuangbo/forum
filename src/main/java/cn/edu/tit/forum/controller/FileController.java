@@ -29,7 +29,11 @@ public class FileController {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile file = multipartRequest.getFile("editormd-image-file");
         try {
-            obsProvider.upload(file.getInputStream(), file.getOriginalFilename());
+            String url = obsProvider.upload(file.getInputStream(), file.getContentType(), file.getOriginalFilename());
+            FileDTO fileDTO = new FileDTO();
+            fileDTO.setSuccess(1);
+            fileDTO.setUrl(url);
+            return fileDTO;
         } catch (IOException e) {
             e.printStackTrace();
         }

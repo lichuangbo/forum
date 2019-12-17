@@ -1,11 +1,20 @@
 package cn.edu.tit.forum.provider;
 
 import com.obs.services.ObsClient;
-import com.obs.services.model.PutObjectResult;
+import com.obs.services.ObsConfiguration;
+import com.obs.services.internal.utils.ServiceUtils;
+import com.obs.services.model.*;
+import exception.CustomizeErrorCode;
+import exception.CustomizeException;
+import okhttp3.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -27,17 +36,40 @@ public class OBSProvider {
     @Value("${huaweicloud.obs.bucketName}")
     private String bucketName;
 
-    public String upload(InputStream fileStream, String fileName) {
+    public String upload(InputStream fileStream, String contentType, String fileName) {
+        // 使用UUID生成上传图片名
         String generatedFileName;
         String[] filePaths = fileName.split("\\.");
         if (filePaths.length > 1) {
             generatedFileName = UUID.randomUUID().toString() + "." + filePaths[filePaths.length - 1];
         } else {
-            return null;
+            throw new CustomizeException(CustomizeErrorCode.FILE_UPLOAD_FAIL);
         }
 
-        ObsClient obsClient = new ObsClient(accessKey, secretKey, endPoint);
-        obsClient.putObject(bucketName, generatedFileName, fileStream);
+        // 配置config
+        ObsConfiguration config = new ObsConfiguration();
+        config.setEndPoint(endPoint);
+        // 设置metadata
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType(contentType);
+        System.out.println("metadata:" + metadata);
+        // 创建ObsClient实例
+        ObsClient obsClient = new ObsClient(accessKey, secretKey, config);
+        // 创建对象
+        PutObjectResult response = obsClient.putObject(bucketName, generatedFileName, fileStream, metadata);
+
+        if (response != null) {
+            // URL有效期，3600秒
+            long expireSeconds = 60L;
+
+            TemporarySignatureRequest request = new TemporarySignatureRequest(HttpMethodEnum.GET, expireSeconds);
+            request.setBucketName(bucketName);
+            request.setObjectKey(generatedFileName);
+
+            TemporarySignatureResponse signatureResponse = obsClient.createTemporarySignature(request);
+
+            return signatureResponse.getSignedUrl();
+        }
         return generatedFileName;
     }
 }
