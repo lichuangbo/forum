@@ -139,3 +139,10 @@ ul{
 .publish-tag-tab .label-info {
     margin-right: 10px;
 }
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #666;;
+    padding: 0 0 15px 0;
+}

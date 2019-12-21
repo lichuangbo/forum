@@ -7,7 +7,7 @@ import cn.edu.tit.forum.enums.CommentTypeEnum;
 import cn.edu.tit.forum.model.Comment;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.service.CommentService;
-import exception.CustomizeErrorCode;
+import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;

@@ -1,4 +1,4 @@
-package exception;
+package cn.edu.tit.forum.exception;
 
 /**
  * @author lichuangbo

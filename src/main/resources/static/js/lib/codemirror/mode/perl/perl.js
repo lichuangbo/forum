@@ -282,7 +282,7 @@ CodeMirror.defineMode("perl",function(){
                 'default'                       :1,     //
                 defined                         :1,     // - test whether a value, variable, or function is defined
                 'delete'                        :1,     // - deletes a value from a hash
-                die                             :1,     // - raise an exception or bail out
+                die                             :1,     // - raise an cn.edu.tit.forum.exception or bail out
                 'do'                            :1,     // - turn a BLOCK into a TERM
                 dump                            :1,     // - create an immediate core dump
                 each                            :1,     // - retrieve the next key/value pair from a hash

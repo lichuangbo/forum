@@ -3,8 +3,8 @@ package cn.edu.tit.forum.provider;
 import com.obs.services.ObsClient;
 import com.obs.services.ObsConfiguration;
 import com.obs.services.model.*;
-import exception.CustomizeErrorCode;
-import exception.CustomizeException;
+import cn.edu.tit.forum.exception.CustomizeErrorCode;
+import cn.edu.tit.forum.exception.CustomizeException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

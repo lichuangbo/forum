@@ -1,0 +1,507 @@
+2019-12-21 16:35:21.001  INFO 6460 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : Starting ForumApplication on DESKTOP-3QUHG5I with PID 6460 (C:\IDEAWorkspace\forum\target\classes started by 李创博 in C:\IDEAWorkspace\forum)
+2019-12-21 16:35:21.003  INFO 6460 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : No active profile set, falling back to default profiles: default
+2019-12-21 16:35:21.125  INFO 6460 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@779773ba: startup date [Sat Dec 21 16:35:21 AWST 2019]; root of context hierarchy
+2019-12-21 16:35:23.735  INFO 6460 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-12-21 16:35:23.764  INFO 6460 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-21 16:35:23.765  INFO 6460 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-12-21 16:35:23.768  INFO 6460 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NetSarang\Xftp 6\;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\app\soft\product\11.2.0\dbhome_1\bin;C:\app\李创博\product\11.2.0\dbhome_3\bin;app\李创博\product\11.2.0\dbhome_1\bin;ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files (x86)\Autodesk\Backburner\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;rogram Files\MySQL\MySQL Utilities 1.6\;VEN_HOME%\bin;Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\李创博\AppData\Local\Pandoc;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\nodejs\;C:\Program Files\nodejs\node_global;C:\soft\apache-maven-3.5.2\bin;C:\Program Files\Java\jdk1.8.0_221\bin;C:\soft\python3.7\Scripts\;C:\soft\python3.7\;C:\Users\李创博\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_144\bin;C:\Program Files\Java\jdk-9.0.4\bin;C:\Users\李创博\maven\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2018.3.5\bin;;;C:\soft\Fidder\Fiddler;C:\Program Files\JetBrains\PyCharm 2019.1.1\bin;;C:\Users\李创博\AppData\Local\Pandoc\;C:\soft\Microsoft VS Code\bin;C:\Users\李创博\AppData\Roaming\npm;.]
+2019-12-21 16:35:23.947  INFO 6460 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-12-21 16:35:23.948  INFO 6460 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2823 ms
+2019-12-21 16:35:24.201  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-12-21 16:35:24.210  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-12-21 16:35:24.211  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-12-21 16:35:24.211  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-12-21 16:35:24.212  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-12-21 16:35:25.000  INFO 6460 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:35:25.182  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@779773ba: startup date [Sat Dec 21 16:35:21 AWST 2019]; root of context hierarchy
+2019-12-21 16:35:25.234  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/callback],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.AuthorizeController.callback(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse)
+2019-12-21 16:35:25.235  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logout],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.AuthorizeController.logout(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-12-21 16:35:25.235  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment],methods=[POST]}" onto public java.lang.Object cn.edu.tit.forum.controller.CommentController.post(cn.edu.tit.forum.dto.CommentCreateDTO,javax.servlet.http.HttpServletRequest)
+2019-12-21 16:35:25.235  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment/{id}],methods=[GET]}" onto public cn.edu.tit.forum.dto.ResultDTO cn.edu.tit.forum.controller.CommentController.comments(java.lang.Long)
+2019-12-21 16:35:25.236  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView cn.edu.tit.forum.controller.CustomizeErrorController.errorHtml(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2019-12-21 16:35:25.237  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/file/upload]}" onto public cn.edu.tit.forum.dto.FileDTO cn.edu.tit.forum.controller.FileController.upload(javax.servlet.http.HttpServletRequest)
+2019-12-21 16:35:25.238  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.IndexController.index(org.springframework.ui.Model,java.lang.Integer,java.lang.Integer,java.lang.String)
+2019-12-21 16:35:25.238  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notify/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.NotifyController.notify(javax.servlet.http.HttpServletRequest,java.lang.Long)
+2019-12-21 16:35:25.239  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/profile/{action}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.ProfileController.profile(java.lang.String,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest,java.lang.Integer,java.lang.Integer)
+2019-12-21 16:35:25.241  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-21 16:35:25.242  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish],methods=[POST]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.doPublish(java.lang.String,java.lang.String,java.lang.String,java.lang.Long,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2019-12-21 16:35:25.242  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.publish(org.springframework.ui.Model)
+2019-12-21 16:35:25.242  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.QuestionController.question(java.lang.Long,org.springframework.ui.Model)
+2019-12-21 16:35:25.262  INFO 6460 --- [restartedMain] o.s.w.s.h.BeanNameUrlHandlerMapping      : Mapped URL path [/error] onto handler '/error'
+2019-12-21 16:35:25.266  INFO 6460 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:35:25.266  INFO 6460 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:35:25.280  INFO 6460 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in customizeExceptionHandler
+2019-12-21 16:35:25.375  INFO 6460 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-12-21 16:35:26.030  INFO 6460 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-12-21 16:35:26.055  INFO 6460 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-12-21 16:35:26.056  INFO 6460 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-12-21 16:35:26.062  INFO 6460 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2019-12-21 16:35:26.098  INFO 6460 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-21 16:35:26.103  INFO 6460 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : Started ForumApplication in 5.64 seconds (JVM running for 7.137)
+2019-12-21 16:35:47.513  INFO 6460 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-12-21 16:35:47.513  INFO 6460 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-12-21 16:35:47.566  INFO 6460 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 53 ms
+2019-12-21 16:35:47.646  INFO 6460 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-12-21 16:35:47.842  INFO 6460 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-12-21 16:35:47.849 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:47.865 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:47.879 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:48.406  WARN 6460 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [520] milliseconds.
+2019-12-21 16:35:48.417 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:48.418 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:48.421 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:48.448 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.countBySearch                : ==>  Preparing: select count(*) from question 
+2019-12-21 16:35:48.448 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.countBySearch                : ==> Parameters: 
+2019-12-21 16:35:48.450 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.countBySearch                : <==      Total: 1
+2019-12-21 16:35:48.453 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectBySearch               : ==>  Preparing: select * from question order by gmt_create desc limit ?, ? 
+2019-12-21 16:35:48.456 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectBySearch               : ==> Parameters: 0(Integer), 10(Integer)
+2019-12-21 16:35:48.466 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectBySearch               : <==      Total: 10
+2019-12-21 16:35:48.467 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.468 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.472 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.481 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.482 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.483 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.485 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.485 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.487 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.488 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.489 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.491 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.493 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.493 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.495 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.497 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.497 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 17(Long)
+2019-12-21 16:35:48.499 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.500 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.500 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.502 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.503 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.505 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.506 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.509 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.510 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.512 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.513 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:48.513 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:48.514 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:48.974 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:48.976 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:48.978 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:48.980 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:48.981 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:48.984 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:50.624 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:50.625 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:50.626 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:50.627 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:50.627 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:50.627 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:50.630 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectByPrimaryKey           : ==>  Preparing: select id, title, gmt_create, gmt_modified, creater, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-12-21 16:35:50.630 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectByPrimaryKey           : ==> Parameters: 32(Long)
+2019-12-21 16:35:50.631 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectByPrimaryKey           : <==      Total: 1
+2019-12-21 16:35:50.631 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:50.631 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:50.632 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:50.632 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectRelative               : ==>  Preparing: select * from question where id != ? and tag regexp ? 
+2019-12-21 16:35:50.633 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectRelative               : ==> Parameters: 32(Long), spring boot(String)
+2019-12-21 16:35:50.634 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectRelative               : <==      Total: 3
+2019-12-21 16:35:50.644 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.CommentMapper.selectByExample  : ==>  Preparing: select id, parent_id, type, commentor, gmt_create, gmt_modified, like_count, content, comment_count from comment WHERE ( parent_id = ? and type = ? ) order by gmt_create desc 
+2019-12-21 16:35:50.644 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.CommentMapper.selectByExample  : ==> Parameters: 32(Long), 1(Integer)
+2019-12-21 16:35:50.648 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.CommentMapper.selectByExample  : <==      Total: 0
+2019-12-21 16:35:50.649 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.QuestionExtMapper.incView      : ==>  Preparing: update question set view_count = view_count + ? where id=? 
+2019-12-21 16:35:50.649 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.QuestionExtMapper.incView      : ==> Parameters: 1(Integer), 32(Long)
+2019-12-21 16:35:50.655 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.QuestionExtMapper.incView      : <==    Updates: 1
+2019-12-21 16:35:50.724 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:50.724 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:50.725 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:50.726 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:50.727 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:50.728 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:50.759 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:50.760 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:50.761 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:50.763 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:50.769 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:50.770 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:50.773 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:50.773 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:50.777 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:50.778 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:50.777 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:50.778 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:50.779 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:50.780 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:50.780 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:50.780 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:50.781 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:50.782 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:50.782 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:50.782 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:50.783 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:50.786 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:50.786 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:50.786 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:50.786 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:50.786 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:50.786 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:50.787 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:50.788 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:50.790 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:52.874 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:52.874 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:52.877 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:52.878 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:52.878 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:52.879 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:52.880 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectByPrimaryKey           : ==>  Preparing: select id, title, gmt_create, gmt_modified, creater, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-12-21 16:35:52.880 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectByPrimaryKey           : ==> Parameters: 32(Long)
+2019-12-21 16:35:52.881 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectByPrimaryKey           : <==      Total: 1
+2019-12-21 16:35:52.881 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:35:52.881 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:35:52.882 DEBUG 6460 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:35:52.944 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:52.944 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:52.945 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:52.945 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:52.946 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:52.946 DEBUG 6460 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.091 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.092 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.093 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.093 DEBUG 6460 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.094 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.094 DEBUG 6460 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.095 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.095 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.096 DEBUG 6460 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.097 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.097 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.101 DEBUG 6460 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.101 DEBUG 6460 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.102 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.102 DEBUG 6460 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.102 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.104 DEBUG 6460 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.104 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.104 DEBUG 6460 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.106 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.107 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.108 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.108 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.110 DEBUG 6460 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.110 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.111 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.112 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.114 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.114 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.115 DEBUG 6460 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.352 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.352 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.353 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.353 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.353 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.354 DEBUG 6460 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.379 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.380 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.380 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.381 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.381 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.382 DEBUG 6460 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:35:53.474 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:35:53.474 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:35:53.475 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:35:53.475 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:35:53.475 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:35:53.476 DEBUG 6460 --- [http-nio-8080-exec-8] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:37:36.862  INFO 6460 --- [Thread-5] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@779773ba: startup date [Sat Dec 21 16:35:21 AWST 2019]; root of context hierarchy
+2019-12-21 16:37:36.866  INFO 6460 --- [Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-12-21 16:37:36.866  INFO 6460 --- [Thread-5] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2019-12-21 16:37:36.866  INFO 6460 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-12-21 16:37:36.872  INFO 6460 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-12-21 16:37:37.508  INFO 6460 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : Starting ForumApplication on DESKTOP-3QUHG5I with PID 6460 (C:\IDEAWorkspace\forum\target\classes started by 李创博 in C:\IDEAWorkspace\forum)
+2019-12-21 16:37:37.511  INFO 6460 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : No active profile set, falling back to default profiles: default
+2019-12-21 16:37:37.514  INFO 6460 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2bfb85aa: startup date [Sat Dec 21 16:37:37 AWST 2019]; root of context hierarchy
+2019-12-21 16:37:38.615  INFO 6460 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-12-21 16:37:38.617  INFO 6460 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-21 16:37:38.618  INFO 6460 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-12-21 16:37:38.676  INFO 6460 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-12-21 16:37:38.677  INFO 6460 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1163 ms
+2019-12-21 16:37:38.711  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-12-21 16:37:38.712  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-12-21 16:37:38.712  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-12-21 16:37:38.712  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-12-21 16:37:38.712  INFO 6460 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-12-21 16:37:38.933  INFO 6460 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:37:38.968  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@2bfb85aa: startup date [Sat Dec 21 16:37:37 AWST 2019]; root of context hierarchy
+2019-12-21 16:37:38.976  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/callback],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.AuthorizeController.callback(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse)
+2019-12-21 16:37:38.976  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logout],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.AuthorizeController.logout(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-12-21 16:37:38.977  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment],methods=[POST]}" onto public java.lang.Object cn.edu.tit.forum.controller.CommentController.post(cn.edu.tit.forum.dto.CommentCreateDTO,javax.servlet.http.HttpServletRequest)
+2019-12-21 16:37:38.977  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment/{id}],methods=[GET]}" onto public cn.edu.tit.forum.dto.ResultDTO cn.edu.tit.forum.controller.CommentController.comments(java.lang.Long)
+2019-12-21 16:37:38.977  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView cn.edu.tit.forum.controller.CustomizeErrorController.errorHtml(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2019-12-21 16:37:38.978  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/file/upload]}" onto public cn.edu.tit.forum.dto.FileDTO cn.edu.tit.forum.controller.FileController.upload(javax.servlet.http.HttpServletRequest)
+2019-12-21 16:37:38.978  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.IndexController.index(org.springframework.ui.Model,java.lang.Integer,java.lang.Integer,java.lang.String)
+2019-12-21 16:37:38.979  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notify/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.NotifyController.notify(javax.servlet.http.HttpServletRequest,java.lang.Long)
+2019-12-21 16:37:38.980  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/profile/{action}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.ProfileController.profile(java.lang.String,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest,java.lang.Integer,java.lang.Integer)
+2019-12-21 16:37:38.981  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-21 16:37:38.981  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish],methods=[POST]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.doPublish(java.lang.String,java.lang.String,java.lang.String,java.lang.Long,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2019-12-21 16:37:38.981  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.publish(org.springframework.ui.Model)
+2019-12-21 16:37:38.984  INFO 6460 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.QuestionController.question(java.lang.Long,org.springframework.ui.Model)
+2019-12-21 16:37:38.989  INFO 6460 --- [restartedMain] o.s.w.s.h.BeanNameUrlHandlerMapping      : Mapped URL path [/error] onto handler '/error'
+2019-12-21 16:37:38.991  INFO 6460 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:37:38.991  INFO 6460 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:37:38.998  INFO 6460 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in customizeExceptionHandler
+2019-12-21 16:37:39.012  INFO 6460 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-12-21 16:37:39.469  INFO 6460 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-12-21 16:37:39.483  INFO 6460 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-12-21 16:37:39.483  INFO 6460 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-12-21 16:37:39.486  INFO 6460 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2019-12-21 16:37:39.494  INFO 6460 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-21 16:37:39.495  INFO 6460 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : Started ForumApplication in 2.058 seconds (JVM running for 140.529)
+2019-12-21 16:37:39.497  INFO 6460 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-12-21 16:38:11.849  INFO 13216 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : Starting ForumApplication on DESKTOP-3QUHG5I with PID 13216 (C:\IDEAWorkspace\forum\target\classes started by 李创博 in C:\IDEAWorkspace\forum)
+2019-12-21 16:38:11.852  INFO 13216 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : No active profile set, falling back to default profiles: default
+2019-12-21 16:38:11.920  INFO 13216 --- [restartedMain] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@11258c2d: startup date [Sat Dec 21 16:38:11 AWST 2019]; root of context hierarchy
+2019-12-21 16:38:13.839  INFO 13216 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-12-21 16:38:13.863  INFO 13216 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-21 16:38:13.863  INFO 13216 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.29
+2019-12-21 16:38:13.869  INFO 13216 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NetSarang\Xftp 6\;C:\Program Files (x86)\NetSarang\Xshell 6\;C:\app\soft\product\11.2.0\dbhome_1\bin;C:\app\李创博\product\11.2.0\dbhome_3\bin;app\李创博\product\11.2.0\dbhome_1\bin;ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Java\jdk-9.0.4\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files (x86)\Autodesk\Backburner\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;rogram Files\MySQL\MySQL Utilities 1.6\;VEN_HOME%\bin;Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\李创博\AppData\Local\Pandoc;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\nodejs\;C:\Program Files\nodejs\node_global;C:\soft\apache-maven-3.5.2\bin;C:\Program Files\Java\jdk1.8.0_221\bin;C:\soft\python3.7\Scripts\;C:\soft\python3.7\;C:\Users\李创博\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Java\jdk1.8.0_144\bin;C:\Program Files\Java\jdk-9.0.4\bin;C:\Users\李创博\maven\apache-maven-3.6.0-bin\apache-maven-3.6.0\bin;C:\Program Files\JetBrains\PyCharm Community Edition 2018.3.5\bin;;;C:\soft\Fidder\Fiddler;C:\Program Files\JetBrains\PyCharm 2019.1.1\bin;;C:\Users\李创博\AppData\Local\Pandoc\;C:\soft\Microsoft VS Code\bin;C:\Users\李创博\AppData\Roaming\npm;.]
+2019-12-21 16:38:14.053  INFO 13216 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-12-21 16:38:14.054  INFO 13216 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2134 ms
+2019-12-21 16:38:14.201  INFO 13216 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-12-21 16:38:14.206  INFO 13216 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-12-21 16:38:14.206  INFO 13216 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-12-21 16:38:14.207  INFO 13216 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-12-21 16:38:14.207  INFO 13216 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-12-21 16:38:14.951  INFO 13216 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:38:15.120  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@11258c2d: startup date [Sat Dec 21 16:38:11 AWST 2019]; root of context hierarchy
+2019-12-21 16:38:15.168  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/callback],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.AuthorizeController.callback(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse)
+2019-12-21 16:38:15.169  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logout],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.AuthorizeController.logout(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-12-21 16:38:15.169  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment/{id}],methods=[GET]}" onto public cn.edu.tit.forum.dto.ResultDTO cn.edu.tit.forum.controller.CommentController.comments(java.lang.Long)
+2019-12-21 16:38:15.169  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/comment],methods=[POST]}" onto public java.lang.Object cn.edu.tit.forum.controller.CommentController.post(cn.edu.tit.forum.dto.CommentCreateDTO,javax.servlet.http.HttpServletRequest)
+2019-12-21 16:38:15.171  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView cn.edu.tit.forum.controller.CustomizeErrorController.errorHtml(javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2019-12-21 16:38:15.172  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/file/upload]}" onto public cn.edu.tit.forum.dto.FileDTO cn.edu.tit.forum.controller.FileController.upload(javax.servlet.http.HttpServletRequest)
+2019-12-21 16:38:15.172  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.IndexController.index(org.springframework.ui.Model,java.lang.Integer,java.lang.Integer,java.lang.String)
+2019-12-21 16:38:15.173  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/notify/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.NotifyController.notify(javax.servlet.http.HttpServletRequest,java.lang.Long)
+2019-12-21 16:38:15.173  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/profile/{action}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.ProfileController.profile(java.lang.String,org.springframework.ui.Model,javax.servlet.http.HttpServletRequest,java.lang.Integer,java.lang.Integer)
+2019-12-21 16:38:15.174  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.publish(org.springframework.ui.Model)
+2019-12-21 16:38:15.175  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish],methods=[POST]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.doPublish(java.lang.String,java.lang.String,java.lang.String,java.lang.Long,javax.servlet.http.HttpServletRequest,org.springframework.ui.Model)
+2019-12-21 16:38:15.175  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/publish/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.PublishController.edit(java.lang.Long,org.springframework.ui.Model)
+2019-12-21 16:38:15.175  INFO 13216 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/question/{id}],methods=[GET]}" onto public java.lang.String cn.edu.tit.forum.controller.QuestionController.question(java.lang.Long,org.springframework.ui.Model)
+2019-12-21 16:38:15.194  INFO 13216 --- [restartedMain] o.s.w.s.h.BeanNameUrlHandlerMapping      : Mapped URL path [/error] onto handler '/error'
+2019-12-21 16:38:15.198  INFO 13216 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:38:15.198  INFO 13216 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-12-21 16:38:15.210  INFO 13216 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : Detected @ExceptionHandler methods in customizeExceptionHandler
+2019-12-21 16:38:15.284  INFO 13216 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-12-21 16:38:15.887  INFO 13216 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-12-21 16:38:15.909  INFO 13216 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-12-21 16:38:15.910  INFO 13216 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2019-12-21 16:38:15.915  INFO 13216 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2019-12-21 16:38:15.945  INFO 13216 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-21 16:38:15.949  INFO 13216 --- [restartedMain] cn.edu.tit.forum.ForumApplication        : Started ForumApplication in 4.572 seconds (JVM running for 6.086)
+2019-12-21 16:38:22.920  INFO 13216 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-12-21 16:38:22.921  INFO 13216 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-12-21 16:38:22.947  INFO 13216 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 26 ms
+2019-12-21 16:38:23.020  INFO 13216 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-12-21 16:38:23.183  INFO 13216 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-12-21 16:38:23.194 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:23.207 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:23.219 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:23.798  WARN 13216 --- [http-nio-8080-exec-1] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [571] milliseconds.
+2019-12-21 16:38:23.823 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:23.825 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:23.829 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:23.858 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectByPrimaryKey           : ==>  Preparing: select id, title, gmt_create, gmt_modified, creater, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-12-21 16:38:23.859 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectByPrimaryKey           : ==> Parameters: 32(Long)
+2019-12-21 16:38:23.861 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.Q.selectByPrimaryKey           : <==      Total: 1
+2019-12-21 16:38:23.862 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:23.864 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:23.865 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:24.511 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:24.512 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:24.513 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:24.514 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:24.515 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:24.515 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:25.822 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:25.823 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:25.825 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:25.826 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:25.827 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:25.828 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:25.835 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.Q.countBySearch                : ==>  Preparing: select count(*) from question 
+2019-12-21 16:38:25.835 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.Q.countBySearch                : ==> Parameters: 
+2019-12-21 16:38:25.838 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.Q.countBySearch                : <==      Total: 1
+2019-12-21 16:38:25.842 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.Q.selectBySearch               : ==>  Preparing: select * from question order by gmt_create desc limit ?, ? 
+2019-12-21 16:38:25.843 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.Q.selectBySearch               : ==> Parameters: 0(Integer), 10(Integer)
+2019-12-21 16:38:25.848 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.Q.selectBySearch               : <==      Total: 10
+2019-12-21 16:38:25.848 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.848 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.849 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.849 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.850 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.850 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.851 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.851 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.852 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.852 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.852 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.853 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.853 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.854 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.858 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.859 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.861 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 17(Long)
+2019-12-21 16:38:25.863 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.864 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.864 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.865 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.866 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.866 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.867 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.867 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.867 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.868 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:25.868 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:25.868 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:25.869 DEBUG 13216 --- [http-nio-8080-exec-5] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:28.364 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:28.366 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:28.367 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:28.368 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:28.370 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:28.371 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:28.372 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectByPrimaryKey           : ==>  Preparing: select id, title, gmt_create, gmt_modified, creater, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-12-21 16:38:28.373 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectByPrimaryKey           : ==> Parameters: 25(Long)
+2019-12-21 16:38:28.373 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectByPrimaryKey           : <==      Total: 1
+2019-12-21 16:38:28.374 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:28.374 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:28.376 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:28.377 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectRelative               : ==>  Preparing: select * from question where id != ? and tag regexp ? 
+2019-12-21 16:38:28.377 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectRelative               : ==> Parameters: 25(Long), javascript(String)
+2019-12-21 16:38:28.378 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.Q.selectRelative               : <==      Total: 2
+2019-12-21 16:38:28.389 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.CommentMapper.selectByExample  : ==>  Preparing: select id, parent_id, type, commentor, gmt_create, gmt_modified, like_count, content, comment_count from comment WHERE ( parent_id = ? and type = ? ) order by gmt_create desc 
+2019-12-21 16:38:28.390 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.CommentMapper.selectByExample  : ==> Parameters: 25(Long), 1(Integer)
+2019-12-21 16:38:28.390 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.CommentMapper.selectByExample  : <==      Total: 0
+2019-12-21 16:38:28.391 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.QuestionExtMapper.incView      : ==>  Preparing: update question set view_count = view_count + ? where id=? 
+2019-12-21 16:38:28.391 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.QuestionExtMapper.incView      : ==> Parameters: 1(Integer), 25(Long)
+2019-12-21 16:38:28.394 DEBUG 13216 --- [http-nio-8080-exec-2] c.e.t.f.m.QuestionExtMapper.incView      : <==    Updates: 1
+2019-12-21 16:38:28.623 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:28.624 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:28.625 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:28.626 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:28.627 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:28.628 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:28.640 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:28.641 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:28.643 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:28.645 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:28.646 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:28.648 DEBUG 13216 --- [http-nio-8080-exec-6] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:31.116 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:31.116 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:31.118 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:31.121 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:31.121 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:31.122 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:31.128 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.QuestionMapper.countByExample  : ==>  Preparing: select count(*) from question WHERE ( creater = ? ) 
+2019-12-21 16:38:31.128 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.QuestionMapper.countByExample  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.129 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.QuestionMapper.countByExample  : <==      Total: 1
+2019-12-21 16:38:31.129 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.Q.selectByExampleWithRowbounds : ==>  Preparing: select id, title, gmt_create, gmt_modified, creater, comment_count, view_count, like_count, tag from question WHERE ( creater = ? ) order by gmt_create desc 
+2019-12-21 16:38:31.130 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.Q.selectByExampleWithRowbounds : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.132 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.133 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.133 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.134 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.134 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.135 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.142 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.142 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.143 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.143 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.143 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.144 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.144 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.144 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.145 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.145 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.145 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.146 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.146 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.146 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.147 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.147 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.147 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.148 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.148 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.148 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.149 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:31.149 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:31.149 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:31.150 DEBUG 13216 --- [http-nio-8080-exec-7] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:32.969 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:32.970 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:32.971 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:32.972 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:32.973 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:32.973 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:32.973 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.Q.selectByPrimaryKey           : ==>  Preparing: select id, title, gmt_create, gmt_modified, creater, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-12-21 16:38:32.974 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.Q.selectByPrimaryKey           : ==> Parameters: 32(Long)
+2019-12-21 16:38:32.974 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.Q.selectByPrimaryKey           : <==      Total: 1
+2019-12-21 16:38:32.974 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:32.974 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:32.975 DEBUG 13216 --- [http-nio-8080-exec-9] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:36.003 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:36.003 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:36.004 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:36.005 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:36.005 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:36.005 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:36.006 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? ) 
+2019-12-21 16:38:36.006 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long)
+2019-12-21 16:38:36.007 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:36.008 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.N.selectByExampleWithRowbounds : ==>  Preparing: select id, notifier, receiver, outer_id, type, gmt_create, status, notifier_name, outer_title from notify WHERE ( receiver = ? ) order by gmt_create desc 
+2019-12-21 16:38:36.008 DEBUG 13216 --- [http-nio-8080-exec-10] c.e.t.f.m.N.selectByExampleWithRowbounds : ==> Parameters: 16(Long)
+2019-12-21 16:38:36.054 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:36.054 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:36.055 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:36.056 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:36.056 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:36.057 DEBUG 13216 --- [http-nio-8080-exec-1] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:37.587 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:37.588 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:37.588 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:37.590 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:37.591 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:37.591 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:37.592 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.N.selectByPrimaryKey           : ==>  Preparing: select id, notifier, receiver, outer_id, type, gmt_create, status, notifier_name, outer_title from notify where id = ? 
+2019-12-21 16:38:37.592 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.N.selectByPrimaryKey           : ==> Parameters: 13(Long)
+2019-12-21 16:38:37.593 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.N.selectByPrimaryKey           : <==      Total: 1
+2019-12-21 16:38:37.593 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.N.updateByPrimaryKey           : ==>  Preparing: update notify set notifier = ?, receiver = ?, outer_id = ?, type = ?, gmt_create = ?, status = ?, notifier_name = ?, outer_title = ? where id = ? 
+2019-12-21 16:38:37.594 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.N.updateByPrimaryKey           : ==> Parameters: 17(Long), 16(Long), 26(Long), 1(Integer), 1576573506809(Long), 1(Integer), 小天Code(String), 华为云OBS测试(String), 13(Long)
+2019-12-21 16:38:37.596 DEBUG 13216 --- [http-nio-8080-exec-3] c.e.t.f.m.N.updateByPrimaryKey           : <==    Updates: 1
+2019-12-21 16:38:37.606 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( token = ? ) 
+2019-12-21 16:38:37.606 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 78c6eeae-f335-4131-82c8-7c5cd07e4c84(String)
+2019-12-21 16:38:37.606 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 1
+2019-12-21 16:38:37.607 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : ==>  Preparing: select count(*) from notify WHERE ( receiver = ? and status = ? ) 
+2019-12-21 16:38:37.607 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : ==> Parameters: 16(Long), 0(Integer)
+2019-12-21 16:38:37.608 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.NotifyMapper.countByExample    : <==      Total: 1
+2019-12-21 16:38:37.608 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.Q.selectByPrimaryKey           : ==>  Preparing: select id, title, gmt_create, gmt_modified, creater, comment_count, view_count, like_count, tag , description from question where id = ? 
+2019-12-21 16:38:37.608 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.Q.selectByPrimaryKey           : ==> Parameters: 26(Long)
+2019-12-21 16:38:37.609 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.Q.selectByPrimaryKey           : <==      Total: 1
+2019-12-21 16:38:37.609 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user where id = ? 
+2019-12-21 16:38:37.610 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByPrimaryKey  : ==> Parameters: 16(Long)
+2019-12-21 16:38:37.610 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByPrimaryKey  : <==      Total: 1
+2019-12-21 16:38:37.611 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.Q.selectRelative               : ==>  Preparing: select * from question where id != ? and tag regexp ? 
+2019-12-21 16:38:37.611 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.Q.selectRelative               : ==> Parameters: 26(Long), java(String)
+2019-12-21 16:38:37.612 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.Q.selectRelative               : <==      Total: 12
+2019-12-21 16:38:37.614 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.CommentMapper.selectByExample  : ==>  Preparing: select id, parent_id, type, commentor, gmt_create, gmt_modified, like_count, content, comment_count from comment WHERE ( parent_id = ? and type = ? ) order by gmt_create desc 
+2019-12-21 16:38:37.615 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.CommentMapper.selectByExample  : ==> Parameters: 26(Long), 1(Integer)
+2019-12-21 16:38:37.615 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.CommentMapper.selectByExample  : <==      Total: 3
+2019-12-21 16:38:37.617 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, gmt_create, gmt_modified, bio, avatar_url from user WHERE ( id in ( ? , ? ) ) 
+2019-12-21 16:38:37.617 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : ==> Parameters: 16(Long), 17(Long)
+2019-12-21 16:38:37.620 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.UserMapper.selectByExample     : <==      Total: 2
+2019-12-21 16:38:37.626 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.QuestionExtMapper.incView      : ==>  Preparing: update question set view_count = view_count + ? where id=? 
+2019-12-21 16:38:37.626 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.QuestionExtMapper.incView      : ==> Parameters: 1(Integer), 26(Long)
+2019-12-21 16:38:37.628 DEBUG 13216 --- [http-nio-8080-exec-4] c.e.t.f.m.QuestionExtMapper.incView      : <==    Updates: 1

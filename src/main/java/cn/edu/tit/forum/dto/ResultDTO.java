@@ -1,7 +1,7 @@
 package cn.edu.tit.forum.dto;
 
-import exception.CustomizeErrorCode;
-import exception.CustomizeException;
+import cn.edu.tit.forum.exception.CustomizeErrorCode;
+import cn.edu.tit.forum.exception.CustomizeException;
 import lombok.Data;
 
 /**

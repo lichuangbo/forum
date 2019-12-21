@@ -2,8 +2,8 @@ package cn.edu.tit.forum.advice;
 
 import cn.edu.tit.forum.dto.ResultDTO;
 import com.alibaba.fastjson.JSON;
-import exception.CustomizeErrorCode;
-import exception.CustomizeException;
+import cn.edu.tit.forum.exception.CustomizeErrorCode;
+import cn.edu.tit.forum.exception.CustomizeException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
