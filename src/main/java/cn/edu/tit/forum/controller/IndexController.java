@@ -23,11 +23,12 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model,
                         @RequestParam(value = "page", defaultValue = "1") Integer page,
-                        @RequestParam(value = "size", defaultValue = "10") Integer size) {
-
+                        @RequestParam(value = "size", defaultValue = "10") Integer size,
+                        @RequestParam(value = "search", required = false) String search) {
         // 重定向到首页后，展示话题集合，将基本信息展示出来
-        PageNationDTO pageNationDTO = questionService.queryList(page, size);
+        PageNationDTO pageNationDTO = questionService.queryList(page, size, search);
         model.addAttribute("pageNationDTO", pageNationDTO);
+        model.addAttribute("search", search);
         return "index";
     }
 }

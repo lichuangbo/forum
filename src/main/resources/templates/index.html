@@ -47,25 +47,25 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li th:if="${pageNationDTO.showFirstPage}">
-                        <a th:href="@{/(page=1)}" aria-label="Previous">
+                        <a th:href="@{/(page=1, search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <li th:if="${pageNationDTO.showPrePage}">
-                        <a th:href="@{/(page=${pageNationDTO.page - 1})}" aria-label="Previous">
+                        <a th:href="@{/(page=${pageNationDTO.page - 1}, search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
                     <li th:each="p : ${pageNationDTO.pages}" th:class="${pageNationDTO.page == p} ? 'active' : '' ">
-                        <a th:href="@{/(page=${p})}" th:text="${p}"></a>
+                        <a th:href="@{/(page=${p}, search=${search})}" th:text="${p}"></a>
                     </li>
                     <li th:if="${pageNationDTO.showNextPage}">
-                        <a th:href="@{/(page=${pageNationDTO.page + 1})}" aria-label="Next">
+                        <a th:href="@{/(page=${pageNationDTO.page + 1}, search=${search})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <li th:if="${pageNationDTO.showEndPage}">
-                        <a th:href="@{/(page=${pageNationDTO.totalPage})}" aria-label="Next">
+                        <a th:href="@{/(page=${pageNationDTO.totalPage}, search=${search})}" aria-label="Next">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>

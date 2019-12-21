@@ -2,6 +2,7 @@ package cn.edu.tit.forum.service;
 
 import cn.edu.tit.forum.dto.PageNationDTO;
 import cn.edu.tit.forum.dto.QuestionDTO;
+import cn.edu.tit.forum.dto.QuestionQueryDTO;
 import cn.edu.tit.forum.mapper.QuestionExtMapper;
 import cn.edu.tit.forum.mapper.QuestionMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
@@ -38,7 +39,7 @@ public class QuestionService {
     private UserMapper userMapper;
 
     // index页 话题列表展示
-    public PageNationDTO queryList(Integer page, Integer size) {
+    public PageNationDTO queryList(Integer page, Integer size, String search) {
         PageNationDTO<QuestionDTO> pageNationDTO = new PageNationDTO<>();
 
         /*  将page和totalPage封装
@@ -46,7 +47,9 @@ public class QuestionService {
             2. 对page进行容错处理
             3. 将page和totalPage封装进pageNationDTO中
          */
-        int totalCount = (int) questionMapper.countByExample(new QuestionExample());
+        QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
+        questionQueryDTO.setSearch(search);
+        int totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         int totalPage = (totalCount % size == 0) ? totalCount / size : totalCount / size + 1;
         if (page < 1)
             page = 1;
@@ -63,7 +66,9 @@ public class QuestionService {
         int offset = size * (page - 1);
         QuestionExample questionExample = new QuestionExample();
         questionExample.setOrderByClause("gmt_create desc");
-        List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
+        questionQueryDTO.setPage(offset);
+        questionQueryDTO.setSize(size);
+        List<Question> questions = questionExtMapper.selectBySearch(questionQueryDTO);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : questions) {
             User user = userMapper.selectByPrimaryKey(question.getCreater());
