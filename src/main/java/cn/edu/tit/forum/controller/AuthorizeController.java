@@ -5,6 +5,7 @@ import cn.edu.tit.forum.dto.GitHubUser;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.provider.GitHubProvider;
 import cn.edu.tit.forum.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import java.util.UUID;
  * @created 2019/12/7
  */
 @Controller
+@Slf4j
 public class AuthorizeController {
 
     @Autowired
@@ -72,6 +74,7 @@ public class AuthorizeController {
             response.addCookie(new Cookie("token", token));
             return "redirect:/";
         } else {
+            log.error("callback get github error, {}", gitHubUser);
             return "redirect:/";
         }
     }
