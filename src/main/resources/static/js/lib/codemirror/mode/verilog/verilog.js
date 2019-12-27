@@ -40,7 +40,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
     "incdir include initial inout input inside instance int integer interconnect interface intersect join join_any " +
     "join_none large let liblist library local localparam logic longint macromodule matches medium modport module " +
     "nand negedge nettype new nexttime nmos nor noshowcancelled not notif0 notif1 null or output package packed " +
-    "parameter pmos posedge primitive priority program property protected pull0 pull1 pulldown pullup " +
+    "parameter pmos posedge primitive weight program property protected pull0 pull1 pulldown pullup " +
     "pulsestyle_ondetect pulsestyle_onevent pure rand randc randcase randsequence rcmos real realtime ref reg " +
     "reject_on release repeat restrict return rnmos rpmos rtran rtranif0 rtranif1 s_always s_eventually s_nexttime " +
     "s_until s_until_with scalared sequence shortint shortreal showcancelled signed small soft solve specify " +

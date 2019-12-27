@@ -152,7 +152,7 @@ CodeMirror.defineMode("asterisk", function() {
           return "error";
         }
       } else if(state.extenExten) {
-        // set exten and priority
+        // set exten and weight
         state.extenExten = false;
         state.extenPriority = true;
         stream.eatWhile(/[^,]/);
