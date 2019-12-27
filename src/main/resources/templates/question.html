@@ -144,10 +144,10 @@
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
             <!--相关问题列表展示-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>相关问题</h4>
-                <ul>
-                    <li th:each="relative : ${relativeQuestions}" class="question-relative">
-                        <a th:href="@{'/question/'+${relative.id}}" th:text="${relative.title}"></a>
+                        <h4>相关问题</h4>
+                        <ul>
+                            <li th:each="relative : ${relativeQuestions}" class="question-relative">
+                                <a th:href="@{'/question/'+${relative.id}}" th:text="${relative.title}"></a>
                     </li>
                 </ul>
             </div>

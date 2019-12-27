@@ -59,14 +59,6 @@ public class HotTag {
         }
         // 将map放入对象
         hotTagCache.setTags(priorities);
-        hotTagCache.getTags().forEach(
-                (k, v) ->{
-                    System.out.print(k);
-                    System.out.print(":");
-                    System.out.print(v);
-                    System.out.println();
-                }
-        );
         hotTagCache.updateTags(priorities);
     }
 }

@@ -37,6 +37,5 @@ public class HotTagCache {
             HotTagDTO peek = minHeap.poll();
             hots.add(0, peek.getName());
         }
-        System.out.println(hots);
     }
 }

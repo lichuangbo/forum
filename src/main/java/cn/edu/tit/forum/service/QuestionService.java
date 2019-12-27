@@ -39,7 +39,7 @@ public class QuestionService {
     private UserMapper userMapper;
 
     // index页 话题列表展示
-    public PageNationDTO queryList(Integer page, Integer size, String search) {
+    public PageNationDTO queryList(Integer page, Integer size, String tag, String search) {
         PageNationDTO<QuestionDTO> pageNationDTO = new PageNationDTO<>();
 
         /*  将page和totalPage封装
@@ -49,6 +49,7 @@ public class QuestionService {
          */
         QuestionQueryDTO questionQueryDTO = new QuestionQueryDTO();
         questionQueryDTO.setSearch(search);
+        questionQueryDTO.setTag(tag);
         int totalCount = questionExtMapper.countBySearch(questionQueryDTO);
         int totalPage = (totalCount % size == 0) ? totalCount / size : totalCount / size + 1;
         if (page < 1)
@@ -63,7 +64,7 @@ public class QuestionService {
             3. 将每一个question和user封装进questionDTO查询体中，最后放入questionDTOS集合
             4. 把集合封装进pageNationDTO中
          */
-        int offset = size * (page - 1);
+        int offset = page < 1 ? 0 : size * (page - 1);
         QuestionExample questionExample = new QuestionExample();
         questionExample.setOrderByClause("gmt_create desc");
         questionQueryDTO.setPage(offset);
