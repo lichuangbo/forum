@@ -71,7 +71,10 @@ public class AuthorizeController {
             user.setAvatarUrl(gitHubUser.getAvatarUrl());
             userService.createOrUpdate(user);
 
-            response.addCookie(new Cookie("token", token));
+            Cookie cookie = new Cookie("token", token);
+            // 设置cookie过期时间 15天
+            cookie.setMaxAge(60 * 60 * 24 * 15);
+            response.addCookie(cookie);
             return "redirect:/";
         } else {
             log.error("callback get github error, {}", gitHubUser);

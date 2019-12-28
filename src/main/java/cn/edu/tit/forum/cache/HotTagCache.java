@@ -1,6 +1,7 @@
 package cn.edu.tit.forum.cache;
 
 import cn.edu.tit.forum.dto.HotTagDTO;
+import cn.edu.tit.forum.dto.TagAttributes;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -14,28 +15,28 @@ import java.util.*;
 @Component
 @Data
 public class HotTagCache {
-    private Map<String, Integer> tags = new HashMap<>();
-    private List<String> hots = new ArrayList<>();
+    private Map<String, TagAttributes> tags = new HashMap<>();
+    private List<HotTagDTO> hotTagDTOS = new ArrayList<>();
 
-    public void updateTags(Map<String, Integer> tags) {
+    public void updateTags(Map<String, TagAttributes> tags) {
         // 构建小顶堆，求Top k
-        PriorityQueue<HotTagDTO> minHeap = new PriorityQueue<>(Comparator.comparing(HotTagDTO::getWeight));
+        PriorityQueue<HotTagDTO> minHeap = new PriorityQueue<>(Comparator.comparingInt(o -> o.getTagAttributes().getWeight()));
         tags.forEach(
-                (name, weight) ->{
+                (name, tagAttributes) ->{
                     HotTagDTO hotTagDTO = new HotTagDTO();
                     hotTagDTO.setName(name);
-                    hotTagDTO.setWeight(weight);
+                    hotTagDTO.setTagAttributes(tagAttributes);
                     if (minHeap.size() < 5) {
                         minHeap.offer(hotTagDTO);
-                    } else if (minHeap.peek().getWeight() < hotTagDTO.getWeight()){
+                    } else if (minHeap.peek().getTagAttributes().getWeight() < hotTagDTO.getTagAttributes().getWeight()){
                         minHeap.poll();
                         minHeap.offer(hotTagDTO);
                     }
                 }
         );
-        while (!minHeap.isEmpty() && hots.size() < 5) {
+        while (!minHeap.isEmpty() && hotTagDTOS.size() < 5) {
             HotTagDTO peek = minHeap.poll();
-            hots.add(0, peek.getName());
+            hotTagDTOS.add(0, peek);
         }
     }
 }

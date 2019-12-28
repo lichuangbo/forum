@@ -11,6 +11,6 @@ import lombok.Data;
 public class HotTagDTO {
     // 标签名
     private String name;
-    // 标签权重
-    private Integer weight;
+    // 标签属性
+    private TagAttributes tagAttributes;
 }

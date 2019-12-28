@@ -34,7 +34,7 @@ public class IndexController {
         PageNationDTO pageNationDTO = questionService.queryList(page, size, tag, search);
         model.addAttribute("pageNationDTO", pageNationDTO);
         model.addAttribute("search", search);
-        model.addAttribute("tags", hotTagCache.getHots());
+        model.addAttribute("hotTagDTOs", hotTagCache.getHotTagDTOS());
         model.addAttribute("tag", tag);
         return "index";
     }

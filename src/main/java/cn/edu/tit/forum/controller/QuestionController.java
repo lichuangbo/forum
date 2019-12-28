@@ -3,7 +3,8 @@ package cn.edu.tit.forum.controller;
 import cn.edu.tit.forum.dto.CommentDTO;
 import cn.edu.tit.forum.dto.QuestionDTO;
 import cn.edu.tit.forum.enums.CommentTypeEnum;
-import cn.edu.tit.forum.model.Question;
+import cn.edu.tit.forum.exception.CustomizeErrorCode;
+import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.service.CommentService;
 import cn.edu.tit.forum.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +30,20 @@ public class QuestionController {
     private CommentService commentService;
 
     @GetMapping("/question/{id}")
-    public String question(@PathVariable(name = "id") Long id,
+    public String question(@PathVariable(name = "id") String id,
                            Model model) {
-        QuestionDTO questionDTO = questionService.getById(id);
+        Long questionId;
+        try {
+            questionId = Long.parseLong(id);
+        } catch (NumberFormatException e) {
+            throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);
+        }
+
+        QuestionDTO questionDTO = questionService.getById(questionId);
         List<QuestionDTO> relativeQuestions = questionService.selectRelative(questionDTO);
-        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.QUESTION);
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(questionId, CommentTypeEnum.QUESTION);
         // 每次访问都会增加阅读数，每次刷新也是   一个BUG，待解决
-        questionService.incView(id);
+        questionService.incView(questionId);
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", commentDTOS);
         model.addAttribute("relativeQuestions", relativeQuestions);

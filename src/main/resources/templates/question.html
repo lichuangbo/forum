@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
-    <link rel="stylesheet" href="/css/editormd.preview.min.css" />
+    <link rel="stylesheet" href="/css/editormd.preview.min.css"/>
     <script src="/js/moment.js"></script>
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -29,24 +29,20 @@
                 发布时间：<span th:text="${#dates.format(question.getGmtCreate(), 'yyyy-MM-dd HH:mm')}"> </span> |
                 阅读数：<span th:text="${question.viewCount}"> </span>
                 </span>
+                <a th:href="@{'/publish/' + ${question.id}}" class="comment-menu pull-right"
+                   th:if="${session.user != null && session.user.id == question.creater}">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑问题</span>
+                </a>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!--正文-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
                     <textarea style="display:none;" th:text="${question.description}"></textarea>
                 </div>
                 <script type="text/javascript">
-                    $(function() {
+                    $(function () {
                         editormd.markdownToHTML("question-view", {});
                     });
                 </script>
-                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
-                <!--编辑-->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <a th:href="@{'/publish/' + ${question.id}}" class="comment-menu"
-                       th:if="${session.user != null && session.user.id == question.creater}">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>
-                    </a>
-                </div>
                 <!--标签展示-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <span class="label label-info question-tag" th:each="tag : ${question.tag.split(',')}">
@@ -106,7 +102,8 @@
                     <div class="media-left">
                         <a href="#">
                             <img class="media-object img-size img-rounded"
-                                 th:src="${session.user != null ? session.user.avatarUrl : '/images/default-avatar.png'}" alt="...">
+                                 th:src="${session.user != null ? session.user.avatarUrl : '/images/default-avatar.png'}"
+                                 alt="...">
                         </a>
                     </div>
                     <div class="media-body">
@@ -144,10 +141,10 @@
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
             <!--相关问题列表展示-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h4>相关问题</h4>
-                        <ul>
-                            <li th:each="relative : ${relativeQuestions}" class="question-relative">
-                                <a th:href="@{'/question/'+${relative.id}}" th:text="${relative.title}"></a>
+                <h4>相关问题</h4>
+                <ul>
+                    <li th:each="relative : ${relativeQuestions}" class="question-relative">
+                        <a th:href="@{'/question/'+${relative.id}}" th:text="${relative.title}"></a>
                     </li>
                 </ul>
             </div>
