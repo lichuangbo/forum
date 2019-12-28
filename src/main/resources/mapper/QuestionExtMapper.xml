@@ -27,6 +27,7 @@
     <select id="selectRelative" parameterType="cn.edu.tit.forum.model.Question" resultMap="BaseResultMap">
       select * from question
       where id != #{id} and tag regexp #{tag}
+      order by gmt_create desc limit 15
     </select>
 
     <select id="countBySearch" parameterType="cn.edu.tit.forum.dto.QuestionQueryDTO" resultType="java.lang.Integer">
