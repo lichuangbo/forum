@@ -36,8 +36,7 @@ public class ThumbController {
     @Transactional
     @RequestMapping(value = "/thumb", method = RequestMethod.POST)
     public ResultDTO isThumbUp(@RequestBody ThumpUpDTO thumpUpDTO,
-                               HttpServletRequest request,
-                               Model model) {
+                               HttpServletRequest request) {
         User user = (User)request.getSession().getAttribute("user");
         if (user == null)
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
@@ -59,6 +58,8 @@ public class ThumbController {
             addThumb.setUserid(user.getId());
             addThumb.setQuestionid(thumpUpDTO.getId());
             thumbService.insert(addThumb);
+            // 通知被点赞用户
+            thumbService.notifyUser(user.getId(), thumpUpDTO.getId());
         }
         // 查询点赞数
         Integer likeCount = questionService.findLikeCount(thumpUpDTO.getId());

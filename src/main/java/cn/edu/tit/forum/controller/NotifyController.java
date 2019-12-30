@@ -32,7 +32,8 @@ public class NotifyController {
 
         NotifyDTO notifyDTO = notifyService.read(id, user);
         if (NotifyTypeEnum.REPLY_COMMENT.getType() == notifyDTO.getType() ||
-            NotifyTypeEnum.REPLY_QUESTION.getType() == notifyDTO.getType()) {
+            NotifyTypeEnum.REPLY_QUESTION.getType() == notifyDTO.getType() ||
+            NotifyTypeEnum.LIKE_QUESTION.getType() == notifyDTO.getType()) {
             return "redirect:/question/" + notifyDTO.getOuterId();
         }
         return "redirect:/";
