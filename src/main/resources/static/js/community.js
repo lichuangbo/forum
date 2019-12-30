@@ -143,3 +143,28 @@ function selectTag(e) {
 function showSelectTag() {
     $("#select-tag").show();
 }
+
+/**
+ * 增加问题点赞数
+ */
+function thumbUpQuestion() {
+    $("#thumbup").toggleClass("question-thumb-active");
+
+    var questionId = $("#question_id").val();
+    $.ajax({
+        type: "POST",
+        url: "/thumb",
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify({
+            "id": questionId
+        }),
+        success: function (response) {
+            if (response.code == 200) {
+                $("#likeCount").text(response.data);
+            } else {
+                alert(response.message);
+            }
+        },
+        dataType: "json"
+    });
+}

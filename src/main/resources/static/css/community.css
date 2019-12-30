@@ -184,3 +184,37 @@ ul {
 #myCarousel{
     margin-bottom: 40px;
 }
+
+/*问题点赞*/
+.question-back{
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #969696;
+}
+.question-thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: #969696;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+}
+.question-thumb-active{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #5BC0DE;
+    color: #fff;
+}

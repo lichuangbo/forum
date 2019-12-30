@@ -179,6 +179,28 @@ public class QuestionService {
         questionExtMapper.incView(question);
     }
 
+    // 增加点赞数， 根据问题ID
+    public void incLikeCount(Long id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setLikeCount(1);
+        questionExtMapper.incLikeCount(question);
+    }
+
+    // 查询点赞数， 根据为题ID
+    public Integer findLikeCount(Long id) {
+        Question question = questionMapper.selectByPrimaryKey(id);
+        return question.getLikeCount();
+    }
+
+    // 减少点赞数， 根据问题ID
+    public void decLikeCount(Long id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setLikeCount(1);
+        questionExtMapper.decLikeCount(question);
+    }
+
     public List<QuestionDTO> selectRelative(QuestionDTO questionDTO) {
         if (StringUtils.isEmpty(questionDTO.getTag())) {
             return new ArrayList<>();

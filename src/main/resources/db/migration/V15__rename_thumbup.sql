@@ -1,0 +1,1 @@
+ALTER TABLE thumbup RENAME TO thumb;

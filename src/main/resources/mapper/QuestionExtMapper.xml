@@ -12,15 +12,27 @@
         <result column="like_count" jdbcType="INTEGER" property="likeCount"/>
         <result column="tag" jdbcType="VARCHAR" property="tag"/>
     </resultMap>
-  <update id="incView" parameterType="cn.edu.tit.forum.model.Question">
+    <update id="incView" parameterType="cn.edu.tit.forum.model.Question">
     update question
     set view_count = view_count + #{viewCount,jdbcType=INTEGER}
     where id=#{id}
   </update>
 
-  <update id="incCommentCount" parameterType="cn.edu.tit.forum.model.Question">
+    <update id="incCommentCount" parameterType="cn.edu.tit.forum.model.Question">
     update question
     set comment_count = comment_count + #{commentCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+    <update id="incLikeCount" parameterType="cn.edu.tit.forum.model.Question">
+    update question
+    set like_count = like_count + #{likeCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+    <update id="decLikeCount" parameterType="cn.edu.tit.forum.model.Question">
+    update question
+    set like_count = like_count - #{likeCount,jdbcType=INTEGER}
     where id=#{id}
   </update>
 
@@ -31,15 +43,15 @@
     </select>
 
     <select id="countBySearch" parameterType="cn.edu.tit.forum.dto.QuestionQueryDTO" resultType="java.lang.Integer">
-      select count(*) from question
-      <where>
-          <if test="search != null and search != '' ">
-              and title regexp #{search}
-          </if>
-          <if test="tag != null and tag != '' ">
-              and tag regexp #{tag}
-          </if>
-      </where>
+        select count(*) from question
+        <where>
+            <if test="search != null and search != '' ">
+                and title regexp #{search}
+            </if>
+            <if test="tag != null and tag != '' ">
+                and tag regexp #{tag}
+            </if>
+        </where>
     </select>
 
     <select id="selectBySearch" parameterType="cn.edu.tit.forum.dto.QuestionQueryDTO" resultMap="BaseResultMap">
