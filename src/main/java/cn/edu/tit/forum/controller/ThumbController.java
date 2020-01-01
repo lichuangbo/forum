@@ -2,6 +2,7 @@ package cn.edu.tit.forum.controller;
 
 import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.dto.ThumpUpDTO;
+import cn.edu.tit.forum.enums.ThumbTypeEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.model.Thumb;
 import cn.edu.tit.forum.model.User;
@@ -40,7 +41,7 @@ public class ThumbController {
         if (user == null)
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
 
-        Thumb thumb = thumbService.find(user.getId(), thumpUpDTO.getId());
+        Thumb thumb = thumbService.find(user.getId(), thumpUpDTO.getId(), ThumbTypeEnum.QUESTION.getType());
         if (thumb != null) {// 当前用户点击了当前文章
             // 问题表点赞数-1
             questionService.decLikeCount(thumpUpDTO.getId());
@@ -48,7 +49,7 @@ public class ThumbController {
             Thumb deleteThumb = new Thumb();
             deleteThumb.setUserid(user.getId());
             deleteThumb.setTypeid(thumpUpDTO.getId());
-            thumbService.delete(deleteThumb);
+            thumbService.delete(deleteThumb, ThumbTypeEnum.QUESTION.getType());
         } else {// 当前用户没有点击当前文章
             // 问题表点赞数+1
             questionService.incLikeCount(thumpUpDTO.getId());
@@ -56,6 +57,7 @@ public class ThumbController {
             Thumb addThumb = new Thumb();
             addThumb.setUserid(user.getId());
             addThumb.setTypeid(thumpUpDTO.getId());
+            addThumb.setType(ThumbTypeEnum.QUESTION.getType());
             thumbService.insert(addThumb);
             // 通知被点赞用户
             thumbService.notifyUser(user.getId(), thumpUpDTO.getId());

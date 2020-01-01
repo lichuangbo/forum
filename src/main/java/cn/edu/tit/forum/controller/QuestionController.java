@@ -3,6 +3,7 @@ package cn.edu.tit.forum.controller;
 import cn.edu.tit.forum.dto.CommentDTO;
 import cn.edu.tit.forum.dto.QuestionDTO;
 import cn.edu.tit.forum.enums.CommentTypeEnum;
+import cn.edu.tit.forum.enums.ThumbTypeEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.model.Thumb;
@@ -50,7 +51,7 @@ public class QuestionController {
         // 处理是否点亮点赞图标
         User user = (User)request.getSession().getAttribute("user");
         if (user != null) {
-            Thumb thumb = thumbService.find(user.getId(), questionId);
+            Thumb thumb = thumbService.find(user.getId(), questionId, ThumbTypeEnum.QUESTION.getType());
             if (thumb != null) {
                 model.addAttribute("click", thumb);
             }

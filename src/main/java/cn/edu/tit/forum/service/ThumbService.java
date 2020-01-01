@@ -38,20 +38,22 @@ public class ThumbService {
     }
 
     // 删除点赞记录
-    public int delete(Thumb thumb) {
+    public int delete(Thumb thumb, Integer type) {
         ThumbExample example = new ThumbExample();
         example.createCriteria()
                 .andTypeidEqualTo(thumb.getTypeid())
-                .andUseridEqualTo(thumb.getUserid());
+                .andUseridEqualTo(thumb.getUserid())
+                .andTypeEqualTo(type);
         return thumbMapper.deleteByExample(example);
     }
 
     // 查询是否点赞
-    public Thumb find(Long userId, Long questionId) {
+    public Thumb find(Long userId, Long typeId, Integer type) {
         ThumbExample example = new ThumbExample();
         example.createCriteria()
-                .andTypeidEqualTo(questionId)
-                .andUseridEqualTo(userId);
+                .andTypeidEqualTo(typeId)
+                .andUseridEqualTo(userId)
+                .andTypeEqualTo(type);
         List<Thumb> thumbs = thumbMapper.selectByExample(example);
         if (thumbs == null || thumbs.size() == 0) {// 没有点赞
             return null;
