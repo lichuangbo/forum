@@ -89,7 +89,6 @@
                             <div class="comment-menu">
                                 <span class="glyphicon glyphicon-thumbs-up icon active"
                                       th:data-id="${comment.id}"></span>
-                                <!--th:data-id主要是存放一下id数据，便于之后的获取-->
                                 <span th:data-id="${comment.id}" onclick="collapseComment(this)" class="comment-icon">
                                     <span class="glyphicon glyphicon-comment"></span>
                                     <span th:text="${comment.commentCount}"></span>

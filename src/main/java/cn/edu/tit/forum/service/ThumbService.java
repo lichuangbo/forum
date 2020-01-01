@@ -41,7 +41,7 @@ public class ThumbService {
     public int delete(Thumb thumb) {
         ThumbExample example = new ThumbExample();
         example.createCriteria()
-                .andQuestionidEqualTo(thumb.getQuestionid())
+                .andTypeidEqualTo(thumb.getTypeid())
                 .andUseridEqualTo(thumb.getUserid());
         return thumbMapper.deleteByExample(example);
     }
@@ -50,7 +50,7 @@ public class ThumbService {
     public Thumb find(Long userId, Long questionId) {
         ThumbExample example = new ThumbExample();
         example.createCriteria()
-                .andQuestionidEqualTo(questionId)
+                .andTypeidEqualTo(questionId)
                 .andUseridEqualTo(userId);
         List<Thumb> thumbs = thumbMapper.selectByExample(example);
         if (thumbs == null || thumbs.size() == 0) {// 没有点赞

@@ -10,7 +10,6 @@ import cn.edu.tit.forum.service.ThumbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,7 +47,7 @@ public class ThumbController {
             // 点赞表删除对应记录
             Thumb deleteThumb = new Thumb();
             deleteThumb.setUserid(user.getId());
-            deleteThumb.setQuestionid(thumpUpDTO.getId());
+            deleteThumb.setTypeid(thumpUpDTO.getId());
             thumbService.delete(deleteThumb);
         } else {// 当前用户没有点击当前文章
             // 问题表点赞数+1
@@ -56,7 +55,7 @@ public class ThumbController {
             // 点赞表添加对应记录
             Thumb addThumb = new Thumb();
             addThumb.setUserid(user.getId());
-            addThumb.setQuestionid(thumpUpDTO.getId());
+            addThumb.setTypeid(thumpUpDTO.getId());
             thumbService.insert(addThumb);
             // 通知被点赞用户
             thumbService.notifyUser(user.getId(), thumpUpDTO.getId());
