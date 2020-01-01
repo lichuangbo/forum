@@ -8,7 +8,8 @@ package cn.edu.tit.forum.enums;
 public enum NotifyTypeEnum {
     REPLY_QUESTION(1, "回复了问题"),
     REPLY_COMMENT(2, "回复了评论"),
-    LIKE_QUESTION(3, "点赞了问题")
+    LIKE_QUESTION(3, "点赞了问题"),
+    LIKE_COMMENT(4, "点赞了评论")
     ;
     private int type;
     private String name;

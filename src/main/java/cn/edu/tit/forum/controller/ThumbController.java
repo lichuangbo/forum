@@ -64,7 +64,7 @@ public class ThumbController {
             addThumb.setType(ThumbTypeEnum.QUESTION.getType());
             thumbService.insert(addThumb);
             // 通知被点赞用户
-            thumbService.notifyUser(user.getId(), thumpUpDTO.getId());
+            thumbService.notifyThumbQues(user.getId(), thumpUpDTO.getId());
         }
         // 查询点赞数
         Integer likeCount = questionService.findLikeCount(thumpUpDTO.getId());
@@ -98,6 +98,8 @@ public class ThumbController {
             addThumb.setTypeid(thumpUpDTO.getId());
             addThumb.setType(ThumbTypeEnum.COMMENT.getType());
             thumbService.insert(addThumb);
+            // 通知被点赞用户
+            thumbService.notifyThumbComm(user.getId(), thumpUpDTO.getId());
         }
         // 查询点赞数
         Integer likeCount = commentService.findLikeCount(thumpUpDTO.getId());

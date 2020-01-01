@@ -201,6 +201,7 @@ public class QuestionService {
         questionExtMapper.decLikeCount(question);
     }
 
+    // 相关问题检索
     public List<QuestionDTO> selectRelative(QuestionDTO questionDTO) {
         if (StringUtils.isEmpty(questionDTO.getTag())) {
             return new ArrayList<>();

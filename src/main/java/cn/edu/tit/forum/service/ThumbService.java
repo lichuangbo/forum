@@ -2,10 +2,7 @@ package cn.edu.tit.forum.service;
 
 import cn.edu.tit.forum.enums.NotifyStatusEnum;
 import cn.edu.tit.forum.enums.NotifyTypeEnum;
-import cn.edu.tit.forum.mapper.NotifyMapper;
-import cn.edu.tit.forum.mapper.QuestionMapper;
-import cn.edu.tit.forum.mapper.ThumbMapper;
-import cn.edu.tit.forum.mapper.UserMapper;
+import cn.edu.tit.forum.mapper.*;
 import cn.edu.tit.forum.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +28,9 @@ public class ThumbService {
 
     @Autowired
     private NotifyMapper notifyMapper;
+
+    @Autowired
+    private CommentMapper commentMapper;
 
     // 添加点赞记录
     public int insert(Thumb thumb) {
@@ -63,7 +63,7 @@ public class ThumbService {
     }
 
     // 通知问题被点赞用户
-    public void notifyUser(Long userId, Long questionId) {
+    public void notifyThumbQues(Long userId, Long questionId) {
         Notify notify = new Notify();
         notify.setStatus(NotifyStatusEnum.UNREAD.getStatus());
         notify.setGmtCreate(System.currentTimeMillis());
@@ -82,4 +82,19 @@ public class ThumbService {
         notifyMapper.insert(notify);
     }
 
+    // 通知评论被点赞用户
+    public void notifyThumbComm(Long userId, Long commentId) {
+        Notify notify = new Notify();
+        notify.setStatus(NotifyStatusEnum.UNREAD.getStatus());
+        notify.setGmtCreate(System.currentTimeMillis());
+        notify.setType(NotifyTypeEnum.LIKE_COMMENT.getType());
+        notify.setNotifier(userId);
+        Comment comment = commentMapper.selectByPrimaryKey(commentId);
+        notify.setOuterId(comment.getParentId());
+        notify.setOuterTitle(comment.getContent());
+        notify.setReceiver(comment.getCommentor());
+        User user = userMapper.selectByPrimaryKey(userId);
+        notify.setNotifierName(user.getName());
+        notifyMapper.insert(notify);
+    }
 }

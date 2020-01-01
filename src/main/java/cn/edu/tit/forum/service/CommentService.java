@@ -79,9 +79,10 @@ public class CommentService {
             parentComment.setId(comment.getParentId());
             parentComment.setCommentCount(1);
             commentExtMapper.incCommentCount(parentComment);
-
+            // 二级评论应该显示的是一级评论的content
+            String content = commentMapper.selectByPrimaryKey(comment.getParentId()).getContent();
             // 添加通知
-            createNotify(comment, dbComment.getCommentor(), commentor.getName(), comment.getContent(), NotifyTypeEnum.REPLY_COMMENT, question.getId());
+            createNotify(comment, dbComment.getCommentor(), commentor.getName(), content, NotifyTypeEnum.REPLY_COMMENT, question.getId());
         } else {// 回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
             // 回复的问题找不到异常，此处复用了一个异常类型
