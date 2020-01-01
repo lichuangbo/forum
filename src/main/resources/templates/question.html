@@ -57,7 +57,7 @@
                 <!--点赞-->
                 <div style="float: left" th:if="${session.user != null}">
                     <span class="glyphicon glyphicon-thumbs-up icon question-thumb" id="thumbup"
-                          th:classappend="${click != null} ? 'question-thumb-active' : ' ' "
+                          th:classappend="${questionClick != null} ? 'question-thumb-active' : ' ' "
                           onclick="thumbUpQuestion()">
                     </span>
                 </div>
@@ -87,12 +87,19 @@
                             </h5>
                             <div th:text="${comment.getContent()}"></div>
                             <div class="comment-menu">
-                                <span class="glyphicon glyphicon-thumbs-up icon active"
-                                      th:data-id="${comment.id}"></span>
+                                <!--点赞组件-->
+                                <span th:data-id="${comment.id}"
+                                      th:classappend="${comment.click == 1} ? 'comment-thumb-active' : ' ' " class="comment-thumb"
+                                    onclick="thumbUpComment(this)">
+                                    <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                    <span th:id="${'commentLike-'+comment.id}" th:text="${comment.likeCount}"></span>
+                                </span>
+                                <!--评论组件-->
                                 <span th:data-id="${comment.id}" onclick="collapseComment(this)" class="comment-icon">
                                     <span class="glyphicon glyphicon-comment"></span>
                                     <span th:text="${comment.commentCount}"></span>
                                 </span>
+                                <!--日期组件-->
                                 <span class="pull-right"
                                       th:text="${#dates.format(comment.getGmtCreate(), 'yyyy-MM-dd')}"></span>
                             </div>

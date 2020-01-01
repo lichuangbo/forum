@@ -168,3 +168,28 @@ function thumbUpQuestion() {
         dataType: "json"
     });
 }
+
+/**
+ * 增加评论点赞数
+ */
+function thumbUpComment(e) {
+    var commentId = e.getAttribute("data-id");
+    e.classList.toggle("comment-thumb-active");
+
+    $.ajax({
+        type: "POST",
+        url: "/thumbcomment",
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify({
+            "id": commentId
+        }),
+        success: function (response) {
+            if (response.code == 200) {
+                $("#commentLike-" + commentId).text(response.data);
+            } else {
+                alert(response.message);
+            }
+        },
+        dataType: "json"
+    });
+}

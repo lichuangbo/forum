@@ -18,9 +18,11 @@ public class CommentDTO {
     private Long commentor;
     private Long gmtCreate;
     private Long gmtModified;
-    private Long likeCount;
+    private Integer likeCount;
     private String content;
     private Integer commentCount;
 
     private User user;
+    // 评论是否被点赞
+    private Integer click;
 }

@@ -17,4 +17,16 @@
     set comment_count = comment_count + #{commentCount,jdbcType=INTEGER}
     where id=#{id}
   </update>
+
+  <update id="decLikeCount" parameterType="cn.edu.tit.forum.model.Comment">
+    update comment
+    set like_count = like_count - #{likeCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+  <update id="incLikeCount" parameterType="cn.edu.tit.forum.model.Comment">
+    update comment
+    set like_count = like_count + #{likeCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
 </mapper>

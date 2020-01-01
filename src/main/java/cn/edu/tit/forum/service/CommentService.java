@@ -163,4 +163,25 @@ public class CommentService {
         }).collect(Collectors.toList());
         return commentDTOS;
     }
+
+    // 减少点赞数
+    public void decLikeCount(Long id) {
+        Comment comment = new Comment();
+        comment.setId(id);
+        comment.setLikeCount(1);
+        commentExtMapper.decLikeCount(comment);
+    }
+
+    // 增加点赞数
+    public void incLikeCount(Long id) {
+        Comment comment = new Comment();
+        comment.setId(id);
+        comment.setLikeCount(1);
+        commentExtMapper.incLikeCount(comment);
+    }
+
+    // 检索点赞数
+    public Integer findLikeCount(Long id) {
+        return commentMapper.selectByPrimaryKey(id).getLikeCount();
+    }
 }

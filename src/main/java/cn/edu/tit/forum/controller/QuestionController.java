@@ -48,18 +48,26 @@ public class QuestionController {
             throw new CustomizeException(CustomizeErrorCode.INVALID_INPUT);
         }
 
-        // 处理是否点亮点赞图标
-        User user = (User)request.getSession().getAttribute("user");
-        if (user != null) {
-            Thumb thumb = thumbService.find(user.getId(), questionId, ThumbTypeEnum.QUESTION.getType());
-            if (thumb != null) {
-                model.addAttribute("click", thumb);
-            }
-        }
-
         QuestionDTO questionDTO = questionService.getById(questionId);
         List<QuestionDTO> relativeQuestions = questionService.selectRelative(questionDTO);
         List<CommentDTO> commentDTOS = commentService.listByTargetId(questionId, CommentTypeEnum.QUESTION);
+
+        // 处理是否点亮点赞图标
+        User user = (User)request.getSession().getAttribute("user");
+        if (user != null) {
+            Thumb questionThumb = thumbService.find(user.getId(), questionId, ThumbTypeEnum.QUESTION.getType());
+            if (questionThumb != null) {
+                model.addAttribute("questionClick", questionThumb);
+            }
+
+            commentDTOS.forEach(commentDTO -> {
+                Thumb commentThumb = thumbService.find(user.getId(), commentDTO.getId(), ThumbTypeEnum.COMMENT.getType());
+                if (commentThumb != null) {
+                    commentDTO.setClick(1);
+                }
+            });
+        }
+
         // 每次访问都会增加阅读数，每次刷新也是   一个BUG，待解决
         questionService.incView(questionId);
         model.addAttribute("question", questionDTO);
