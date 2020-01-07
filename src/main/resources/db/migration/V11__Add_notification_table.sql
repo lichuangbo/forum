@@ -1,10 +1,10 @@
-CREATE TABLE norification
+create table norification
 (
-    id bigint PRIMARY KEY AUTO_INCREMENT,
-    notifier bigint NOT NULL,
-    receiver bigint NOT NULL,
-    outer_id bigint NOT NULL,
-    type int NOT NULL,
-    gmt_create bigint NOT NULL,
-    status int DEFAULT 0
+    id bigint primary key auto_increment,
+    notifier bigint not null,
+    receiver bigint not null,
+    outer_id bigint not null,
+    type int not null,
+    gmt_create bigint not null,
+    status int default 0
 );

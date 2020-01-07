@@ -1,10 +1,10 @@
-CREATE TABLE comment
+create table comment
 (
-    id bigint PRIMARY KEY AUTO_INCREMENT,
-    parent_id bigint NOT NULL COMMENT '父类ID',
-    type int NOT NULL COMMENT '父类类型',
-    commentor int NOT NULL COMMENT '评论人ID',
-    gmt_create bigint NOT NULL COMMENT '创建时间',
-    gmt_modified bigint NOT NULL COMMENT '编辑时间',
-    like_count bigint DEFAULT 0
+    id bigint primary key auto_increment,
+    parent_id bigint not null comment '父类id',
+    type int not null comment '父类类型',
+    commentor int not null comment '评论人id',
+    gmt_create bigint not null comment '创建时间',
+    gmt_modified bigint not null comment '编辑时间',
+    like_count bigint default 0
 );

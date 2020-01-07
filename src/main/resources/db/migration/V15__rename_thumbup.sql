@@ -1,1 +1,1 @@
-ALTER TABLE thumbup RENAME TO thumb;
+alter table thumbup rename to thumb;

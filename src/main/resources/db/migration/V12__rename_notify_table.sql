@@ -1,1 +1,1 @@
-ALTER TABLE norification RENAME TO notify;
+alter table norification rename to notify;

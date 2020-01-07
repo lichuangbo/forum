@@ -1,6 +1,6 @@
-CREATE TABLE thumbup
+create table thumbup
 (
-    id bigint PRIMARY KEY AUTO_INCREMENT,
-    userid bigint NOT NULL,
-    questionid bigint NOT NULL
+    id bigint primary key auto_increment,
+    userid bigint not null,
+    questionid bigint not null
 );

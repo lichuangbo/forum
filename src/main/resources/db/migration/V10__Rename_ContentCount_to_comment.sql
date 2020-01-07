@@ -1,1 +1,1 @@
-ALTER TABLE comment CHANGE content_count comment_count int(11) DEFAULT '0';
+alter table comment change content_count comment_count int(11) default '0';
