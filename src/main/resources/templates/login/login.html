@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <link rel="stylesheet" href="/css/sign_in.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/login.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="sign">
+    <!--logo-->
+    <div class="logo">
+        <a href="/"><img src="//cdn2.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+    </div>
+    <!--登录-->
+    <div class="main">
+        <h4 class="title">
+            <div class="normal-title">
+                <a class="active" href="/login">登录</a>
+                <b>·</b>
+                <a id="js-sign-up-btn" class="" href="/register">注册</a>
+            </div>
+        </h4>
+        <div class="js-sign-in-container">
+            <form id="new_session" action="" accept-charset="UTF-8" method="post">
+                <div class="input-prepend">
+                    <input placeholder="邮箱" th:value="${session.email}" type="text" name="email" id="email"
+                           onblur="checkLoginEmail()" autocomplete="off"/>
+                    <i class="glyphicon glyphicon-user login-icon"></i>
+                    <span style="color: red; float: left" id="email-tap"></span>
+                </div>
+                <div class="input-prepend">
+                    <input placeholder="密码" th:value="${session.password}" type="password" name="password" id="password"
+                           onblur="checkPass()" autocomplete="off"/>
+                    <i class="glyphicon glyphicon-lock login-icon"></i>
+                    <span style="color: red; float: left" id="pass1-tap"></span>
+                    <span style="color: red; float: left" id="login-tap"></span>
+                </div>
+                <div class="remember-btn">
+                    <input type="checkbox" value="true" th:checked="${session.state}" name="remember_me"
+                           id="remember_me"><span>记住我</span>
+                </div>
+                <button class="sign-in-button" id="sign-in-form-submit-btn" type="button" onclick="login()">
+                    <span id="sign-in-loading"></span>
+                    登录
+                </button>
+            </form>
+            <!-- 更多登录方式 -->
+            <div class="more-sign">
+                <h6>社交帐号登录</h6>
+                <ul>
+                    <li><a id="weibo" class="weibo"
+                           href="https://api.weibo.com/oauth2/authorize?client_id=3073832056&redirect_uri=http://127.0.0.1:8085/weibocallback&response_type=code&state=1"><i
+                            class="fa fa-weibo"></i></a></li>
+                    <li><a id="github" class="github"
+                           href="https://github.com/login/oauth/authorize?client_id=e10d246abe53066b4519&redirect_uri=http://127.0.0.1:8085/githubcallback&scope=user&state=1"><i
+                            class="fa fa-github"></i></a></li>
+                    <li><a id="qq" class="qq"
+                           href="https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=101852002&redirect_uri=http://127.0.0.1:8085/qqcallback&state=1"><i
+                            class="fa fa-qq" style="font-size: 24px"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

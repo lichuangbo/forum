@@ -34,14 +34,16 @@
 6. 拿到令牌，论坛携带access_token,调用GitHub api请求用户的真实数据
 7. 论坛将用户信息存入数据库，更新登录状态
 
-请求用户的github身份
+携带client_id和redirect_uri去请求用户的github身份
 GET https://github.com/login/oauth/authorize?client_id=xx&redirect_uri=xx&scope=user&state=yy
 
-GitHub将用户重定向回站点
+GitHub根据redirect_uri重定向回站点，同时携带授权码code
+
+携带授权码访问access_token接口，请求令牌
 POST https://github.com/login/oauth/access_token    请求体:client_id=xx&client_secret=xx&code=xx
 获取到的格式如`access_token=e72e16c7e42f292c6912e7710c838347ae178b4a&token_type=bearer`,要截取出有用的
 
-论坛使用访问令牌访问GitHub API
+携带令牌访问user接口，获取用户真实数据
 GET https://api.github.com/user?access_token=xxx
 获取到用户信息，是JSON格式的，很多只拿想要的信息
 

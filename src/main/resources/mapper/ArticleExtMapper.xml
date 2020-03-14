@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.tit.forum.mapper.ArticleExtMapper">
+    <resultMap id="BaseResultMap" type="cn.edu.tit.forum.model.Article">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="author_id" jdbcType="BIGINT" property="authorId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="tag" jdbcType="VARCHAR" property="tag" />
+        <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+        <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+        <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+        <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+        <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    </resultMap>
+    <select id="selectBySearchAndTag" resultMap="BaseResultMap">
+        select * from article
+        <where>
+            <if test="search != null and search != '' ">
+                and title regexp #{search}
+            </if>
+            <if test="tag != null and tag != '' ">
+                and tag regexp #{tag}
+            </if>
+        </where>
+        order by gmt_modified desc
+    </select>
+
+    <update id="incView" parameterType="cn.edu.tit.forum.model.Article">
+    update article
+    set view_count = view_count + #{viewCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+    <update id="incCommentCount" parameterType="cn.edu.tit.forum.model.Article">
+    update article
+    set comment_count = comment_count + #{commentCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+    <update id="incLikeCount" parameterType="cn.edu.tit.forum.model.Article">
+    update article
+    set like_count = like_count + #{likeCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+    <update id="decLikeCount" parameterType="cn.edu.tit.forum.model.Article">
+    update article
+    set like_count = like_count - #{likeCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+    <select id="selectRelative" parameterType="cn.edu.tit.forum.model.Article" resultMap="BaseResultMap">
+      select * from article
+      where id != #{id} and tag regexp #{tag}
+      order by view_count, gmt_create desc limit 6
+    </select>
+
+    <select id="selectOther" parameterType="cn.edu.tit.forum.model.Article" resultMap="BaseResultMap">
+      select * from article
+      where id != #{id} and author_id = #{authorId}
+      order by view_count, gmt_create desc limit 3
+    </select>
+</mapper>

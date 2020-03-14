@@ -10,7 +10,7 @@
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
         <!--JDBC配置项-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://121.36.33.247:3306/community"
+                        connectionURL="jdbc:mysql://localhost:3306/community"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -40,9 +40,11 @@
 
         <!--表名和实体类别名对应关系-->
         <table tableName="user" domainObjectName="User"/>
-        <table tableName="question" domainObjectName="Question"/>
+        <table tableName="article" domainObjectName="Article"/>
         <table tableName="comment" domainObjectName="Comment"/>
         <table tableName="notify" domainObjectName="Notify"/>
-        <table tableName="thumb" domainObjectName="Thumb"/>
+        <table tableName="thumb_up" domainObjectName="ThumbUp"/>
+        <table tableName="favorite" domainObjectName="Favorite"/>
+        <table tableName="follow" domainObjectName="Follow"/>
     </context>
 </generatorConfiguration>

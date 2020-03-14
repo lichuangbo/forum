@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class GitHubUser {
     private String name;// github用户名
-    private Long id;    // id,不会变可以唯一标识一个用户
+    private String id;    // id,不会变可以唯一标识一个用户
     private String bio; // github的个人描述
     private String avatarUrl;// 头像url
 }

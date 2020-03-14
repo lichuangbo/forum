@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎注册</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <link rel="stylesheet" href="/css/sign_in.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/login.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="sign">
+    <!--logo-->
+    <div class="logo">
+        <a href="/"><img src="//cdn2.jianshu.io/assets/web/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+    </div>
+    <!--注册-->
+    <div class="main">
+        <h4 class="title">
+            <div class="normal-title">
+                <a class="" href="/login">登录</a>
+                <b>·</b>
+                <a id="js-sign-up-btn" class="active" href="/register">注册</a>
+            </div>
+        </h4>
+
+        <div class="js-sign-up-container">
+            <form class="new_user" id="new_user" action="" accept-charset="UTF-8" method="post">
+                <div class="input-prepend">
+                    <input placeholder="请输入邮箱" type="text" name="email" id="email" autocomplete="off"
+                           onblur="checkEmail()"/>
+                    <i class="glyphicon glyphicon-envelope login-icon"></i>
+                    <span style="color: red; float: left" id="email-tap"></span>
+                </div>
+                <div class="input-prepend">
+                    <input placeholder="请输入密码" type="password" name="password" id="password" autocomplete="off"
+                           onblur="checkPass()"/>
+                    <i class="glyphicon glyphicon-lock login-icon"></i>
+                    <span style="color: red; float: left" id="pass1-tap"></span>
+                </div>
+                <div class="input-prepend">
+                    <input placeholder="确认密码" type="password" name="password2" id="password2" autocomplete="off"
+                           onblur="checkPass2()"/>
+                    <i class="glyphicon glyphicon-lock login-icon"></i>
+                    <span style="color: red; float: left" id="pass2-tap"></span>
+                </div>
+                <div class="input-prepend" style="position: relative">
+                    <input type="text" name="code" id="code" placeholder="请输入邮箱验证码" autocomplete="off"
+                           onblur="checkCode()"/>
+                    <i class="glyphicon glyphicon-ok login-icon"></i>
+                    <button type="button" class="btn btn-success btn-up-resend" id="send_code" onclick="getCode()">
+                        发送验证码
+                    </button>
+                    <span style="color: red; float: left" id="code-tap"></span>
+                </div>
+                <input type="button" onclick="register()" name="commit" value="注册" class="sign-up-button"
+                       id="sign_up_btn">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*验证码倒计时*/
+    $(function () {
+        var btn = $("#send_code");
+        $(function () {
+            btn.click(setTime);
+        })
+        var countdown = 60;
+
+        function setTime() {
+            if (countdown == 0) {
+                btn.attr("disabled", false);
+                btn.html("重新发送");
+                btn.removeClass("disabled");
+                countdown = 60;
+                return;
+            } else {
+                btn.addClass("disabled");
+                btn.attr("disabled", true);
+                btn.html("重新发送(" + countdown + ")");
+                countdown--;
+            }
+            setTimeout(setTime, 1000);
+        }
+    })
+</script>
+</body>
+</html>

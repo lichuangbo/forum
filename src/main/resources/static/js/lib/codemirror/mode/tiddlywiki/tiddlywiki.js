@@ -126,7 +126,7 @@ CodeMirror.defineMode("tiddlywiki", function () {
         stream.eatWhile(';');
         return ret("list", "comment");
       }
-      if (ch == ":") { // definition list, description
+      if (ch == ":") { // definition list, content
         stream.eatWhile(':');
         return ret("list", "comment");
       }

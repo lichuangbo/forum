@@ -6,9 +6,9 @@ package cn.edu.tit.forum.exception;
  * @created 2019/12/11
  */
 public enum CustomizeErrorCode implements ICustomizeErrorCode {
-    QUESTION_NOT_FOUND(2001, "你找的问题不在了，要不要换一个问题"),
+    ARTICLE_NOT_FOUND(2001, "你找的文章不在了，要不要换一篇"),
     TARGET_PARAM_NOT_FOUND(2002, "未选中任何问题或评论，进行回复"),
-    NO_LOGIN(2003, "当前操作需要登录，请登录后重试"),
+    NO_LOGIN(2003, "当前操作需登录"),
     SYS_ERROR(2004, "服务已经冒烟了，要不然你稍后再试试！！！"),
     TYPE_PARAM_WRONG(2005, "评论类型错误或不存在"),
     COMMENT_NOT_FOUND(2006, "回复的评论不存在"),
@@ -16,7 +16,12 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     READ_NOTIFY_FAILE(2008, "读错信息了"),
     NOTIFY_NOT_FOUND(2009, "通知找不到"),
     FILE_UPLOAD_FAIL(2010, "图片上传失败"),
-    INVALID_INPUT(2011, "非法输入")
+    INVALID_INPUT(2011, "非法输入"),
+    INVALID_CODE(2012, "验证码无效或已过期，请重新发送"),
+    REGISTER_FAIL(2013, "注册失败，请重试"),
+    EMAIL_PRESENT(2014, "该邮箱号已被注册"),
+    LOGIN_FAIL(2015, "邮箱或密码错误，请重试"),
+    TAG_ILLEGAL(2016, "输入的标签非法"),
     ;
 
     private String message;

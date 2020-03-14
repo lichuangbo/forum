@@ -3,14 +3,14 @@
 <mapper namespace="cn.edu.tit.forum.mapper.CommentExtMapper">
   <resultMap id="BaseResultMap" type="cn.edu.tit.forum.model.Comment">
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="commentor" jdbcType="BIGINT" property="commentor" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="resp_user_id" jdbcType="BIGINT" property="respUserId" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
-    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
-    <result column="like_count" jdbcType="BIGINT" property="likeCount" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="comment_count" jdbcType="INTEGER" property="commentCount"/>
+    <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
   </resultMap>
   <update id="incCommentCount" parameterType="cn.edu.tit.forum.model.Comment">
     update comment

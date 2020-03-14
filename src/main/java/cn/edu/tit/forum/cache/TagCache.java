@@ -1,7 +1,6 @@
 package cn.edu.tit.forum.cache;
 
 import cn.edu.tit.forum.dto.TagDTO;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

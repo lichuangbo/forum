@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.tit.forum.mapper.UserExtMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.tit.forum.model.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="descript" jdbcType="VARCHAR" property="descript" />
+    <result column="follow_count" jdbcType="INTEGER" property="followCount" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="identify_type" jdbcType="VARCHAR" property="identifyType" />
+    <result column="identifier" jdbcType="VARCHAR" property="identifier" />
+    <result column="credential" jdbcType="VARCHAR" property="credential" />
+    <result column="email_password" jdbcType="VARCHAR" property="emailPassword" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="BIGINT" property="gmtModify" />
+  </resultMap>
+
+  <update id="incFollowCount" parameterType="cn.edu.tit.forum.model.User">
+    update user
+    set follow_count = follow_count + #{followCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+
+  <update id="decFollowCount" parameterType="cn.edu.tit.forum.model.User">
+    update user
+    set follow_count = follow_count - #{followCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
+</mapper>

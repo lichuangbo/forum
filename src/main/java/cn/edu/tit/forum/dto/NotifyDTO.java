@@ -1,5 +1,6 @@
 package cn.edu.tit.forum.dto;
 
+import cn.edu.tit.forum.model.User;
 import lombok.Data;
 
 /**
@@ -10,16 +11,16 @@ import lombok.Data;
 @Data
 public class NotifyDTO {
     private Long id;
+    private Long notifier;
+    private Long receiver;
+    private Long outerId;
+    private Integer type;
     private Long gmtCreate;
     private Integer status;
-    // 通知的人
-    private Long notifier;
     private String notifierName;
-    // 通知的名称
     private String outerTitle;
-    private Long outerId;
-
     // 通知类型
-    private String typeName;
-    private Integer type;
+    private String notifyType;
+    // 用户信息
+    private User user;
 }

@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${articleDTO.title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/article.css">
+    <link rel="stylesheet" href="/css/editormd.preview.min.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="/js/moment.js"></script>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/js/article.js" type="text/javascript"></script>
+    <script src="/js/editormd.min.js" type="text/javascript"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
+    <script>
+        function comment2target(targetId, type, commentContent, respUserId) {
+            if ($("#user-img").attr("src") === "/images/default-avatar.png") {
+                alertWindow("当前操作需登录");
+                return;
+            }
+            if (commentContent == null || commentContent.length === 0) {
+                alertWindow("评论内容不能为空");
+                return;
+            }
+
+            $.post("/comment", {
+                "parentId": targetId,
+                "content": commentContent,
+                "type": type,
+                "respUserId": respUserId
+            }, function (response) {
+                if (response.code == 200) {
+                    loadComment();
+                } else {
+                    alertWindow(response.message);
+                }
+            });
+        }
+
+        function loadComment() {
+            const articleId = $("#article-id").val();
+            // load相当于post请求
+            $("#comment-list").load(
+                "/getComment",
+                {"articleId": articleId},
+                function () {
+                }
+            );
+        }
+
+        function comment2Comment(e) {
+            const commentId = e.getAttribute("comment-id");
+            let selector = "#reply1-" + commentId;
+            const content = $(selector).val();
+            const respUserId = e.getAttribute("respuser-id");
+            comment2target(commentId, 2, content, respUserId);
+            $(selector).val("");
+        }
+
+        function comment2Comment2(e) {
+            const commentdId = e.getAttribute("commentd-id");
+            let selector = "#reply2-" + commentdId;
+            const content = $(selector).val();
+            const commentId = e.getAttribute("comment-id");
+            const respUserId = e.getAttribute("respuser-id");
+            comment2target(commentId, 2, content, respUserId);
+            $(selector).val("");
+        }
+    </script>
+</head>
+<body>
+<div th:insert="~{navbar :: nav}"></div>
+<div class="_21bLU4 _3kbg6I">
+    <div class="_3VRLsv" role="main">
+        <!--左侧主题栏-->
+        <div class="_gp-ck">
+            <section class="ouvJEz">
+                <!--隐藏id-->
+                <input type="hidden" id="article-id" th:value="${articleDTO.id}">
+                <!--title-->
+                <h1 class="_1RuRku" th:text="${articleDTO.title}"></h1>
+                <!--头部信息-->
+                <div class="rEsl9f">
+                    <div class="_2mYfmT">
+                        <a class="_1OhGeD" th:href="@{'/user/' + ${articleDTO.user.id}}" rel="noopener noreferrer">
+                            <img class="img-circle" style="max-width: 48px;max-height: 48px"
+                                 th:src="${articleDTO.user.avatarUrl}" alt="">
+                        </a>
+                        <div style="margin-left: 8px;">
+                            <div class="_3U4Smb">
+                                <span class="FxYr8x">
+                                    <a class="_1OhGeD" th:href="@{'/user/' + ${articleDTO.user.id}}"
+                                       th:text="${articleDTO.user.nickname}" rel="noopener noreferrer"></a>
+                                </span>
+                            </div>
+                            <div class="s-dsoj">
+                                <time th:text="${#dates.format(articleDTO.gmtModified, 'yyyy-MM-dd HH:mm')}"></time>
+                                <span>阅读 <span th:text="${articleDTO.viewCount}"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="follow-btn" id="follow-writer"
+                            th:if="${session.user != null && session.user.id != articleDTO.authorId}"
+                            th:classappend="${follow == true} ? 'followed' : ' ' ">
+                        <span th:text="${followText}" id="follow-text">关注</span>
+                    </button>
+                    <a class="_1NDgW7 _1OhGeD" style="color: #969696" th:href="@{'/publish/' + ${articleDTO.id}}"
+                       th:if="${session.user != null && session.user.id == articleDTO.authorId}">
+                        <i class="glyphicon glyphicon-pencil"></i>编辑文章
+                    </a>
+                </div>
+                <!--文章内容-->
+                <article class="_2rhmJa" id="article-view">
+                    <textarea style="display:none;" th:text="${articleDTO.content}"></textarea>
+                </article>
+                <!--文章标签-->
+                <div>
+                    <h3 class="QHRnq8 QxT4hD"><span>文章标签</span></h3>
+                    <span class="question-tag" th:each="tag : ${articleDTO.tag.split(',')}">
+                        <a th:href="@{/(page=1,tag=${tag})}" th:text="${tag}" class="hot-tag"></a>
+                    </span>
+                </div>
+            </section>
+            <!--评论信息-->
+            <div id="note-page-comment">
+                <section class="ouvJEz">
+                    <!--当前用户评论输入框-->
+                    <div class="_26JdYM">
+                        <img id="user-img" class="_3LHFA-"
+                             th:src="${session.user != null ? session.user.avatarUrl : '/images/default-avatar.png'}"
+                             alt="">
+                        <div class="_3GKFE3">
+                            <textarea class="_1u_H4i" id="user-content" placeholder="写下你的评论..."></textarea>
+                            <div class="_3IXP9Q" style="float: right">
+                                <div class="_3Tp4of">
+                                    <button id="comment2Article" type="button" class="_1OyPqC _3Mi9q9 _1YbC5u">
+                                        <span>发布</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--分割线-->
+                    <div class="_19DgIp" style="margin-top:24px;margin-bottom:24px"></div>
+                    <!--评论数-->
+                    <h3 class="QxT4hD">
+                        <div class="_10KzV0">
+                            <span>全部评论</span>
+                            <span class="_2R7vBo" th:if="${articleDTO.commentCount} > 0"
+                                  th:text="${articleDTO.commentCount}"></span>
+                        </div>
+                    </h3>
+                    <!--评论列表-->
+                    <div id="comment-list" th:fragment="comment-list">
+                        <div th:if="${commentA != null}">
+                            <div class="_2gPNSa" th:each="commentD : ${commentA.comments}">
+                                <div class="_2IUqvs">
+                                    <!--评论人头像-->
+                                    <a class="_1OhGeD" th:href="@{'/user/' + ${commentD.user.id}}"
+                                       rel="noopener noreferrer">
+                                        <img class="img-circle _1_jhXc" style="max-width: 48px;max-height: 48px"
+                                             th:src="${commentD.user.avatarUrl}" alt="">
+                                    </a>
+                                    <div class="_1K9gkf">
+                                        <!--评论人昵称-->
+                                        <div class="_23G05g">
+                                            <a class="_1OhGeD" th:href="@{'/user/' + ${commentD.user.id}}"
+                                               th:text="${commentD.user.nickname}" rel="noopener noreferrer"></a>
+                                        </div>
+                                        <!--评论时间-->
+                                        <div class="_1xqkrI">
+                                            <time th:text="${#dates.format(commentD.gmtCreate, 'yyyy-MM-dd HH:mm')}"></time>
+                                        </div>
+                                        <!--评论内容-->
+                                        <div class="_2bDGm4" th:text="${commentD.content}"></div>
+                                        <!--点赞+回复-->
+                                        <div class="_2ti5br">
+                                            <div class="_3MyyYc">
+                                                <span class="_2GXD2V _1Jvkh4" role="button" tabindex="-1"
+                                                      aria-label="点赞"
+                                                      th:comment-id="${commentD.id}"
+                                                      onclick="thumbUpComment(this)"
+                                                      th:classappend="${commentD.isLiked() == true} ? 'comment-like' : ' ' ">
+                                                    <i class="fa fa-thumbs-up" style="font-size:18px"></i>
+                                                    <span th:id="${'thumb-up-comment-like-'+commentD.id}"
+                                                          th:text="${commentD.likeCount}"></span>
+                                                </span>
+                                                <span data-toggle="collapse" th:href="${'#collapse-'+commentD.id}"
+                                                      class="_1Jvkh4" role="button"
+                                                      tabindex="-1" aria-label="添加评论"
+                                                      th:resp-nickname="${commentD.user.nickname}"
+                                                      th:comment-id="${commentD.id}"
+                                                      onclick="showInput(this)">
+                                                    <i class="glyphicon glyphicon-comment"></i> 回复
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!--隐藏的一级回复框-->
+                                        <div th:id="${'collapse-'+commentD.id}" class="panel-collapse collapse">
+                                            <div class="collapseInput" style="display: block;">
+                                                <textarea th:id="${'reply1-'+commentD.id}" class="_1u_H4i"
+                                                          placeholder="写下你的评论..."></textarea>
+                                                <div class="_3IXP9Q" style="float: right">
+                                                    <div class="_3Tp4of">
+                                                        <button th:comment-id="${commentD.id}"
+                                                                th:respuser-id="${commentD.user.id}"
+                                                                onclick="comment2Comment(this)" type="button"
+                                                                class="_1OyPqC _3Mi9q9 _1YbC5u">
+                                                            <span>发布</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--二级回复-->
+                                        <div class="_2kvBge" th:each="commentD1 : ${commentD.topComment}">
+                                            <!--二级回复列表-->
+                                            <div class="_3g0yKR">
+                                                <!--评论用户信息-->
+                                                <div class="_3d_vFY">
+                                                    <a class="_1OhGeD" th:href="@{'/user/' + ${commentD1.user.id}}"
+                                                       rel="noopener noreferrer">
+                                                        <img class="_1_jhXc" th:src="${commentD1.user.avatarUrl}"
+                                                             alt="">
+                                                    </a>
+                                                    <div style="margin-left: 10px;">
+                                                        <div class="_23G05g">
+                                                            <a class="_1OhGeD"
+                                                               th:href="@{'/user/' + ${commentD1.user.id}}"
+                                                               rel="noopener noreferrer"
+                                                               th:text="${commentD1.user.nickname}"></a>
+                                                        </div>
+                                                        <div class="_1xqkrI">
+                                                            <time th:text="${#dates.format(commentD1.gmtCreate, 'yyyy-MM-dd HH:mm')}"></time>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--回复内容-->
+                                                <div style="margin-left: 48px">
+                                                    <div class="_2bDGm4">
+                                                        <span>回复 </span>
+                                                        <a th:href="@{'/user/' + ${commentD1.respUser.id}}"
+                                                           class="maleskine-author"
+                                                           data-user-slug="d325742f60b4"
+                                                           th:text="${commentD1.respUser.nickname}"></a>
+                                                        <span>:</span>
+                                                        <span th:text="${commentD1.content}"></span>
+                                                    </div>
+                                                    <!--点赞，回复-->
+                                                    <div class="_2ti5br">
+                                                        <div class="_3MyyYc">
+                                                    <span class="_2GXD2V _1Jvkh4" role="button" tabindex="-1"
+                                                          aria-label="点赞"
+                                                          th:comment-id="${commentD1.id}"
+                                                          onclick="thumbUpComment(this)"
+                                                          th:classappend="${commentD1.isLiked() == true} ? 'comment-like' : ' ' ">
+                                                        <i class="fa fa-thumbs-up" style="font-size:18px"></i>
+                                                        <span th:id="${'thumb-up-comment-like-'+commentD1.id}"
+                                                              th:text="${commentD1.likeCount}"></span>
+                                                    </span>
+                                                            <span data-toggle="collapse"
+                                                                  th:href="${'#collapse-'+commentD1.id}"
+                                                                  class="_1Jvkh4" role="button"
+                                                                  tabindex="-1" aria-label="添加评论"
+                                                                  th:resp-nickname="${commentD1.user.nickname}"
+                                                                  th:comment-id="${commentD1.id}"
+                                                                  onclick="showInput(this)">
+                                                        <i class="glyphicon glyphicon-comment"></i> 回复
+                                                    </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--隐藏的二级回复框-->
+                                            <div th:id="${'collapse-'+commentD1.id}" class="panel-collapse collapse"
+                                                 style="margin-left: 48px">
+                                                <div class="collapseInput" style="display: block;">
+                                                    <textarea th:id="${'reply2-'+commentD1.id}" class="_1u_H4i"
+                                                              placeholder="写下你的评论..."></textarea>
+                                                    <div class="_3IXP9Q" style="float: right">
+                                                        <div class="_3Tp4of">
+                                                            <button th:commentd-id="${commentD1.id}"
+                                                                    th:comment-id="${commentD.id}"
+                                                                    th:respuser-id="${commentD1.user.id}"
+                                                                    onclick="comment2Comment2(this)" type="button"
+                                                                    class="_1OyPqC _3Mi9q9 _1YbC5u">
+                                                                <span>发布</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!--右侧推荐栏-->
+        <aside class="_2OwGUo">
+            <!--作者相关-->
+            <section class="_3Z3nHf">
+                <h3 class="QHRnq8 QxT4hD"><span>发起人</span></h3>
+                <!--作者简略信息-->
+                <div class="_3Oo-T1">
+                    <a class="_1OhGeD" th:href="@{'/user/' + ${articleDTO.user.id}}" rel="noopener noreferrer">
+                        <img class="img-circle _3T9iJQ" style="max-height: 45px; max-width: 45px"
+                             th:src="${articleDTO.user.avatarUrl}" alt="">
+                    </a>
+                    <div class="_32ZTTG">
+                        <div class="_2O0T_w">
+                            <div class="_2v-h3G">
+                                <span class="_2vh4fr">
+                                    <a class="_1OhGeD" th:href="@{'/user/' + ${articleDTO.user.id}}"
+                                       rel="noopener noreferrer" th:text="${articleDTO.user.nickname}"></a>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="color: #969696;font-size: 13px;" th:text="${articleDTO.user.descript}"></div>
+                    </div>
+                </div>
+                <!--分割线-->
+                <div class="_19DgIp"></div>
+                <!--作者其他文章列表-->
+                <h3 class="QHRnq8 QxT4hD"><span>其他文章</span></h3>
+                <div class="_26Hhi2" role="listitem" th:each="otherArticle : ${otherArticles}">
+                    <div class="_3TNGId" th:title="${otherArticle.title}">
+                        <a class="_2ER8Tt _1OhGeD" th:href="@{'/article/'+${otherArticle.id}}"
+                           th:text="${otherArticle.title}" rel="noopener noreferrer"></a>
+                    </div>
+                    <div class="DfvGP9">阅读 <span th:text="${otherArticle.viewCount}"></span></div>
+                </div>
+            </section>
+            <!--推荐阅读-->
+            <div class="fixedRelative">
+                <section class="_3Z3nHf" th:if="${relativeArticles != null}">
+                    <h3 class="QHRnq8 QxT4hD"><span>推荐阅读</span></h3>
+                    <div th:each="relativeArticle : ${relativeArticles}">
+                        <div class="cuOxAY" role="listitem">
+                            <div class="_3L5YSq" th:title="${relativeArticle.title}">
+                                <a class="_1-HJSV _1OhGeD" th:href="@{'/article/'+${relativeArticle.id}}"
+                                   th:text="${relativeArticle.title}" rel="noopener noreferrer"></a>
+                            </div>
+                            <div class="_19haGh">阅读 <span th:text="${relativeArticle.viewCount}"></span></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </aside>
+        <!--返回顶部-->
+        <div class="ant-back-top" onclick="topFunction()">
+            <div class="_3MyrRP" role="button" tabindex="-1" aria-label="回到顶部">
+                <i class="glyphicon glyphicon-triangle-top"></i>
+            </div>
+        </div>
+        <!--左侧按钮组-->
+        <div class="_3Pnjry">
+            <div class="_1pUUKr">
+                <div class="_2VdqdF" role="button" tabindex="-1" aria-label="给文章点赞" id="thumbUpArticle"
+                     th:classappend="${thumbUp == true} ? 'article-like' : ' ' ">
+                    <i class="fa fa-thumbs-up" style="font-size:21px"></i>
+                </div>
+                <span class="badge count-locate"
+                      th:text="${articleDTO.likeCount}"
+                      th:classappend="${thumbUp == true} ? 'article-like-num' : ' ' "
+                      id="thumb-up-article-count"></span>
+            </div>
+            <div class="_1pUUKr">
+                <div class="_2VdqdF" role="button" tabindex="-1" aria-label="评论文章" style="font-size: 19px;"
+                     id="scroll2Comment">
+                    <i class="glyphicon glyphicon-comment"></i>
+                </div>
+                <span th:if="${articleDTO.commentCount != 0}" class="badge count-locate"
+                      th:text="${articleDTO.commentCount}">3</span>
+            </div>
+            <div class="_1pUUKr">
+                <div class="_2VdqdF" role="button" tabindex="-1" aria-label="收藏文章" id="favoriteArticle"
+                     th:classappend="${favorite == true} ? 'article-favorite' : ' ' ">
+                    <i class="fa fa-star" style="font-size: 22px"></i>
+                </div>
+            </div>
+        </div>
+        <!--错误提示信息-->
+        <div id="article-alert" class="alert alert-warning">
+            <a href="#" class="close" data-dismiss="alert"></a>
+            <strong id="alert-text"></strong>
+        </div>
+    </div>
+</div>
+<div th:insert="~{footer :: foot}"></div>
+<script>
+</script>
+</body>
+</html>

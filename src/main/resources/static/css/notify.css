@@ -1,0 +1,91 @@
+/*布局*/
+body {
+    background-color:#f9f9f9;
+}
+
+.index-width {
+    width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    padding: 0 15px;
+}
+
+.main-padd {
+    padding: 20px;
+}
+
+.main {
+    background-color: white;
+    margin-left: 50px;
+}
+
+.notification .main ul {
+    list-style: none;
+}
+
+ul {
+    padding-left: 0;
+}
+
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.rEsl9f {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+._2mYfmT {
+    display: flex;
+    align-items: center;
+}
+
+._1OhGeD, ._1OhGeD:active, ._1OhGeD:hover {
+    color: inherit;
+}
+
+._3U4Smb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.FxYr8x {
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.entry {
+    margin-left: 48px;
+}
+
+.entry .entryUrl {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-radius: 2px;
+    background-color: #f8f8f8;
+    height: 42px;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.notify-item {
+    margin-top: 15px;
+}
+
+.notify-page {
+    margin-left: 50px;
+}

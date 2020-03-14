@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/login.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+<body>
+<nav th:fragment="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="nav-width">
+        <!--论坛logo-->
+        <a class="logo" href="/">
+            <img src="//cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo">
+        </a>
+        <!--nav-->
+        <div class="container" style="float: left">
+            <!--首页-->
+            <div class="navbar-header">
+                <a type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+                    <span class="sr-only">首页</span>
+                </a>
+                <a class="navbar-brand" href="/">首页</a>
+            </div>
+            <!--搜索框-->
+            <div class="collapse navbar-collapse">
+                <form class="navbar-form navbar-left search-form" action="/" method="get">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="请输入关键字"
+                           autocomplete="off" style="height: 40px">
+                    <i class="glyphicon glyphicon-search search-icon"></i>
+                </form>
+                <!--消息按钮-->
+                <div class="nav-btn message" th:if="${session.user != null}">
+                    <a href="/notify">
+                        <i class="glyphicon glyphicon-bell mess-icon"></i>
+                        <span class="badge bell-locate" style="background-color: #ec7259;" th:text="${session.unreadCount}"></span>
+                    </a>
+                </div>
+                <!--写文章按钮-->
+                <div class="nav-btn write-article" th:if="${session.user != null}">
+                    <a href="/publish">写文章</a>
+                    <i class="glyphicon glyphicon-pencil write-icon"></i>
+                </div>
+                <!--注册按钮-->
+                <div class="nav-btn register" th:if="${session.user == null}">
+                    <a href="/register">注册</a>
+                </div>
+                <!--登录按钮-->
+                <div class="nav-btn login" th:if="${session.user == null}">
+                    <a href="/login">登录</a>
+                </div>
+            </div>
+        </div>
+        <!--用户信息-->
+        <div class="user" onmouseover="openItem()" onmouseout="closeItem()" th:if="${session.user != null}">
+            <div data-hover="dropdown">
+                <a class="avatar" href="">
+                    <img th:src="${session.user.avatarUrl}" alt="">
+                </a>
+            </div>
+            <ul class="dropdown-menu">
+                <li>
+                    <a th:href="@{'/user/' + ${session.user.id}}">
+                        <i class="glyphicon glyphicon-user"></i><span>我的主页</span>
+                    </a>
+                <li>
+                <li>
+                    <a rel="nofollow" data-method="delete" href="/logout">
+                        <i class="glyphicon glyphicon-log-out"></i><span>退出</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+</html>

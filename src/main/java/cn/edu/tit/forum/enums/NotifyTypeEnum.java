@@ -6,9 +6,9 @@ package cn.edu.tit.forum.enums;
  * @created 2019/12/15
  */
 public enum NotifyTypeEnum {
-    REPLY_QUESTION(1, "回复了问题"),
+    REPLY_ARTICLE(1, "评论了文章"),
     REPLY_COMMENT(2, "回复了评论"),
-    LIKE_QUESTION(3, "点赞了问题"),
+    LIKE_ARTICLE(3, "点赞了文章"),
     LIKE_COMMENT(4, "点赞了评论")
     ;
     private int type;

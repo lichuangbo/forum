@@ -1,10 +1,8 @@
 package cn.edu.tit.forum.controller;
 
-import cn.edu.tit.forum.dto.PageNationDTO;
-import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.User;
-import cn.edu.tit.forum.service.NotifyService;
-import cn.edu.tit.forum.service.QuestionService;
+import cn.edu.tit.forum.service.impl.NotifyService;
+import cn.edu.tit.forum.service.impl.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -24,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ProfileController {
 
     @Autowired
-    private QuestionService questionService;
+    private ArticleService articleService;
 
     @Autowired
     private NotifyService notifyService;
@@ -40,7 +37,7 @@ public class ProfileController {
             return "redirect:/";
         }
 
-        if ("questions".equals(action)) {
+        /*if ("questions".equals(action)) {
             model.addAttribute("sections", "questions");
             model.addAttribute("sectionName", "我的提问");
             PageNationDTO pageNationDTO = questionService.list(user.getId(), page, size);
@@ -50,7 +47,7 @@ public class ProfileController {
             model.addAttribute("pageNationDTO", pageNationDTO);
             model.addAttribute("sections", "replies");
             model.addAttribute("sectionName", "最新回复");
-        }
+        }*/
 
         return "profile";
     }
