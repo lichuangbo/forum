@@ -1,7 +1,9 @@
 package cn.edu.tit.forum.service;
 
+import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.model.Favorite;
 import cn.edu.tit.forum.model.User;
+import com.github.pagehelper.PageInfo;
 
 /**
  * @author lichuangbo
@@ -14,4 +16,6 @@ public interface IFavoriteService {
     void insert(User user, Long articleId);
 
     void delete(User user, Long articleId);
+
+    PageInfo<ArticleDTO> listByUser(int page, int size, Long userId);
 }

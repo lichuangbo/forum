@@ -60,4 +60,10 @@
       where id != #{id} and author_id = #{authorId}
       order by view_count, gmt_create desc limit 3
     </select>
+
+    <select id="findByUser" resultMap="BaseResultMap">
+        select * from article
+        where author_id = #{userId}
+        order by gmt_modified desc
+    </select>
 </mapper>

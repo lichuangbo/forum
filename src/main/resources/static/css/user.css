@@ -1,0 +1,317 @@
+/*布局*/
+body {
+    background-color: #f9f9f9;
+}
+
+.index-width {
+    width: 1078px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+    padding: 0 15px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+ul {
+    padding-left: 0;
+}
+
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.rEsl9f {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    position: relative;
+    padding: 20px;
+}
+
+.profile-list {
+    padding: 20px;
+}
+
+.rEsl9f, .profile-list {
+    background-color: white;
+}
+
+._2mYfmT {
+    display: flex;
+    align-items: center;
+}
+
+._1OhGeD, ._1OhGeD:active, ._1OhGeD:hover {
+    color: inherit;
+}
+
+._3U4Smb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+/**/
+._2OwGUo {
+    flex-shrink: 0;
+}
+
+._3Z3nHf, .ouvJEz {
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+._3Z3nHf {
+    padding: 16px;
+}
+
+.QxT4hD {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 4px solid #ec7259;
+    font-size: 18px;
+    font-weight: 500;
+    height: 20px;
+    line-height: 20px;
+}
+
+.user-info-avatar {
+    margin-right: 2.4rem;
+    width: 7.5rem;
+    height: 7.5rem;
+}
+
+.user-info-desc {
+    margin-left: 8px;
+}
+
+.user-info-desc .description {
+    color: #72777b;
+    margin-top: 22px;
+}
+
+.user-info-desc .description span {
+    margin-left: 8px;
+}
+
+/*编辑按钮*/
+.desc-btn {
+    display: inline-block;
+    font-size: 17px;
+    padding: 8px 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.edit-desc {
+    border-radius: 5px;
+    border: 1px #3780f7 solid;
+    position: absolute;
+    right: 30px;
+    bottom: 14px;
+}
+
+.edit-desc:hover {
+    cursor: pointer;
+    color: #00c4ff;
+}
+
+.edit-desc > a {
+    color: #3780f7;
+}
+
+.edit-desc > a:hover {
+    text-decoration: none;
+}
+
+/*我的文章列表*/
+.list-container {
+    margin-top: 15px;
+}
+
+.note-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.note-list li {
+    position: relative;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 15px 2px 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+    word-wrap: break-word;
+}
+
+.note-list .title {
+    margin: -7px 0 4px;
+    display: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+a:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.note-list .title:hover {
+    color: #F0755E;
+}
+
+.note-list .nickname:hover {
+    color: #F0755E;
+}
+
+.note-list .abstract {
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 24px;
+    color: #999;
+}
+
+.note-list .meta {
+    padding-right: 0!important;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.note-list .meta span {
+    margin-right: 20px;
+    color: #b4b4b4;
+}
+
+.note-list .meta a {
+    margin-right: 50px;
+    color: #b4b4b4;
+}
+
+.note-list .meta .nickname {
+    color: #EA6F5A;
+}
+
+/*关注列表*/
+.follow-item > .middle {
+    position: relative;
+    padding: 20px;
+}
+
+.follow-avatar {
+    width: 47px;
+    height: 47px;
+}
+
+.follow-btn.active {
+    color: #fff;
+    background-color: #92c452;
+}
+
+.follow-btn {
+    flex: 0 0 auto;
+    padding: 0;
+    width: 7.5rem;
+    height: 3.0rem;
+    font-size: 1.3rem;
+    color: #92c452;
+    background-color: #fff;
+    border: 1px solid #92c452;
+    border-radius: 2px;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+/*成就*/
+.achieve h4{
+    font-size: 16px;
+}
+
+.achieve i {
+    margin-right: 10px;
+    color: #ec7259;
+}
+
+._19DgIp {
+    width: 100%;
+    height: 1px;
+    margin: 16px 0;
+    background-color: #eee;
+}
+
+/*关注*/
+.follow-block {
+    display: flex;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.block {
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.follow-block .follow-item {
+    flex: 1 1 auto;
+    padding: 1.333rem 0;
+    text-align: center;
+    color: #31445b;
+}
+
+.follow-block .follow-item .item-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #31445b;
+}
+
+.follow-block .follow-item .item-count {
+    margin-top: .5rem;
+    font-size: 1.45rem;
+    font-weight: 600;
+}
+
+.follow-line {
+    width: 100%;
+    height: 1px;
+    background-color: #eee;
+}
+
+/*加入*/
+.more-block {
+    background-color: transparent;
+}
+
+.more-block .more-item {
+    display: flex;
+    padding: 1.25rem .417rem;
+    font-size: 1.55rem;
+    color: #000;
+    border-top: 1px solid rgba(230,230,231,.5);
+}
+
+.more-block .more-item:last-child {
+    border-bottom: 1px solid rgba(230,230,231,.5);
+}
+
+.more-block .more-item .item-title {
+    margin-right: auto;
+}
+
+

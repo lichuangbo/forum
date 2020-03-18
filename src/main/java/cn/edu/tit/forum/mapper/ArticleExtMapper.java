@@ -25,4 +25,6 @@ public interface ArticleExtMapper {
     int incLikeCount(Article article);
 
     int decLikeCount(Article article);
+
+    List<Article> findByUser(Long userId);
 }

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/user.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <title>我的主页</title>
+    <script>
+        function closeItem() {
+            var user = $(".user");
+            user.removeClass("open");
+        }
+
+        function openItem() {
+            var user = $(".user");
+            user.addClass("open");
+        }
+
+        $('#my-favorite').click(function () {
+            alert(1);
+        })
+    </script>
+</head>
+<body>
+<div th:insert="~{navbar :: nav}"></div>
+<div class="container index index-width">
+    <div class="row">
+        <div class="col-md-9">
+            <!--用户信息-->
+            <div class="rEsl9f">
+                <div class="_2mYfmT">
+                    <a class="_1OhGeD">
+                        <img class="img-circle user-info-avatar" th:src="${user.avatarUrl}" alt="">
+                    </a>
+                    <div class="user-info-desc">
+                        <h3>
+                            <a class="_1OhGeD" th:text="${user.nickname}"></a>
+                        </h3>
+                        <div class="description">
+                            <i class="fa fa-address-card"></i>
+                            <span th:text="${user.descript}"></span>
+                        </div>
+                    </div>
+                    <div class="desc-btn edit-desc">
+                        <a href="">编辑个人资料</a>
+                    </div>
+                </div>
+            </div>
+            <!--列表-->
+            <div class="profile-list">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#article" aria-controls="article" role="tab" data-toggle="tab">文章</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#favorite" aria-controls="favorite" role="tab" data-toggle="tab">收藏</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#follow" aria-controls="follow" role="tab" data-toggle="tab">关注了</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#follow-me" aria-controls="follow-me" role="tab" data-toggle="tab">关注者</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="article">
+                        <div class="list-container">
+                            <ul class="note-list" th:each="articleDTOs: ${articlePageInfo.list}">
+                                <li>
+                                    <div class="content">
+                                        <a class="title" th:href="@{'/article/' + ${articleDTOs.id}}"
+                                           th:text="${articleDTOs.title}"></a>
+                                        <p class="abstract" th:text="${articleDTOs.content}"></p>
+                                        <div class="meta">
+                                            <a class="nickname" th:href="@{'/user/' + ${articleDTOs.user.id}}"
+                                               th:text="${articleDTOs.user.nickname}"></a>
+                                            <span>
+                                                <i class="fa fa-comments"> </i><span th:text="${articleDTOs.commentCount}"></span>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-thumbs-up"> </i><span th:text="${articleDTOs.likeCount}"></span>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-eye"> </i>
+                                                <span th:text="${articleDTOs.viewCount}"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="favorite">
+                        <div class="list-container">
+                            <ul class="note-list" th:each="articleDTOs: ${favoritePageInfo.list}">
+                                <li>
+                                    <div class="content">
+                                        <a class="title" th:href="@{'/article/' + ${articleDTOs.id}}"
+                                           th:text="${articleDTOs.title}"></a>
+                                        <p class="abstract" th:text="${articleDTOs.content}"></p>
+                                        <div class="meta">
+                                            <a class="nickname" th:href="@{'/user/' + ${articleDTOs.user.id}}"
+                                               th:text="${articleDTOs.user.nickname}"></a>
+                                            <span>
+                                                <i class="fa fa-comments"> </i><span th:text="${articleDTOs.commentCount}"></span>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-thumbs-up"> </i><span th:text="${articleDTOs.likeCount}"></span>
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-eye"> </i>
+                                                <span th:text="${articleDTOs.viewCount}"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="follow">
+                        <div class="list-container">
+                            <ul class="note-list" th:each="followedUser : ${followPageInfo.list}">
+                                <div class="follow-item">
+                                    <div class="middle">
+                                        <a class="_1OhGeD" th:href="@{'/user/' + ${followedUser.id}}">
+                                            <img class="img-circle follow-avatar" th:src="${followedUser.avatarUrl}" alt="">
+                                        </a>
+                                        <span style="margin-left: 7px">
+                                            <a th:text="${followedUser.nickname}" th:href="@{'/user/' + ${followedUser.id}}"></a>
+                                        </span>
+                                        <button class="follow-btn active">关注</button>
+                                    </div>
+                                    <div class="follow-line"></div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="follow-me">
+                        <div class="list-container">
+                            <ul class="note-list" th:each="followerUser : ${followerPageInfo.list}">
+                                <div class="follow-item">
+                                    <div class="middle">
+                                        <a class="_1OhGeD" th:href="@{'/user/' + ${followerUser.id}}">
+                                            <img class="img-circle follow-avatar" th:src="${followerUser.avatarUrl}" alt="">
+                                        </a>
+                                        <span style="margin-left: 7px">
+                                            <a th:text="${followerUser.nickname}" th:href="@{'/user/' + ${followerUser.id}}"></a>
+                                        </span>
+                                        <button class="follow-btn active">关注</button>
+                                    </div>
+                                    <div class="follow-line"></div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 aside">
+            <aside class="_2OwGUo">
+                <!--个人成就-->
+                <section class="_3Z3nHf achieve">
+                    <h3 class="QHRnq8 QxT4hD"><span>个人成就</span></h3>
+                    <div class="_19DgIp"></div>
+                    <h4 style="margin-bottom: 18px"><i class="fa fa-thumbs-up"></i>获得点赞 <span th:text="${achieveDTO.totalLikeCount}">0</span></h4>
+                    <h4><i class="fa fa-eye"></i>文章被阅读 <span th:text="${achieveDTO.totalViewCount}">0</span></h4>
+                </section>
+                <!--关注信息-->
+                <div class="follow-block block shadow">
+                    <a href="/user/5de8922af265da33c6560498/following" class="follow-item">
+                        <div class="item-title">关注了</div>
+                        <div class="item-count" th:text="${followUserCount}"></div>
+                    </a>
+                    <a href="/user/5de8922af265da33c6560498/followers" class="follow-item">
+                        <div class="item-title">关注者</div>
+                        <div class="item-count" th:text="${user.followCount}"></div>
+                    </a>
+                </div>
+                <!--加入-->
+                <div class="more-block block">
+                    <div class="more-item">
+                        <div class="item-title">加入于</div>
+                        <div class="item-count">
+                            <time class="time" th:text="${#dates.format(user.gmtCreate, 'yyyy-MM-dd HH:mm')}"></time>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -183,7 +183,6 @@ nav .logo {
     top: 0;
     left: 30px;
 }
-
 .register {
     background-color: #EC8270;
     border-radius: 5px;
@@ -201,6 +200,7 @@ nav .logo {
 .register > a:hover {
     text-decoration: none;
 }
+
 
 .login > a:hover {
     color: #ec8270;

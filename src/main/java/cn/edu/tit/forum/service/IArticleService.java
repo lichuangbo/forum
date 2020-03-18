@@ -1,5 +1,6 @@
 package cn.edu.tit.forum.service;
 
+import cn.edu.tit.forum.dto.AchieveDTO;
 import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.model.Article;
 import com.github.pagehelper.PageInfo;
@@ -31,4 +32,8 @@ public interface IArticleService {
     boolean lightThumbUp(Long userId, Long articleId, Integer type);
 
     void incView(Long articleId);
+
+    PageInfo<ArticleDTO> listByUser(int page, int size, Long userId);
+
+    AchieveDTO countTotalByUser(Long userId);
 }

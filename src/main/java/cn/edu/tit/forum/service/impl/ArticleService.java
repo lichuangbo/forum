@@ -1,5 +1,6 @@
 package cn.edu.tit.forum.service.impl;
 
+import cn.edu.tit.forum.dto.AchieveDTO;
 import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.mapper.ArticleExtMapper;
 import cn.edu.tit.forum.mapper.ArticleMapper;
@@ -163,6 +164,55 @@ public class ArticleService implements IArticleService {
         article.setId(id);
         article.setViewCount(1);
         articleExtMapper.incView(article);*/
+    }
+
+    @Override
+    public PageInfo<ArticleDTO> listByUser(int page, int size, Long userId) {
+        PageHelper.startPage(page, size);
+        List<Article> articles = articleExtMapper.findByUser(userId);
+
+        PageInfo<Article> articlePoPageInfo = new PageInfo<>(articles);
+        PageInfo<ArticleDTO> articleVoPageInfo = PageUtil.PageInfo2PageInfoVo(articlePoPageInfo);
+
+        List<ArticleDTO> articleDTOS = new ArrayList<>();
+        for (Article article : articles) {
+            ArticleDTO articleDTO = new ArticleDTO();
+            User user = userMapper.selectByPrimaryKey(article.getAuthorId());
+            articleDTO.setUser(user);
+            // Spring提供的，快速封装结果集
+            BeanUtils.copyProperties(article, articleDTO);
+
+            String k_viewCount = KeyUtil.ARTICLE_VIEW_COUNT;
+            String hk_viewCount = KeyUtil.getHashArticleViewCount(article.getId());
+            if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
+                articleDTO.setViewCount(hashOps.get(k_viewCount, hk_viewCount));
+            }
+
+            String content = article.getContent();
+            if (content.length() > 50) {
+                articleDTO.setContent(content.substring(0, 70) + "...");
+            }
+
+            articleDTOS.add(articleDTO);
+        }
+        for (ArticleDTO articleDTO : articleDTOS) {
+            articleVoPageInfo.getList().add(articleDTO);
+        }
+        return articleVoPageInfo;
+    }
+
+    @Override
+    public AchieveDTO countTotalByUser(Long userId) {
+        List<Article> articles = articleExtMapper.findByUser(userId);
+        int totalLikeCount = 0, totalViewCount = 0;
+        for (Article article : articles) {
+            totalLikeCount += article.getLikeCount();
+            totalViewCount += article.getViewCount();
+        }
+        AchieveDTO achieveDTO = new AchieveDTO();
+        achieveDTO.setTotalLikeCount(totalLikeCount);
+        achieveDTO.setTotalViewCount(totalViewCount);
+        return achieveDTO;
     }
 
     // 增加点赞数， 根据问题ID

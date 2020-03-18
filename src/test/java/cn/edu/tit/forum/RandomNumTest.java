@@ -1,5 +1,8 @@
 package cn.edu.tit.forum;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author lichuangbo
  * @version 1.0

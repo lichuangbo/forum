@@ -65,7 +65,7 @@
         </ul>
     </div>
     <!--分页-->
-    <nav aria-label="page navigation" style="margin-left: 50px">
+    <nav aria-label="page navigation" style="margin-left: 50px" th:if="${notifyDTOPageInfo.pages != 0}">
         <ul class="pagination">
             <li th:class="${notifyDTOPageInfo.pageNum == 1} ? 'disabled' : ''">
                 <a th:href="@{notify(page=1)}" aria-label="Previous">
@@ -99,6 +99,9 @@
             $(".disabled").css("pointer-events", "none");
         </script>
     </nav>
+    <div style="text-align: center;font-size: 16px;color:#777;" th:if="${notifyDTOPageInfo.pages == 0}">
+        没有新的通知
+    </div>
 </div>
 </body>
 </html>
