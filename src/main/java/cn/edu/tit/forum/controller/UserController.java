@@ -2,8 +2,10 @@ package cn.edu.tit.forum.controller;
 
 import cn.edu.tit.forum.dto.AchieveDTO;
 import cn.edu.tit.forum.dto.ArticleDTO;
+import cn.edu.tit.forum.dto.FollowUserDTO;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
+import cn.edu.tit.forum.model.Follow;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.service.impl.ArticleService;
 import cn.edu.tit.forum.service.impl.FavoriteService;
@@ -16,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author lichuangbo
@@ -41,7 +45,8 @@ public class UserController {
     public String userProfile(@PathVariable("id") String id,
                               @RequestParam(value = "page", defaultValue = "1") Integer page,
                               @RequestParam(value = "size", defaultValue = "10") Integer size,
-                              Model model) {
+                              Model model,
+                              HttpSession session) {
         Long userId;
         try {
             userId = Long.parseLong(id);
@@ -52,20 +57,31 @@ public class UserController {
         User user = userService.findById(userId);
         if (user == null)
             throw new CustomizeException(CustomizeErrorCode.USER_NOT_FOUND);
+
+        User sessionUser = (User) session.getAttribute("user");
+        Follow follow = followService.find(sessionUser, userId);
+        FollowUserDTO followUserDTO = new FollowUserDTO();
+        followUserDTO.setUser(user);
+        if (follow != null) {
+            followUserDTO.setFollowed(true);
+        } else {
+            followUserDTO.setFollowed(false);
+        }
+
         // 文章
         PageInfo<ArticleDTO> articlePageInfo = articleService.listByUser(page, size, user.getId());
         // 收藏的文章
         PageInfo<ArticleDTO> favoritePageInfo = favoriteService.listByUser(page, size, user.getId());
         // 关注了
-        PageInfo<User> followPageInfo = followService.listByUser(page, size, user.getId());
+        PageInfo<FollowUserDTO> followPageInfo = followService.listByUser(page, size, user.getId(), sessionUser);
         // 关注者
-        PageInfo<User> followerPageInfo = followService.listByTargetUser(page, size, user.getId());
+        PageInfo<FollowUserDTO> followerPageInfo = followService.listByTargetUser(page, size, user.getId(), sessionUser);
         // 关注数
         long followUserCount = followService.countFollowUser(user.getId());
         // 成就
         AchieveDTO achieveDTO = articleService.countTotalByUser(user.getId());
 
-        model.addAttribute("user", user);
+        model.addAttribute("followUserDTO", followUserDTO);
         model.addAttribute("articlePageInfo", articlePageInfo);
         model.addAttribute("favoritePageInfo", favoritePageInfo);
         model.addAttribute("followPageInfo", followPageInfo);

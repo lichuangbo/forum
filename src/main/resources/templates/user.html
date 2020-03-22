@@ -6,25 +6,11 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/user.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="/js/user.js"></script>
     <title>我的主页</title>
-    <script>
-        function closeItem() {
-            var user = $(".user");
-            user.removeClass("open");
-        }
-
-        function openItem() {
-            var user = $(".user");
-            user.addClass("open");
-        }
-
-        $('#my-favorite').click(function () {
-            alert(1);
-        })
-    </script>
 </head>
 <body>
 <div th:insert="~{navbar :: nav}"></div>
@@ -34,21 +20,28 @@
             <!--用户信息-->
             <div class="rEsl9f">
                 <div class="_2mYfmT">
-                    <a class="_1OhGeD">
-                        <img class="img-circle user-info-avatar" th:src="${user.avatarUrl}" alt="">
-                    </a>
+                    <!--隐藏的用户ID-->
+                    <input type="hidden" id="user-id" th:value="${followUserDTO.user.id}">
+                    <span class="_1OhGeD">
+                        <img class="img-circle user-info-avatar" th:src="${followUserDTO.user.avatarUrl}" alt="">
+                    </span>
                     <div class="user-info-desc">
                         <h3>
-                            <a class="_1OhGeD" th:text="${user.nickname}"></a>
+                            <span class="_1OhGeD" th:text="${followUserDTO.user.nickname}"></span>
                         </h3>
                         <div class="description">
                             <i class="fa fa-address-card"></i>
-                            <span th:text="${user.descript}"></span>
+                            <span th:text="${followUserDTO.user.descript}"></span>
                         </div>
                     </div>
-                    <div class="desc-btn edit-desc">
+                    <div class="desc-btn edit-desc" th:if="${session.user != null && session.user.id == followUserDTO.user.id}">
                         <a href="">编辑个人资料</a>
                     </div>
+                    <button id="follow-in-user" type="button" class="follow-big-btn"
+                            th:if="${session.user != null && session.user.id != followUserDTO.user.id}"
+                            th:classappend="${followUserDTO.followed == true} ? 'active' : ' ' ">
+                        <span id="follow-big-text" th:text="${followUserDTO.followed == true} ? '已关注' : '关注' "></span>
+                    </button>
                 </div>
             </div>
             <!--列表-->
@@ -80,10 +73,12 @@
                                             <a class="nickname" th:href="@{'/user/' + ${articleDTOs.user.id}}"
                                                th:text="${articleDTOs.user.nickname}"></a>
                                             <span>
-                                                <i class="fa fa-comments"> </i><span th:text="${articleDTOs.commentCount}"></span>
+                                                <i class="fa fa-comments"> </i><span
+                                                    th:text="${articleDTOs.commentCount}"></span>
                                             </span>
                                             <span>
-                                                <i class="fa fa-thumbs-up"> </i><span th:text="${articleDTOs.likeCount}"></span>
+                                                <i class="fa fa-thumbs-up"> </i><span
+                                                    th:text="${articleDTOs.likeCount}"></span>
                                             </span>
                                             <span>
                                                 <i class="fa fa-eye"> </i>
@@ -107,10 +102,12 @@
                                             <a class="nickname" th:href="@{'/user/' + ${articleDTOs.user.id}}"
                                                th:text="${articleDTOs.user.nickname}"></a>
                                             <span>
-                                                <i class="fa fa-comments"> </i><span th:text="${articleDTOs.commentCount}"></span>
+                                                <i class="fa fa-comments"> </i><span
+                                                    th:text="${articleDTOs.commentCount}"></span>
                                             </span>
                                             <span>
-                                                <i class="fa fa-thumbs-up"> </i><span th:text="${articleDTOs.likeCount}"></span>
+                                                <i class="fa fa-thumbs-up"> </i><span
+                                                    th:text="${articleDTOs.likeCount}"></span>
                                             </span>
                                             <span>
                                                 <i class="fa fa-eye"> </i>
@@ -124,16 +121,24 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="follow">
                         <div class="list-container">
-                            <ul class="note-list" th:each="followedUser : ${followPageInfo.list}">
+                            <ul class="note-list" th:each="followedUserDTO : ${followPageInfo.list}">
                                 <div class="follow-item">
                                     <div class="middle">
-                                        <a class="_1OhGeD" th:href="@{'/user/' + ${followedUser.id}}">
-                                            <img class="img-circle follow-avatar" th:src="${followedUser.avatarUrl}" alt="">
+                                        <a class="_1OhGeD" th:href="@{'/user/' + ${followedUserDTO.user.id}}">
+                                            <img class="img-circle follow-avatar"
+                                                 th:src="${followedUserDTO.user.avatarUrl}" alt="">
                                         </a>
                                         <span style="margin-left: 7px">
-                                            <a th:text="${followedUser.nickname}" th:href="@{'/user/' + ${followedUser.id}}"></a>
+                                            <a th:text="${followedUserDTO.user.nickname}"
+                                               th:href="@{'/user/' + ${followedUserDTO.user.id}}"></a>
                                         </span>
-                                        <button class="follow-btn active">关注</button>
+                                        <button type="button" onclick="followUser(this)" class="follow-btn"
+                                                th:user-id="${followedUserDTO.user.id}"
+                                                th:classappend="${followedUserDTO.followed == true} ? 'active' : ' ' "
+                                                th:if="${session.user != null && session.user.id != followedUserDTO.user.id}">
+                                            <span th:id="${'follow-text-'+followedUserDTO.user.id}"
+                                                  th:text="${followedUserDTO.followed == true} ? '已关注' : '关注' "></span>
+                                        </button>
                                     </div>
                                     <div class="follow-line"></div>
                                 </div>
@@ -142,16 +147,25 @@
                     </div>
                     <div role="tabpanel" class="tab-pane" id="follow-me">
                         <div class="list-container">
-                            <ul class="note-list" th:each="followerUser : ${followerPageInfo.list}">
+                            <ul class="note-list" th:each="followerUserDTO : ${followerPageInfo.list}">
                                 <div class="follow-item">
                                     <div class="middle">
-                                        <a class="_1OhGeD" th:href="@{'/user/' + ${followerUser.id}}">
-                                            <img class="img-circle follow-avatar" th:src="${followerUser.avatarUrl}" alt="">
+                                        <a class="_1OhGeD" th:href="@{'/user/' + ${followerUserDTO.user.id}}">
+                                            <img class="img-circle follow-avatar"
+                                                 th:src="${followerUserDTO.user.avatarUrl}"
+                                                 alt="">
                                         </a>
                                         <span style="margin-left: 7px">
-                                            <a th:text="${followerUser.nickname}" th:href="@{'/user/' + ${followerUser.id}}"></a>
+                                            <a th:text="${followerUserDTO.user.nickname}"
+                                               th:href="@{'/user/' + ${followerUserDTO.user.id}}"></a>
                                         </span>
-                                        <button class="follow-btn active">关注</button>
+                                        <button type="button" onclick="followerUser(this)" class="follow-btn"
+                                                th:follower-user-id="${followerUserDTO.user.id}"
+                                                th:classappend="${followerUserDTO.followed == true} ? 'active' : ' ' "
+                                                th:if="${session.user != null && session.user.id != followerUserDTO.user.id}">
+                                            <span th:id="${'follower-text-'+followerUserDTO.user.id}"
+                                                  th:text="${followerUserDTO.followed == true} ? '已关注' : '关注' "></span>
+                                        </button>
                                     </div>
                                     <div class="follow-line"></div>
                                 </div>
@@ -167,31 +181,37 @@
                 <section class="_3Z3nHf achieve">
                     <h3 class="QHRnq8 QxT4hD"><span>个人成就</span></h3>
                     <div class="_19DgIp"></div>
-                    <h4 style="margin-bottom: 18px"><i class="fa fa-thumbs-up"></i>获得点赞 <span th:text="${achieveDTO.totalLikeCount}">0</span></h4>
+                    <h4 style="margin-bottom: 18px"><i class="fa fa-thumbs-up"></i>获得点赞 <span
+                            th:text="${achieveDTO.totalLikeCount}">0</span></h4>
                     <h4><i class="fa fa-eye"></i>文章被阅读 <span th:text="${achieveDTO.totalViewCount}">0</span></h4>
                 </section>
                 <!--关注信息-->
                 <div class="follow-block block shadow">
-                    <a href="/user/5de8922af265da33c6560498/following" class="follow-item">
+                    <div class="follow-item">
                         <div class="item-title">关注了</div>
-                        <div class="item-count" th:text="${followUserCount}"></div>
-                    </a>
-                    <a href="/user/5de8922af265da33c6560498/followers" class="follow-item">
+                        <div id="followedCount" class="item-count" th:text="${followUserCount}"></div>
+                    </div>
+                    <div class="follow-item">
                         <div class="item-title">关注者</div>
-                        <div class="item-count" th:text="${user.followCount}"></div>
-                    </a>
+                        <div id="followerCount" class="item-count" th:text="${followUserDTO.user.followCount}"></div>
+                    </div>
                 </div>
                 <!--加入-->
                 <div class="more-block block">
                     <div class="more-item">
                         <div class="item-title">加入于</div>
                         <div class="item-count">
-                            <time class="time" th:text="${#dates.format(user.gmtCreate, 'yyyy-MM-dd HH:mm')}"></time>
+                            <time class="time" th:text="${#dates.format(followUserDTO.user.gmtCreate, 'yyyy-MM-dd')}"></time>
                         </div>
                     </div>
                 </div>
             </aside>
         </div>
+    </div>
+    <!--错误提示信息-->
+    <div id="user-alert" class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert"></a>
+        <strong id="alert-text"></strong>
     </div>
 </div>
 </body>

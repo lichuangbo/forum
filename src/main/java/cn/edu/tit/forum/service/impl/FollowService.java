@@ -1,9 +1,8 @@
 package cn.edu.tit.forum.service.impl;
 
-import cn.edu.tit.forum.dto.ArticleDTO;
+import cn.edu.tit.forum.dto.FollowUserDTO;
 import cn.edu.tit.forum.mapper.FollowMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
-import cn.edu.tit.forum.model.Article;
 import cn.edu.tit.forum.model.Follow;
 import cn.edu.tit.forum.model.FollowExample;
 import cn.edu.tit.forum.model.User;
@@ -70,41 +69,70 @@ public class FollowService implements IFollowService {
     }
 
     @Override
-    public PageInfo<User> listByUser(int page, int size, Long userId) {
+    public PageInfo<FollowUserDTO> listByUser(int page, int size, Long userId, User sessionUser) {
         FollowExample followExample = new FollowExample();
         followExample.createCriteria().andUserIdEqualTo(userId);
         PageHelper.startPage(page, size);
         List<Follow> follows = followMapper.selectByExample(followExample);
 
         PageInfo<Follow> userPoPageInfo = new PageInfo<>(follows);
-        PageInfo<User> userVoPageInfo = PageUtil.PageInfo2PageInfoVo(userPoPageInfo);
-        List<User> users = new ArrayList<>();
+        PageInfo<FollowUserDTO> userVoPageInfo = PageUtil.PageInfo2PageInfoVo(userPoPageInfo);
+
+        List<FollowUserDTO> followUserDTOS = new ArrayList<>();
         for (Follow follow : follows) {
+            FollowUserDTO followUserDTO = new FollowUserDTO();
             User user = userMapper.selectByPrimaryKey(follow.getFollowUserId());
-            users.add(user);
+            followUserDTO.setUser(user);
+            if (sessionUser != null) {
+                // 当前用户是否关注列表中的这个人
+                FollowExample followExample1 = new FollowExample();
+                followExample1.createCriteria().andUserIdEqualTo(sessionUser.getId()).andFollowUserIdEqualTo(follow.getFollowUserId());
+                List<Follow> follows1 = followMapper.selectByExample(followExample1);
+                if (follows1 != null && follows1.size() > 0) {
+                    followUserDTO.setFollowed(true);
+                } else {
+                    followUserDTO.setFollowed(false);
+                }
+            }
+
+            followUserDTOS.add(followUserDTO);
         }
-        for (User user : users) {
-            userVoPageInfo.getList().add(user);
+        for (FollowUserDTO followUserDTO : followUserDTOS) {
+            userVoPageInfo.getList().add(followUserDTO);
         }
         return userVoPageInfo;
     }
 
     @Override
-    public PageInfo<User> listByTargetUser(int page, int size, Long userId) {
+    public PageInfo<FollowUserDTO> listByTargetUser(int page, int size, Long userId, User sessionUser) {
         FollowExample followExample = new FollowExample();
         followExample.createCriteria().andFollowUserIdEqualTo(userId);
         PageHelper.startPage(page, size);
         List<Follow> follows = followMapper.selectByExample(followExample);
 
         PageInfo<Follow> userPoPageInfo = new PageInfo<>(follows);
-        PageInfo<User> userVoPageInfo = PageUtil.PageInfo2PageInfoVo(userPoPageInfo);
-        List<User> users = new ArrayList<>();
+        PageInfo<FollowUserDTO> userVoPageInfo = PageUtil.PageInfo2PageInfoVo(userPoPageInfo);
+
+        List<FollowUserDTO> followUserDTOS = new ArrayList<>();
         for (Follow follow : follows) {
+            FollowUserDTO followUserDTO = new FollowUserDTO();
             User user = userMapper.selectByPrimaryKey(follow.getUserId());
-            users.add(user);
+            followUserDTO.setUser(user);
+            if (sessionUser != null) {
+                FollowExample followExample1 = new FollowExample();
+                followExample1.createCriteria().andUserIdEqualTo(sessionUser.getId()).andFollowUserIdEqualTo(follow.getUserId());
+                List<Follow> follows1 = followMapper.selectByExample(followExample1);
+                if (follows1 != null && follows1.size() > 0) {
+                    followUserDTO.setFollowed(true);
+                } else {
+                    followUserDTO.setFollowed(false);
+                }
+            }
+
+            followUserDTOS.add(followUserDTO);
         }
-        for (User user : users) {
-            userVoPageInfo.getList().add(user);
+        for (FollowUserDTO followUserDTO : followUserDTOS) {
+            userVoPageInfo.getList().add(followUserDTO);
         }
         return userVoPageInfo;
     }

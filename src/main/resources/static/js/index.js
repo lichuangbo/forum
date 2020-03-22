@@ -31,14 +31,14 @@ function loadRecommend() {
 }
 
 function followRecommend(e) {
-    const recommendUserId = e.getAttribute("recommend-id");
+    const userId = e.getAttribute("recommend-id");
     $.post("/followRecommend", {
-        "recommendUserId": recommendUserId
+        "recommendUserId": userId
     }, function (response) {
         if (response.code == 200) {
-            $("#follow-style-" + recommendUserId).toggleClass("followed");
-            $("#follow-icon-" + recommendUserId).toggleClass("glyphicon-ok");
-            $("#follow-text-" + recommendUserId).text(response.data);
+            $("#follow-style-" + userId).toggleClass("followed");
+            $("#follow-icon-" + userId).toggleClass("glyphicon-ok");
+            $("#follow-text-" + userId).text(response.data);
         } else {
             alertWindow(response.message);
         }

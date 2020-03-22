@@ -1,5 +1,6 @@
 package cn.edu.tit.forum.service;
 
+import cn.edu.tit.forum.dto.FollowUserDTO;
 import cn.edu.tit.forum.model.Article;
 import cn.edu.tit.forum.model.Follow;
 import cn.edu.tit.forum.model.User;
@@ -21,7 +22,7 @@ public interface IFollowService {
 
     long countFollowUser(Long userId);
 
-    PageInfo<User> listByUser(int page, int size, Long userId);
+    PageInfo<FollowUserDTO> listByUser(int page, int size, Long userId, User sessionUser);
 
-    PageInfo<User> listByTargetUser(int page, int size, Long userId);
+    PageInfo<FollowUserDTO> listByTargetUser(int page, int size, Long userId, User sessionUser);
 }

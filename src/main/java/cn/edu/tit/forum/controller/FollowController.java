@@ -1,5 +1,6 @@
 package cn.edu.tit.forum.controller;
 
+import cn.edu.tit.forum.dto.FollowMessageDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.mapper.ArticleMapper;
@@ -60,23 +61,54 @@ public class FollowController {
 
     @RequestMapping(value = "/followRecommend",method = RequestMethod.POST)
     @ResponseBody
-    public ResultDTO followRecommend(Long recommendUserId,
+    public ResultDTO followRecommend(Long userId,
                                      HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null)
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
-        User recommendUser = userService.findById(recommendUserId);
-        Follow follow = followService.find(user, recommendUserId);
+        User recommendUser = userService.findById(userId);
+        Follow follow = followService.find(user, userId);
         if (follow != null) {
-            followService.delete(user, recommendUserId);
+            followService.delete(user, userId);
             recommendUser.setFollowCount(1);
             userService.decFollowCount(recommendUser);
             return ResultDTO.okof("关注");
         } else {
-            followService.insert(user, recommendUserId);
+            followService.insert(user, userId);
             recommendUser.setFollowCount(1);
             userService.incFollowCount(recommendUser);
             return ResultDTO.okof("已关注");
         }
+    }
+
+    @RequestMapping(value = "/followUser", method = RequestMethod.POST)
+    @ResponseBody
+    public ResultDTO followUser(Long userPageId,
+                                Long userId,
+                                HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null)
+            return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
+
+        User pageUser = userService.findById(userPageId);
+        User followedUser = userService.findById(userId);
+        Follow follow = followService.find(user, userId);
+        FollowMessageDTO followMessageDTO = new FollowMessageDTO();
+        if (follow != null) {
+            followService.delete(user, userId);
+            followedUser.setFollowCount(1);
+            userService.decFollowCount(followedUser);
+            followMessageDTO.setMessage("关注");
+        } else {
+            followService.insert(user, userId);
+            followedUser.setFollowCount(1);
+            userService.incFollowCount(followedUser);
+            followMessageDTO.setMessage("已关注");
+        }
+        User pageUser2 = userService.findById(pageUser.getId());
+        followMessageDTO.setFollowerCount(pageUser2.getFollowCount());
+        long count = followService.countFollowUser(pageUser2.getId());
+        followMessageDTO.setFollowedCount(count);
+        return ResultDTO.okof(followMessageDTO);
     }
 }
