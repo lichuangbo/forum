@@ -49,6 +49,9 @@ public class FollowService implements IFollowService {
 
     @Override
     public Follow find(User user, Long respUserId) {
+        if (user == null) {
+            return null;
+        }
         FollowExample followExample = new FollowExample();
         followExample.createCriteria().andUserIdEqualTo(user.getId())
                 .andFollowUserIdEqualTo(respUserId);

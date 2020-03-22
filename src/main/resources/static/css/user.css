@@ -360,3 +360,10 @@ a:hover {
     top: -470px;
     margin: auto;
 }
+
+.fixedAside {
+    position: fixed;
+    top: 80px;
+    width: 239.5px;
+    height: 309.25px;
+}

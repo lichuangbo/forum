@@ -109,6 +109,9 @@
                             th:classappend="${follow == true} ? 'followed' : ' ' ">
                         <span th:text="${followText}" id="follow-text">关注</span>
                     </button>
+                    <button type="button" onclick="followClick()" th:if="${session.user == null}" class="follow-btn">
+                        <span>关注</span>
+                    </button>
                     <a class="_1NDgW7 _1OhGeD" style="color: #969696" th:href="@{'/publish/' + ${articleDTO.id}}"
                        th:if="${session.user != null && session.user.id == articleDTO.authorId}">
                         <i class="glyphicon glyphicon-pencil"></i>编辑文章

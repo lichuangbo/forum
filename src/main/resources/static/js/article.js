@@ -151,6 +151,10 @@ $(function () {
     })
 });
 
+function followClick() {
+    alertWindow("当前操作需登录");
+}
+
 function alertWindow(content) {
     $("#alert-text").text(content);
     $("#article-alert").css("display", "block");

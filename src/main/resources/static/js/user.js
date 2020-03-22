@@ -26,6 +26,10 @@ function followUser(e) {
     });
 }
 
+function followClick() {
+    alertWindow("当前操作需登录")
+}
+
 function followerUser(e) {
     const userPageId = $("#user-id").val();
     const userId = e.getAttribute("follower-user-id");

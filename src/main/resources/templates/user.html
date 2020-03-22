@@ -40,7 +40,10 @@
                     <button id="follow-in-user" type="button" class="follow-big-btn"
                             th:if="${session.user != null && session.user.id != followUserDTO.user.id}"
                             th:classappend="${followUserDTO.followed == true} ? 'active' : ' ' ">
-                        <span id="follow-big-text" th:text="${followUserDTO.followed == true} ? '已关注' : '关注' "></span>
+                        <span id="follow-big-text" th:text="${followUserDTO.followed == true} ? '已关注' : '关注' ">关注</span>
+                    </button>
+                    <button type="button" onclick="followClick()" class="follow-big-btn" th:if="${session.user == null}">
+                        <span>关注</span>
                     </button>
                 </div>
             </div>
@@ -139,6 +142,9 @@
                                             <span th:id="${'follow-text-'+followedUserDTO.user.id}"
                                                   th:text="${followedUserDTO.followed == true} ? '已关注' : '关注' "></span>
                                         </button>
+                                        <button type="button" onclick="followClick()" class="follow-btn" th:if="${session.user == null}">
+                                            <span>关注</span>
+                                        </button>
                                     </div>
                                     <div class="follow-line"></div>
                                 </div>
@@ -166,6 +172,9 @@
                                             <span th:id="${'follower-text-'+followerUserDTO.user.id}"
                                                   th:text="${followerUserDTO.followed == true} ? '已关注' : '关注' "></span>
                                         </button>
+                                        <button type="button" onclick="followClick()" class="follow-btn" th:if="${session.user == null}">
+                                            <span>关注</span>
+                                        </button>
                                     </div>
                                     <div class="follow-line"></div>
                                 </div>
@@ -176,7 +185,7 @@
             </div>
         </div>
         <div class="col-md-3 aside">
-            <aside class="_2OwGUo">
+            <aside class="_2OwGUo fixedAside">
                 <!--个人成就-->
                 <section class="_3Z3nHf achieve">
                     <h3 class="QHRnq8 QxT4hD"><span>个人成就</span></h3>
