@@ -11,18 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * 处理SpringBoot没处理完的异常显示（如请求路径不对）
  * @author lichuangbo
  * @version 1.0
  * @created 2019/12/11
  */
 @Controller("/error")
-@RequestMapping("${server.error.path:${error.path:/error}}")
+@RequestMapping("${server.error.path:${error.path:/error}}")// 源码BasicErrorController中是这么写的
 public class CustomizeErrorController implements ErrorController {
+    // 返回错误页的路径
     @Override
     public String getErrorPath() {
         return "error";
     }
 
+    // text/html格式
     @RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView errorHtml(HttpServletRequest request, Model model) {
         HttpStatus status = getStatus(request);
@@ -31,7 +34,7 @@ public class CustomizeErrorController implements ErrorController {
             model.addAttribute("message", "你这个请求错了吧，要不然换个姿势？");
         }
         if (status.is5xxServerError()) {
-            model.addAttribute("message", "服务已经冒烟了，要不然你稍后再试试！！！");
+            model.addAttribute("message", "服务器已经冒烟了，要不然你稍后再试试！！！");
         }
 
         return new ModelAndView("error");

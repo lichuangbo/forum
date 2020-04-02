@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
@@ -76,7 +75,7 @@ public class LoginController {
         String text = "亲爱的" + email +
                 "：<br/> &nbsp;&nbsp;&nbsp;您好！您正在进行邮箱验证，本次请求的验证码为：<br/><span style='color: #FF9900;font-size: 22px'>"
                 + sb.toString() + "</span>(为了保障您账户的安全性，请在5分钟内完成验证)</br></br>&nbsp;&nbsp;&nbsp;<div><br/>" + date + "</div>";
-        MailUtil.sendMail(email, text, "【星月相随论坛】邮箱验证码，Please verify your device");
+        MailUtil.sendMail(email, text, "【星月论坛】邮箱验证码，Please verify your device");
         code = sb.toString();
     }
 

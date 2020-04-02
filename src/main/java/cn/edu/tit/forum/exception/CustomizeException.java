@@ -6,7 +6,9 @@ package cn.edu.tit.forum.exception;
  * @created 2019/12/11
  */
 public class CustomizeException extends RuntimeException {
+    // 异常提示信息
     private String message;
+    // 存储异常枚举中的code
     private Integer code;
 
     public CustomizeException(ICustomizeErrorCode errorCode) {

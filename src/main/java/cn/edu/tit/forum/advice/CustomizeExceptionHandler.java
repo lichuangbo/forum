@@ -4,6 +4,7 @@ import cn.edu.tit.forum.dto.ResultDTO;
 import com.alibaba.fastjson.JSON;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,6 +21,7 @@ import java.io.PrintWriter;
  * @created 2019/12/11
  */
 @ControllerAdvice
+@Slf4j
 public class CustomizeExceptionHandler {
     @ExceptionHandler(Exception.class)
     ModelAndView handleControllerException(HttpServletRequest request,
@@ -27,15 +29,16 @@ public class CustomizeExceptionHandler {
                                            Throwable ex,
                                            Model model) {
         String contentType = request.getContentType();
+        // JSON格式请求---返回JSON
         if ("application/json".equals(contentType)) {
             ResultDTO resultDTO;
-            // 返回JSON
             if (ex instanceof CustomizeException) {
                 resultDTO = ResultDTO.errorOf((CustomizeException) ex);
             } else {
                 resultDTO = ResultDTO.errorOf(CustomizeErrorCode.SYS_ERROR);
             }
 
+            // if期待返回JSON，else期待返回modelAndView，两者不能共存。使用传统的servlet方式返回json
             try {
                 response.setCharacterEncoding("utf-8");
                 response.setStatus(200);
@@ -44,10 +47,11 @@ public class CustomizeExceptionHandler {
                 printWriter.write(JSON.toJSONString(resultDTO));
                 printWriter.close();
             } catch (IOException ioe){
+                log.error("handle SpringBoot Exception try response error, {}", ioe);
             }
             return null;
-        } else {
-            // 页面跳转
+        } else {// 页面请求----text/html，返回错误页面
+            // 如果接收到的异常是自定义异常类型，将其自定义异常message放置到model域，以便页面显示
             if (ex instanceof CustomizeException) {
                 model.addAttribute("message", ex.getMessage());
             } else {

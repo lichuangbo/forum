@@ -6,6 +6,7 @@ package cn.edu.tit.forum.exception;
  * @created 2019/12/11
  */
 public interface ICustomizeErrorCode {
-    String getMessage();
     Integer getCode();
+
+    String getMessage();
 }

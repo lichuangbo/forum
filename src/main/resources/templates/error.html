@@ -1,23 +1,45 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>码匠社区</title>
+    <title>星月论坛</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/error.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <script>
+        function closeItem() {
+            const user = $(".user");
+            user.removeClass("open");
+        }
+
+        function openItem() {
+            const user = $(".user");
+            user.addClass("open");
+        }
+    </script>
 </head>
 <body>
+<div th:insert="~{navbar :: nav}"></div>
 <div class="container-fluid main">
     <div class="jumbotron">
-        <h1>出错啦！！！</h1>
-        <p th:text="${message}"></p>
-        <p><a class="btn btn-primary btn-lg" href="/" role="button">回到主页</a></p>
+        <div class="view not-found-view">
+            <div class="error-mess">
+                <h3><strong>出错啦！</strong></h3>
+                <p th:text="${message}"></p>
+                <a href="/" class="index-link">回到首页</a>
+            </div>
+            <div class="where-is-panfish">
+                <img src="https://cn-edu-tit-forum.obs.cn-north-4.myhuaweicloud.com/panfish.9be67f5.png" class="elem panfish">
+                <img src="https://cn-edu-tit-forum.obs.cn-north-4.myhuaweicloud.com/sea.892cf5d.png" class="elem sea">
+                <img src="https://cn-edu-tit-forum.obs.cn-north-4.myhuaweicloud.com/spray.bc638d2.png" class="elem spray">
+            </div>
+        </div>
     </div>
 </div>
-<!--<div th:insert="~{footer :: foot}"></div>-->
 </body>
 </html>

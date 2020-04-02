@@ -1,0 +1,70 @@
+.not-found-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+.where-is-panfish {
+    position: relative;
+    width: 52rem;
+    max-width: 70%;
+    padding-top: 10%;
+}
+
+.index-link {
+    /*display: block;*/
+    padding: 1.1rem 2rem;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: #007fff;
+    border-radius: 5px;
+    width: 100px;
+    position: absolute;
+    bottom: 0;
+    right: 220px;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.where-is-panfish .bg {
+    width: 77.724%;
+    transform: translate(-50%,-50%);
+}
+
+.where-is-panfish .elem {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+}
+
+.where-is-panfish .panfish {
+    width: 20.994%;
+    transform: translate(-55%,32%);
+    animation: panfish-data-v-382292b0 2s ease-in-out infinite alternate;
+}
+
+.where-is-panfish .sea {
+    width: 99.199%;
+    transform: translate(-50%,75.3%);
+    opacity: .7;
+}
+
+.where-is-panfish .spray {
+    width: 40.545%;
+    transform: translate(-55%,162%);
+    opacity: .4;
+}
+
+.error-mess {
+    width: 52rem;
+    height: 17rem;
+    text-align: center;
+    margin-top: 28px;
+    position: relative;
+}
+
