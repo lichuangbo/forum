@@ -19,7 +19,7 @@
 </head>
 <body>
 <div th:insert="~{navbar :: nav}"></div>
-<div class="container index index-width userEdit">
+<div class="container index index-width userEdit" style="min-height: calc(100vh - 70px);">
     <div class="col-md-9 main main-padd">
         <div class="profile-list">
             <ul class="nav nav-tabs" role="tablist">
@@ -96,5 +96,6 @@
         </div>
     </div>
 </div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>

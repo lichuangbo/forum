@@ -14,7 +14,7 @@
 </head>
 <body>
 <div th:insert="~{navbar :: nav}"></div>
-<div class="container index index-width">
+<div class="container index index-width" style="min-height: calc(100vh - 70px);">
     <div class="row">
         <div class="col-md-9">
             <!--用户信息-->
@@ -223,5 +223,6 @@
         <strong id="alert-text"></strong>
     </div>
 </div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>

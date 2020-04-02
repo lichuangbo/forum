@@ -25,7 +25,7 @@
 </head>
 <body>
 <div th:insert="~{navbar :: nav}"></div>
-<div class="container index index-width notification">
+<div class="container index index-width notification" style="min-height: calc(100vh - 70px);">
     <div class="col-md-9 main main-padd">
         <ul class="notify-list">
             <li class="notify-item" th:each="notifyDTO : ${notifyDTOPageInfo.list}">
@@ -103,5 +103,6 @@
         没有新的通知
     </div>
 </div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>
