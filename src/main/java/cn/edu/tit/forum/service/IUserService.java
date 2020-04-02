@@ -20,4 +20,6 @@ public interface IUserService {
     User findById(Long id);
 
     List<RecommendAuthorDTO> recommendAuthor(User user);
+
+    int updateUser(User user);
 }

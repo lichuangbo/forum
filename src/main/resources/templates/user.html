@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="desc-btn edit-desc" th:if="${session.user != null && session.user.id == followUserDTO.user.id}">
-                        <a href="">编辑个人资料</a>
+                        <a th:href="@{'/userEdit/' + ${session.user.id}}">编辑个人资料</a>
                     </div>
                     <button id="follow-in-user" type="button" class="follow-big-btn"
                             th:if="${session.user != null && session.user.id != followUserDTO.user.id}"

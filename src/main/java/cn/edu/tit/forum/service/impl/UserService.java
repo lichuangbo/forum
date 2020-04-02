@@ -120,4 +120,11 @@ public class UserService implements IUserService {
                 .collect(Collectors.toList());
         return collect;
     }
+
+    @Override
+    public int updateUser(User user) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andIdEqualTo(user.getId());
+        return userMapper.updateByExample(user, userExample);
+    }
 }
