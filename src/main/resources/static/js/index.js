@@ -32,8 +32,9 @@ function loadRecommend() {
 
 function followRecommend(e) {
     const userId = e.getAttribute("recommend-id");
+    console.log("userId"+ userId);
     $.post("/followRecommend", {
-        "recommendUserId": userId
+        "userId": userId
     }, function (response) {
         if (response.code == 200) {
             $("#follow-style-" + userId).toggleClass("followed");

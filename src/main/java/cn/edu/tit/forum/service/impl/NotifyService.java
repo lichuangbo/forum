@@ -12,6 +12,7 @@ import cn.edu.tit.forum.model.*;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.service.INotifyService;
+import cn.edu.tit.forum.utils.DateUtil;
 import cn.edu.tit.forum.utils.PageUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -142,6 +143,7 @@ public class NotifyService implements INotifyService {
             NotifyDTO notifyDTO = new NotifyDTO();
             User user = userMapper.selectByPrimaryKey(notify.getNotifier());
             notifyDTO.setUser(user);
+            notifyDTO.setGmtCreate(DateUtil.format(notify.getGmtCreate()));
             BeanUtils.copyProperties(notify, notifyDTO);
             notifyDTO.setNotifyType(NotifyTypeEnum.nameOfType(notify.getType()));
 

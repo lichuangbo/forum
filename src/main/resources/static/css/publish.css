@@ -185,3 +185,6 @@ nav .user:hover {
     position: relative;
 }
 
+#outEdit {
+    cursor: pointer;
+}

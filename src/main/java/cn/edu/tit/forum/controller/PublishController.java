@@ -4,6 +4,7 @@ import cn.edu.tit.forum.cache.TagCache;
 import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
+import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.model.Article;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.service.impl.ArticleService;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -73,8 +73,16 @@ public class PublishController {
     // 编辑文章
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id") Long id,
+                       HttpSession session,
                        Model model) {
         ArticleDTO articleDTO = articleService.getById(id);
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            throw new CustomizeException(CustomizeErrorCode.NO_LOGIN);
+        }
+        if (!articleDTO.getAuthorId().equals(sessionUser.getId())) {
+            throw new CustomizeException(CustomizeErrorCode.CURRENT_REQUEST_IS_NOT_ALLOW);
+        }
         model.addAttribute("title", articleDTO.getTitle());
         model.addAttribute("content", articleDTO.getContent());
         model.addAttribute("tag", articleDTO.getTag());

@@ -11,6 +11,7 @@ import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.mapper.*;
 import cn.edu.tit.forum.model.*;
 import cn.edu.tit.forum.service.ICommentService;
+import cn.edu.tit.forum.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,7 +81,7 @@ public class CommentService implements ICommentService {
             commentD.setRespUserId(article.getAuthorId());
             commentD.setRespUser(users2.get(0));
             commentD.setLikeCount(comment.getLikeCount());
-            commentD.setGmtCreate(comment.getGmtCreate());
+            commentD.setGmtCreate(DateUtil.format(comment.getGmtCreate()));
             Long userId = 0L;
             if (user != null) {
                 userId = user.getId();
@@ -115,7 +116,7 @@ public class CommentService implements ICommentService {
                 List<User> users4 = userMapper.selectByExample(example4);
                 commentD1.setRespUser(users4.get(0));
                 commentD1.setLikeCount(comment1.getLikeCount());
-                commentD1.setGmtCreate(comment.getGmtCreate());
+                commentD1.setGmtCreate(DateUtil.format(comment.getGmtCreate()));
                 ThumbUp thumbUp1 = thumbUpService.find(userId, comment1.getId(), ThumbUpTypeEnum.COMMENT.getType());
                 if (thumbUp1 != null) {
                     commentD1.setLiked(true);

@@ -6,6 +6,7 @@ import cn.edu.tit.forum.mapper.FavoriteMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.*;
 import cn.edu.tit.forum.service.IFavoriteService;
+import cn.edu.tit.forum.utils.DateUtil;
 import cn.edu.tit.forum.utils.KeyUtil;
 import cn.edu.tit.forum.utils.PageUtil;
 import com.github.pagehelper.PageHelper;
@@ -80,6 +81,8 @@ public class FavoriteService implements IFavoriteService {
         List<Article> articles = new ArrayList<>();
         for (Favorite favorite : favorites) {
             Article article = articleMapper.selectByPrimaryKey(favorite.getArticleId());
+            // 将收藏时间封装进article
+            article.setGmtModified(favorite.getGmtCreate());
             articles.add(article);
         }
 
@@ -91,6 +94,7 @@ public class FavoriteService implements IFavoriteService {
             ArticleDTO articleDTO = new ArticleDTO();
             User user = userMapper.selectByPrimaryKey(article.getAuthorId());
             articleDTO.setUser(user);
+            articleDTO.setGmtModified(DateUtil.format(article.getGmtModified()));
             BeanUtils.copyProperties(article, articleDTO);
 
             String k_viewCount = KeyUtil.ARTICLE_VIEW_COUNT;

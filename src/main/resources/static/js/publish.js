@@ -8,6 +8,13 @@ $(function () {
         imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL: "/file/upload"
     });
+
+    $("#outEdit").click(function () {
+        let flag = confirm("确定退出吗？系统可能不会保存您所做的更改。");
+        if (flag == true) {
+            document.location="/";
+        }
+    })
 });
 
 function wordCheck() {

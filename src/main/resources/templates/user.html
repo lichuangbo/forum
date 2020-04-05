@@ -34,7 +34,8 @@
                             <span th:text="${followUserDTO.user.descript}"></span>
                         </div>
                     </div>
-                    <div class="desc-btn edit-desc" th:if="${session.user != null && session.user.id == followUserDTO.user.id}">
+                    <div class="desc-btn edit-desc"
+                         th:if="${session.user != null && session.user.id == followUserDTO.user.id}">
                         <a th:href="@{'/userEdit/' + ${session.user.id}}">编辑个人资料</a>
                     </div>
                     <button id="follow-in-user" type="button" class="follow-big-btn"
@@ -42,7 +43,8 @@
                             th:classappend="${followUserDTO.followed == true} ? 'active' : ' ' ">
                         <span id="follow-big-text" th:text="${followUserDTO.followed == true} ? '已关注' : '关注' ">关注</span>
                     </button>
-                    <button type="button" onclick="followClick()" class="follow-big-btn" th:if="${session.user == null}">
+                    <button type="button" onclick="followClick()" class="follow-big-btn"
+                            th:if="${session.user == null}">
                         <span>关注</span>
                     </button>
                 </div>
@@ -75,18 +77,23 @@
                                         <div class="meta">
                                             <a class="nickname" th:href="@{'/user/' + ${articleDTOs.user.id}}"
                                                th:text="${articleDTOs.user.nickname}"></a>
-                                            <span>
+                                            <div class="user-pos">
+                                                <span>
+                                                <span th:text="${articleDTOs.gmtModified}"></span>
+                                            </span>
+                                                <span>
                                                 <i class="fa fa-comments"> </i><span
-                                                    th:text="${articleDTOs.commentCount}"></span>
+                                                        th:text="${articleDTOs.commentCount}"></span>
                                             </span>
-                                            <span>
+                                                <span>
                                                 <i class="fa fa-thumbs-up"> </i><span
-                                                    th:text="${articleDTOs.likeCount}"></span>
+                                                        th:text="${articleDTOs.likeCount}"></span>
                                             </span>
-                                            <span>
+                                                <span>
                                                 <i class="fa fa-eye"> </i>
                                                 <span th:text="${articleDTOs.viewCount}"></span>
                                             </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -104,18 +111,24 @@
                                         <div class="meta">
                                             <a class="nickname" th:href="@{'/user/' + ${articleDTOs.user.id}}"
                                                th:text="${articleDTOs.user.nickname}"></a>
-                                            <span>
+                                            <div class="user-pos">
+                                                <!--显示的其实是收藏时间-->
+                                                <span>
+                                                <span th:text="${articleDTOs.gmtModified}"></span>
+                                            </span>
+                                                <span>
                                                 <i class="fa fa-comments"> </i><span
-                                                    th:text="${articleDTOs.commentCount}"></span>
+                                                        th:text="${articleDTOs.commentCount}"></span>
                                             </span>
-                                            <span>
+                                                <span>
                                                 <i class="fa fa-thumbs-up"> </i><span
-                                                    th:text="${articleDTOs.likeCount}"></span>
+                                                        th:text="${articleDTOs.likeCount}"></span>
                                             </span>
-                                            <span>
+                                                <span>
                                                 <i class="fa fa-eye"> </i>
                                                 <span th:text="${articleDTOs.viewCount}"></span>
                                             </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -142,7 +155,8 @@
                                             <span th:id="${'follow-text-'+followedUserDTO.user.id}"
                                                   th:text="${followedUserDTO.followed == true} ? '已关注' : '关注' "></span>
                                         </button>
-                                        <button type="button" onclick="followClick()" class="follow-btn" th:if="${session.user == null}">
+                                        <button type="button" onclick="followClick()" class="follow-btn"
+                                                th:if="${session.user == null}">
                                             <span>关注</span>
                                         </button>
                                     </div>
@@ -172,7 +186,8 @@
                                             <span th:id="${'follower-text-'+followerUserDTO.user.id}"
                                                   th:text="${followerUserDTO.followed == true} ? '已关注' : '关注' "></span>
                                         </button>
-                                        <button type="button" onclick="followClick()" class="follow-btn" th:if="${session.user == null}">
+                                        <button type="button" onclick="followClick()" class="follow-btn"
+                                                th:if="${session.user == null}">
                                             <span>关注</span>
                                         </button>
                                     </div>
@@ -210,7 +225,8 @@
                     <div class="more-item">
                         <div class="item-title">加入于</div>
                         <div class="item-count">
-                            <time class="time" th:text="${#dates.format(followUserDTO.user.gmtCreate, 'yyyy-MM-dd')}"></time>
+                            <time class="time"
+                                  th:text="${#dates.format(followUserDTO.user.gmtCreate, 'yyyy-MM-dd')}"></time>
                         </div>
                     </div>
                 </div>

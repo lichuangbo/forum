@@ -10,6 +10,7 @@ import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.model.*;
 import cn.edu.tit.forum.service.IArticleService;
+import cn.edu.tit.forum.utils.DateUtil;
 import cn.edu.tit.forum.utils.KeyUtil;
 import cn.edu.tit.forum.utils.PageUtil;
 import com.github.pagehelper.PageHelper;
@@ -67,11 +68,18 @@ public class ArticleService implements IArticleService {
             articleDTO.setUser(user);
             // Spring提供的，快速封装结果集
             BeanUtils.copyProperties(article, articleDTO);
+            articleDTO.setGmtCreate(DateUtil.format(article.getGmtCreate()));
+            articleDTO.setGmtModified(DateUtil.format(article.getGmtModified()));
 
             String k_viewCount = KeyUtil.ARTICLE_VIEW_COUNT;
             String hk_viewCount = KeyUtil.getHashArticleViewCount(article.getId());
             if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
                 articleDTO.setViewCount(hashOps.get(k_viewCount, hk_viewCount));
+            }
+            String k_likeCount = KeyUtil.ARTICLE_LIKE_COUNT;
+            String hk_likeCount = KeyUtil.getHashArticleLikeCount(article.getId());
+            if (hashOps.hasKey(k_likeCount, hk_viewCount)) {
+                articleDTO.setLikeCount(hashOps.get(k_likeCount, hk_likeCount));
             }
 
             String content = article.getContent();
@@ -179,6 +187,8 @@ public class ArticleService implements IArticleService {
             ArticleDTO articleDTO = new ArticleDTO();
             User user = userMapper.selectByPrimaryKey(article.getAuthorId());
             articleDTO.setUser(user);
+            articleDTO.setGmtCreate(DateUtil.format(article.getGmtCreate()));
+            articleDTO.setGmtModified(DateUtil.format(article.getGmtModified()));
             // Spring提供的，快速封装结果集
             BeanUtils.copyProperties(article, articleDTO);
 

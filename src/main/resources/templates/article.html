@@ -177,7 +177,7 @@
                                         </div>
                                         <!--评论时间-->
                                         <div class="_1xqkrI">
-                                            <time th:text="${#dates.format(commentD.gmtCreate, 'yyyy-MM-dd HH:mm')}"></time>
+                                            <time th:text="${commentD.gmtCreate}"></time>
                                         </div>
                                         <!--评论内容-->
                                         <div class="_2bDGm4" th:text="${commentD.content}"></div>
@@ -239,7 +239,7 @@
                                                                th:text="${commentD1.user.nickname}"></a>
                                                         </div>
                                                         <div class="_1xqkrI">
-                                                            <time th:text="${#dates.format(commentD1.gmtCreate, 'yyyy-MM-dd HH:mm')}"></time>
+                                                            <time th:text="${commentD1.gmtCreate}"></time>
                                                         </div>
                                                     </div>
                                                 </div>

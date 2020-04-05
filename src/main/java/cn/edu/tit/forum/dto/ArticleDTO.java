@@ -13,8 +13,8 @@ public class ArticleDTO {
     private Integer commentCount;
     private Integer likeCount;
     private Integer viewCount;
-    private Long gmtModified;
-    private Long gmtCreate;
+    private String gmtModified;
+    private String gmtCreate;
     // 二次编辑时，当前用户和文章作者判断
     private Long authorId;
     private String tag;

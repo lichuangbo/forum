@@ -22,7 +22,8 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     EMAIL_PRESENT(2014, "该邮箱号已被注册"),
     LOGIN_FAIL(2015, "邮箱或密码错误，请重试"),
     TAG_ILLEGAL(2016, "输入的标签非法"),
-    USER_NOT_FOUND(2017, "找不到该用户");//4
+    USER_NOT_FOUND(2017, "找不到该用户"),
+    CURRENT_REQUEST_IS_NOT_ALLOW(2018, "当前请求不合法，请重试");
 
     private Integer code;
     private String message;

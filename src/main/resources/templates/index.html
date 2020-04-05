@@ -31,18 +31,23 @@
                                 <div class="meta">
                                     <a class="nickname" th:href="@{'user/' + ${articleDTOs.user.id}}"
                                        th:text="${articleDTOs.user.nickname}"></a>
-                                    <span>
+                                    <div class="index-pos">
+                                        <span>
+                                    <span th:text="${articleDTOs.gmtModified}"></span>
+                                </span>
+                                        <span>
                                     <i class="glyphicon glyphicon-comment"> </i>
                                     <span th:text="${articleDTOs.commentCount}"></span>
                                 </span>
-                                    <span>
+                                        <span>
                                     <i class="glyphicon glyphicon-thumbs-up"> </i>
                                     <span th:text="${articleDTOs.likeCount}"></span>
                                 </span>
-                                    <span>
+                                        <span>
                                     <i class="glyphicon glyphicon-eye-open"> </i>
                                     <span th:text="${articleDTOs.viewCount}"></span>
                                 </span>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -108,8 +113,10 @@
                                 <a th:href="@{'/user/' + ${recommendAuthor.user.id}}" class="avatar">
                                     <img th:src="${recommendAuthor.user.avatarUrl}" alt="">
                                 </a>
-                                <a class="follow" th:id="${'follow-style-'+recommendAuthor.user.id}" th:recommend-id="${recommendAuthor.user.id}" onclick="followRecommend(this)">
-                                    <i th:id="${'follow-icon-'+recommendAuthor.user.id}" class="glyphicon glyphicon-plus follow-icon"></i>
+                                <a class="follow" th:id="${'follow-style-'+recommendAuthor.user.id}"
+                                   th:recommend-id="${recommendAuthor.user.id}" onclick="followRecommend(this)">
+                                    <i th:id="${'follow-icon-'+recommendAuthor.user.id}"
+                                       class="glyphicon glyphicon-plus follow-icon"></i>
                                     <span th:id="${'follow-text-'+recommendAuthor.user.id}">关注</span>
                                 </a>
                                 <a th:href="@{'/user/' + ${recommendAuthor.user.id}}" class="name"

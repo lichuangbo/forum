@@ -15,7 +15,7 @@ public class NotifyDTO {
     private Long receiver;
     private Long outerId;
     private Integer type;
-    private Long gmtCreate;
+    private String gmtCreate;
     private Integer status;
     private String notifierName;
     private String outerTitle;

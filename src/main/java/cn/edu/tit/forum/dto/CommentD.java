@@ -19,7 +19,7 @@ public class CommentD {
     private User respUser;
     private Integer likeCount;
 
-    private Long gmtCreate;
+    private String gmtCreate;
     private CommentD topComment[];
     private boolean isLiked;
 }

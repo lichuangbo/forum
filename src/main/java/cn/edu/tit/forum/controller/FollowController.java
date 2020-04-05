@@ -61,20 +61,21 @@ public class FollowController {
 
     @RequestMapping(value = "/followRecommend",method = RequestMethod.POST)
     @ResponseBody
-    public ResultDTO followRecommend(Long userId,
+    public ResultDTO followRecommend(String userId,
                                      HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null)
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
-        User recommendUser = userService.findById(userId);
-        Follow follow = followService.find(user, userId);
+        Long id = Long.parseLong(userId);
+        User recommendUser = userService.findById(id);
+        Follow follow = followService.find(user, id);
         if (follow != null) {
-            followService.delete(user, userId);
+            followService.delete(user, id);
             recommendUser.setFollowCount(1);
             userService.decFollowCount(recommendUser);
             return ResultDTO.okof("关注");
         } else {
-            followService.insert(user, userId);
+            followService.insert(user, id);
             recommendUser.setFollowCount(1);
             userService.incFollowCount(recommendUser);
             return ResultDTO.okof("已关注");
