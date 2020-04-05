@@ -122,6 +122,7 @@ public class ArticleService implements IArticleService {
 
         ArticleDTO articleDTO = new ArticleDTO();
         BeanUtils.copyProperties(article, articleDTO);
+        articleDTO.setGmtModified(DateUtil.format(article.getGmtModified()));
         articleDTO.setUser(user);
         return articleDTO;
     }
@@ -223,6 +224,12 @@ public class ArticleService implements IArticleService {
         achieveDTO.setTotalLikeCount(totalLikeCount);
         achieveDTO.setTotalViewCount(totalViewCount);
         return achieveDTO;
+    }
+
+    @Override
+    public int delete(Long id) {
+        int i = articleMapper.deleteByPrimaryKey(id);
+        return i;
     }
 
     // 增加点赞数， 根据问题ID

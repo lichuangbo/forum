@@ -2,6 +2,8 @@ package cn.edu.tit.forum.controller;
 
 import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.dto.CommentA;
+import cn.edu.tit.forum.dto.FollowUserDTO;
+import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.enums.ThumbUpTypeEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
@@ -11,11 +13,15 @@ import cn.edu.tit.forum.model.Favorite;
 import cn.edu.tit.forum.model.Follow;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.service.impl.*;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -42,6 +48,9 @@ public class ArticleController {
 
     @Autowired
     private FollowService followService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ArticleMapper articleMapper;
@@ -92,5 +101,45 @@ public class ArticleController {
         model.addAttribute("otherArticles", otherArticles);
         model.addAttribute("commentA", commentA);
         return "article";
+    }
+
+    @RequestMapping("/deleteArticle")
+    @ResponseBody
+    @Transactional
+    public ResultDTO deleteArticle(Long id,
+                                   HttpSession session) {
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null)
+            return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
+        Article article = articleMapper.selectByPrimaryKey(id);
+        if (article == null)
+            return ResultDTO.errorOf(CustomizeErrorCode.ARTICLE_NOT_FOUND);
+        if (!article.getAuthorId().equals(sessionUser.getId()))
+            return ResultDTO.errorOf(CustomizeErrorCode.CURRENT_REQUEST_IS_NOT_ALLOW);
+
+        // 删除文章
+        int delArtiCount = articleService.delete(article.getId());
+        // 删除文章相关收藏
+        int delFavCount = favoriteService.deleteByArticle(article.getId());
+        // 删除文章相关评论
+        int delCommCount = commentService.deleteByArticle(article.getId());
+
+        return ResultDTO.okof("删除成功");
+    }
+
+    @RequestMapping("/getArticleList")
+    public String getArticleList(Long id,
+                                 HttpSession session,
+                                 Model model) {
+        User sessionUser = (User) session.getAttribute("user");
+        PageInfo<ArticleDTO> articlePageInfo = articleService.listByUser(1, 10, sessionUser.getId());
+
+        User user = userService.findById(id);
+        FollowUserDTO followUserDTO = new FollowUserDTO();
+        followUserDTO.setUser(user);
+
+        model.addAttribute("articlePageInfo", articlePageInfo);
+        model.addAttribute("followUserDTO", followUserDTO);
+        return "user::personal-article-list";
     }
 }

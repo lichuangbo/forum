@@ -18,4 +18,6 @@ public interface IFavoriteService {
     void delete(User user, Long articleId);
 
     PageInfo<ArticleDTO> listByUser(int page, int size, Long userId);
+
+    int deleteByArticle(Long id);
 }

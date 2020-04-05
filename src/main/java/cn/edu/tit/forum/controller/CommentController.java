@@ -53,7 +53,13 @@ public class CommentController {
         comment.setRespUserId(commentCreateDTO.getRespUserId());
         comment.setGmtCreate(System.currentTimeMillis());
         commentService.insertComment(comment, user);
-        return ResultDTO.okof();
+
+        if (commentCreateDTO.getType() == 1) {
+            int i = commentService.countComment1(commentCreateDTO.getParentId());
+            return ResultDTO.okof(i);
+        } else {
+            return ResultDTO.okof();
+        }
     }
 
     @RequestMapping(value = "/getComment", method = RequestMethod.POST)

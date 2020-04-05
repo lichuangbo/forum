@@ -76,3 +76,27 @@ function alertWindow(content) {
         $("#user-alert").hide();
     }, 1500);
 }
+
+function deleteArticle(e) {
+    var articleId = e.getAttribute("article-id");
+    var flag = confirm("确定删除吗？文章删除后不可恢复");
+    if (flag == true) {
+        $.get("/deleteArticle", {
+            "id": articleId
+        }, function (response) {
+            if (response.code = 200) {
+                alertWindow(response.data);
+                loadArticleList();
+            }
+        })
+    }
+}
+
+function loadArticleList() {
+    $("#personal-article-list").load(
+        "/getArticleList",
+        {"id" : $("#user-id").val()},
+        function () {
+        }
+    );
+}

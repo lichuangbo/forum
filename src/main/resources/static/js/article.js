@@ -77,6 +77,8 @@ $(function () {
         }, function (response) {
             if (response.code == 200) {
                 $("#user-content").val("");
+                $("#totalCommentCount1").text(response.data);
+                $("#totalCommentCount2").text(response.data);
                 loadComment();
             } else {
                 alertWindow(response.message);

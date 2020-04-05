@@ -115,4 +115,12 @@ public class FavoriteService implements IFavoriteService {
         }
         return articleVoPageInfo;
     }
+
+    @Override
+    public int deleteByArticle(Long id) {
+        FavoriteExample favoriteExample = new FavoriteExample();
+        favoriteExample.createCriteria().andArticleIdEqualTo(id);
+        int i = favoriteMapper.deleteByExample(favoriteExample);
+        return i;
+    }
 }

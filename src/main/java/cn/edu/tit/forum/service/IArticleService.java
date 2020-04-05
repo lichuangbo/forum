@@ -36,4 +36,6 @@ public interface IArticleService {
     PageInfo<ArticleDTO> listByUser(int page, int size, Long userId);
 
     AchieveDTO countTotalByUser(Long userId);
+
+    int delete(Long id);
 }

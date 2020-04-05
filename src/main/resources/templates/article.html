@@ -99,7 +99,7 @@
                                 </span>
                             </div>
                             <div class="s-dsoj">
-                                <time th:text="${#dates.format(articleDTO.gmtModified, 'yyyy-MM-dd HH:mm')}"></time>
+                                <time th:text="${articleDTO.gmtModified}"></time>
                                 <span>阅读 <span th:text="${articleDTO.viewCount}"></span></span>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                     <h3 class="QxT4hD">
                         <div class="_10KzV0">
                             <span>全部评论</span>
-                            <span class="_2R7vBo" th:if="${articleDTO.commentCount} > 0"
+                            <span id="totalCommentCount1" class="_2R7vBo" th:if="${articleDTO.commentCount} > 0"
                                   th:text="${articleDTO.commentCount}"></span>
                         </div>
                     </h3>
@@ -381,8 +381,8 @@
                      id="scroll2Comment">
                     <i class="glyphicon glyphicon-comment"></i>
                 </div>
-                <span th:if="${articleDTO.commentCount != 0}" class="badge count-locate"
-                      th:text="${articleDTO.commentCount}">3</span>
+                <span th:if="${articleDTO.commentCount != 0}" class="badge count-locate" id="totalCommentCount2"
+                      th:text="${articleDTO.commentCount}"></span>
             </div>
             <div class="_1pUUKr">
                 <div class="_2VdqdF" role="button" tabindex="-1" aria-label="收藏文章" id="favoriteArticle"

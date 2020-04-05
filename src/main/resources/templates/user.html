@@ -67,7 +67,7 @@
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="article">
-                        <div class="list-container">
+                        <div class="list-container" id="personal-article-list" th:fragment="personal-article-list">
                             <ul class="note-list" th:each="articleDTOs: ${articlePageInfo.list}">
                                 <li>
                                     <div class="content">
@@ -79,20 +79,26 @@
                                                th:text="${articleDTOs.user.nickname}"></a>
                                             <div class="user-pos">
                                                 <span>
-                                                <span th:text="${articleDTOs.gmtModified}"></span>
-                                            </span>
+                                                    <span th:text="${articleDTOs.gmtModified}"></span>
+                                                </span>
                                                 <span>
-                                                <i class="fa fa-comments"> </i><span
+                                                    <i class="fa fa-comments"> </i><span
                                                         th:text="${articleDTOs.commentCount}"></span>
-                                            </span>
+                                                </span>
                                                 <span>
-                                                <i class="fa fa-thumbs-up"> </i><span
+                                                    <i class="fa fa-thumbs-up"> </i><span
                                                         th:text="${articleDTOs.likeCount}"></span>
-                                            </span>
+                                                </span>
                                                 <span>
-                                                <i class="fa fa-eye"> </i>
-                                                <span th:text="${articleDTOs.viewCount}"></span>
-                                            </span>
+                                                    <i class="fa fa-eye"> </i>
+                                                    <span th:text="${articleDTOs.viewCount}"></span>
+                                                </span>
+                                                <span th:if="${session.user != null && session.user.id == followUserDTO.user.id}">
+                                                    <a th:article-id="${articleDTOs.id}" onclick="deleteArticle(this)">
+                                                        <i class="fa fa-trash"></i>
+                                                        删除
+                                                    </a>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

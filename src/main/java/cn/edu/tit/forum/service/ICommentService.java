@@ -14,4 +14,14 @@ public interface ICommentService {
     CommentA listByArticleId(Long parentId, User user);
 
     void insertComment(Comment comment, User commentor);
+
+    void decLikeCount(Long id);
+
+    void incLikeCount(Long id);
+
+    Integer findLikeCount(Long id);
+
+    int deleteByArticle(Long id);
+
+    int countComment1(Long articleId);
 }

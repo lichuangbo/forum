@@ -183,9 +183,39 @@ public class CommentService implements ICommentService {
         }
     }
 
+    @Override
+    @Transactional
+    public int deleteByArticle(Long id) {
+        int delCount = 0;
+        CommentExample comment1Example = new CommentExample();
+        comment1Example.createCriteria().andParentIdEqualTo(id);
+
+        // 找到所有的根评论
+        List<Comment> comments = commentMapper.selectByExample(comment1Example);
+        for (Comment comment : comments) {
+            CommentExample comment2Example = new CommentExample();
+            comment2Example.createCriteria().andParentIdEqualTo(comment.getId());
+            // 删除根评论下的一级和二级回复
+            int i = commentMapper.deleteByExample(comment2Example);
+            delCount += i;
+        }
+        // 删除一级评论
+        int delComm1Count = commentMapper.deleteByExample(comment1Example);
+        delCount += delComm1Count;
+        return delCount;
+    }
+
+    @Override
+    public int countComment1(Long articleId) {
+        CommentExample commentExample = new CommentExample();
+        commentExample.createCriteria().andParentIdEqualTo(articleId);
+        long count = commentMapper.countByExample(commentExample);
+        return (int) count;
+    }
+
     private void createNotify(Comment comment, Long respUserId, User user, String notifyTitle, NotifyTypeEnum notifyTypeEnum, Article article) {
         // 自己评论自己不用通知
-        if (respUserId == comment.getUserId()) {
+        if (respUserId.equals(comment.getUserId())) {
             return;
         }
         Notify notify = new Notify();
@@ -201,6 +231,7 @@ public class CommentService implements ICommentService {
     }
 
     // 减少点赞数
+    @Override
     public void decLikeCount(Long id) {
         Comment comment = new Comment();
         comment.setId(id);
@@ -209,6 +240,7 @@ public class CommentService implements ICommentService {
     }
 
     // 增加点赞数
+    @Override
     public void incLikeCount(Long id) {
         Comment comment = new Comment();
         comment.setId(id);
@@ -217,6 +249,7 @@ public class CommentService implements ICommentService {
     }
 
     // 检索点赞数
+    @Override
     public Integer findLikeCount(Long id) {
         return commentMapper.selectByPrimaryKey(id).getLikeCount();
     }
