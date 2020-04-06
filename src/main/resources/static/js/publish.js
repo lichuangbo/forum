@@ -28,11 +28,24 @@ function wordCheck() {
 }
 
 function selectTag(e) {
+    var flag = true;
     // 拿到标签的值
     var value = e.getAttribute("data-tag");
+    // 拿到输入框的值
     var inputValue = $("#tag").val();
-
-    if (inputValue.indexOf(value) == -1) {
+    // 按，分割得到标签数组
+    var splits = inputValue.split(",");
+    if (splits.length > 2) {
+        alertWindow("一篇文章最多选择三个标签");
+    }
+    // 循环数组与输入的标签值进行比较
+    for (var i = 0; i < splits.length; i++) {
+        if (splits[i] == value) {
+            flag = false;
+        }
+    }
+    // 如果没有重复元素，添加
+    if (flag) {
         if (inputValue) {
             $("#tag").val(inputValue + ',' + value);
         } else {
@@ -93,8 +106,11 @@ function checkLegalArticle() {
     if ($tag == null || $tag.length < 1) {
         alertWindow("文章标签不能为空");
         return false;
-    } else {
-        $("#publish-alert").css("display", "none");
+    }
+    var splits = $tag.split(",");
+    if (splits.length > 3) {
+        alertWindow("一篇文章最多选择三个标签");
+        return false;
     }
     return true;
 }
@@ -107,6 +123,9 @@ function clearAlert() {
 function alertWindow(content) {
     $("#alert-text").text(content);
     $("#publish-alert").css("display", "block");
+    setTimeout(function () {
+        $("#publish-alert").hide();
+    }, 1500);
 }
 
 function publishArticle() {
@@ -121,10 +140,11 @@ function publishArticle() {
             "tag": $tag,
             "id": $id
         }, function (response) {
-            if (response.code == 2003 || response.code == 2016) {
-                alertWindow(response.message)
-            } else {
-                document.location.href = "/"
+            if (response.code == 200) {
+                alertWindow("发布成功");
+                document.location = "/";
+            } else  {
+                alertWindow(response.message);
             }
         });
     }

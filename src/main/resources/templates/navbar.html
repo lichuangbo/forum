@@ -38,7 +38,9 @@
                 <div class="nav-btn message" th:if="${session.user != null}">
                     <a href="/notify">
                         <i class="glyphicon glyphicon-bell mess-icon"></i>
-                        <span class="badge bell-locate" style="background-color: #ec7259;" th:text="${session.unreadCount}"></span>
+                        <span class="badge bell-locate" style="background-color: #ec7259;"
+                              th:if="${session.unreadCount > 0}"
+                              th:text="${session.unreadCount}"></span>
                     </a>
                 </div>
                 <!--写文章按钮-->

@@ -24,7 +24,9 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author lichuangbo
@@ -55,6 +57,17 @@ public class ArticleService implements IArticleService {
     // 首页 文章列表
     @Override
     public PageInfo<ArticleDTO> queryList(Integer page, Integer size, String tag, String search) {
+        if (!StringUtils.isEmpty(search)) {
+            StringBuilder sb = new StringBuilder();
+            char[] chars = search.toCharArray();
+            for (char c : chars) {
+                if (c != '+' && c != '*') {
+                    sb.append(c);
+                }
+            }
+            search = sb.toString();
+        }
+
         PageHelper.startPage(page, size);
         List<Article> articles = articleExtMapper.selectBySearchAndTag(tag, search);
 
@@ -130,6 +143,19 @@ public class ArticleService implements IArticleService {
     // 处理发布页 和 编辑页两种发布语境
     @Override
     public void createOrUpdate(Article article) {
+        String tag = article.getTag();
+        char[] chars = tag.toCharArray();
+        for (int i = 0; i < chars.length - 1; i++) {
+            if (chars[i] == ',' && chars[i + 1] == ',') {
+                chars[i] = '0';
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (char c : chars) {
+            if (c == '0') continue;
+            sb.append(c);
+        }
+        article.setTag(sb.toString());
         if (article.getId() == null) {
             article.setGmtCreate(System.currentTimeMillis());
             article.setGmtModified(article.getGmtCreate());
@@ -291,7 +317,7 @@ public class ArticleService implements IArticleService {
         article.setAuthorId(articleDTO.getAuthorId());
         article.setId(articleDTO.getId());
         List<Article> articles = articleExtMapper.selectOther(article);
-        if (articles != null &&articles.size() > 0)
+        if (articles != null && articles.size() > 0)
             return articles;
         else
             return null;

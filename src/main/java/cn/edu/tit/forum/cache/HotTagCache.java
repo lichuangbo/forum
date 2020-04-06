@@ -52,7 +52,7 @@ public class HotTagCache {
                 }
             }
         }
-        Set<String> res = zSetOp.reverseRange(KeyUtil.TAG_WEIGHT, 0, 11);
+        Set<String> res = zSetOp.reverseRange(KeyUtil.TAG_WEIGHT, 0, 9);
         return res == null ? null : new ArrayList<>(res);
     }
 }

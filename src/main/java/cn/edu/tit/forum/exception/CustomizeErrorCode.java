@@ -23,7 +23,9 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     LOGIN_FAIL(2015, "邮箱或密码错误，请重试"),
     TAG_ILLEGAL(2016, "输入的标签非法"),
     USER_NOT_FOUND(2017, "找不到该用户"),
-    CURRENT_REQUEST_IS_NOT_ALLOW(2018, "当前请求不合法，请重试");
+    CURRENT_REQUEST_IS_NOT_ALLOW(2018, "当前请求不合法，请重试"),
+    TAG_IS_REPEATED(2019, "标签重复，请检查选择的标签"),
+    ;
 
     private Integer code;
     private String message;

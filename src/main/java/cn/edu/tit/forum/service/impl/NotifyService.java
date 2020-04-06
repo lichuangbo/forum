@@ -72,7 +72,7 @@ public class NotifyService implements INotifyService {
         notify.setNotifier(userId);
         Article article = articleMapper.selectByPrimaryKey(articleId);
         // 自己点赞不用通知自己
-        if (article.getAuthorId() == userId) {
+        if (article.getAuthorId().equals(userId)) {
             return;
         }
         notify.setReceiver(article.getAuthorId());

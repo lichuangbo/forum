@@ -4,7 +4,7 @@ window.onscroll = function () {
 };
 
 function fixedRecommend() {
-    if (document.body.scrollTop > 180 || document.documentElement.scrollTop > 180) {
+    if (document.body.scrollTop > 214 || document.documentElement.scrollTop > 214) {
         $(".recommended-authors").css("position", "fixed").css("top", "66px").css("width", "310px").css("height", "390.8px");
     } else {
         $(".recommended-authors").css("position", "").css("top", "").css("width", "").css("height", "");

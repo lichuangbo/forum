@@ -147,7 +147,7 @@ a:hover {
     position: absolute;
     top: -21px;
     width: 310px;
-    height: 150px;
+    height: 175px;
     padding: 20px;
 }
 
@@ -192,7 +192,7 @@ a:hover {
     width: 310px;
     height: 390.8px;
     position: absolute;
-    top: -34px;
+    top: 0;
 }
 
 .recommended-authors .title {

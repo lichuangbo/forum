@@ -15,6 +15,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author lichuangbo
@@ -57,6 +60,18 @@ public class PublishController {
         String invalid = TagCache.filterInvalid(tag);
         if (!StringUtils.isEmpty(invalid)) {
             return ResultDTO.errorOf(CustomizeErrorCode.TAG_ILLEGAL);
+        }
+        String repTag = tag.replace(",", "");
+        if (StringUtils.isEmpty(repTag)) {
+            return ResultDTO.errorOf(CustomizeErrorCode.TAG_ILLEGAL);
+        }
+        String []str = tag.split(",");
+        Set<String> set = new HashSet<>();
+        for (String s : str) {
+            if (set.contains(s)) {
+                return ResultDTO.errorOf(CustomizeErrorCode.TAG_IS_REPEATED);
+            }
+            set.add(s);
         }
 
         Article article = new Article();

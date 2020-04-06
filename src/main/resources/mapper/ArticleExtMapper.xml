@@ -19,7 +19,7 @@
                 and title regexp #{search}
             </if>
             <if test="tag != null and tag != '' ">
-                and tag regexp #{tag}
+                and tag = #{tag}
             </if>
         </where>
         order by gmt_modified desc
@@ -51,7 +51,7 @@
 
     <select id="selectRelative" parameterType="cn.edu.tit.forum.model.Article" resultMap="BaseResultMap">
       select * from article
-      where id != #{id} and tag regexp #{tag}
+      where id != #{id} and tag = #{tag}
       order by view_count, gmt_create desc limit 6
     </select>
 
