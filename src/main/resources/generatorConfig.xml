@@ -40,7 +40,9 @@
 
         <!--表名和实体类别名对应关系-->
         <table tableName="user" domainObjectName="User"/>
-        <table tableName="article" domainObjectName="Article"/>
+        <table tableName="article" domainObjectName="Article">
+            <columnOverride column="content" jdbcType="VARCHAR"/>
+        </table>
         <table tableName="comment" domainObjectName="Comment"/>
         <table tableName="notify" domainObjectName="Notify"/>
         <table tableName="thumb_up" domainObjectName="ThumbUp"/>

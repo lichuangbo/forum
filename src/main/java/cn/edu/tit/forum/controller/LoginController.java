@@ -96,7 +96,7 @@ public class LoginController {
             user.setFollowCount(0);
             user.setEmail("暂无");
             user.setIdentifyType("email");
-            user.setAvatarUrl("https://cn-edu-tit-forum.obs.cn-north-4.myhuaweicloud.com:443/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F.png");
+            user.setAvatarUrl("https://cn-edu-tit-forum.obs.cn-north-4.myhuaweicloud.com/default-avatar.jpg");
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModify(user.getGmtCreate());
             user.setIdentifier(registerDTO.getEmail());

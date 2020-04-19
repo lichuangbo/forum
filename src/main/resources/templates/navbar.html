@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.PNG">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
@@ -16,22 +17,19 @@
     <div class="nav-width">
         <!--论坛logo-->
         <a class="logo" href="/">
-            <img src="//cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo">
+            <img src="/img/logo.PNG" alt="Nav logo">
         </a>
         <!--nav-->
-        <div class="container" style="float: left">
+        <div class="container" style="float: left;margin-left: -10px;">
             <!--首页-->
-            <div class="navbar-header">
-                <a type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
-                    <span class="sr-only">首页</span>
-                </a>
+            <div class="navbar-header" style="margin-top: 3px">
                 <a class="navbar-brand" href="/">首页</a>
             </div>
             <!--搜索框-->
             <div class="collapse navbar-collapse">
                 <form class="navbar-form navbar-left search-form" action="/" method="get">
-                    <input type="text" name="search" id="search" class="form-control" placeholder="请输入关键字"
-                           autocomplete="off" style="height: 40px">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="请输入检索关键字"
+                           autocomplete="off" style="height: 40px;width: 280px;">
                     <i class="glyphicon glyphicon-search search-icon"></i>
                 </form>
                 <!--消息按钮-->

@@ -6,7 +6,7 @@ nav .nav-width {
 }
 
 nav .container {
-    width: 998px;
+    width: 894px;
     padding-right: 0;
 }
 
@@ -19,6 +19,7 @@ nav .logo {
 
 nav .logo img {
     height: 100%;
+    margin-top: 4px;
 }
 
 /*头像*/

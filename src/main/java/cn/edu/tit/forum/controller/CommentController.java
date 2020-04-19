@@ -1,12 +1,15 @@
 package cn.edu.tit.forum.controller;
 
+import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.dto.CommentA;
 import cn.edu.tit.forum.dto.CommentCreateDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.model.Comment;
 import cn.edu.tit.forum.model.User;
+import cn.edu.tit.forum.service.impl.ArticleService;
 import cn.edu.tit.forum.service.impl.CommentService;
+import cn.edu.tit.forum.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +28,12 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class CommentController {
+
+    @Autowired
+    private ArticleService articleService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private CommentService commentService;
@@ -52,6 +61,11 @@ public class CommentController {
         comment.setUserId(user.getId());
         comment.setRespUserId(commentCreateDTO.getRespUserId());
         comment.setGmtCreate(System.currentTimeMillis());
+        if (commentCreateDTO.getRespUserId() == null) {
+            ArticleDTO articleDTO = articleService.getById(commentCreateDTO.getParentId());
+            User author = userService.findById(articleDTO.getAuthorId());
+            comment.setRespUserId(author.getId());
+        }
         commentService.insertComment(comment, user);
 
         if (commentCreateDTO.getType() == 1) {

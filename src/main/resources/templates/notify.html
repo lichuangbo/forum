@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>我的通知</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.PNG">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/navbar.css">
@@ -31,7 +32,7 @@
             <li class="notify-item" th:each="notifyDTO : ${notifyDTOPageInfo.list}">
                 <!--通知人用户信息-->
                 <div class="rEsl9f">
-                    <div class="_2mYfmT">
+                    <div class="_2mYfmT" th:if="${notifyDTO.notifier != 0}">
                         <a class="_1OhGeD" th:href="@{'/user/' + ${notifyDTO.user.id}}">
                             <img class="img-circle" style="max-width: 48px;max-height: 48px"
                                  th:src="${notifyDTO.user.avatarUrl}" alt="">
@@ -39,9 +40,25 @@
                         <div style="margin-left: 8px;">
                             <div class="_3U4Smb">
                                 <span class="FxYr8x">
-                                    <a class="_1OhGeD" th:href="@{'/user/' + ${notifyDTO.user.id}}"
+                                    <a class="_1OhGeD" style="color: #EA6F5A;" th:href="@{'/user/' + ${notifyDTO.user.id}}"
                                        rel="noopener noreferrer"
                                        th:text="${notifyDTO.user.nickname}"></a>
+                                </span>
+                            </div>
+                            <div class="s-dsoj">
+                                <time th:text="${notifyDTO.gmtCreate}"></time>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_2mYfmT" th:if="${notifyDTO.notifier == 0}">
+                        <span class="_1OhGeD">
+                            <img class="img-circle" style="max-width: 48px;max-height: 48px"
+                                 src="https://cn-edu-tit-forum.obs.cn-north-4.myhuaweicloud.com/admin-avatar.png" alt="">
+                        </span>
+                        <div style="margin-left: 8px;">
+                            <div class="_3U4Smb">
+                                <span class="FxYr8x">
+                                    <span th:text="${notifyDTO.notifierName}"></span>
                                 </span>
                             </div>
                             <div class="s-dsoj">
@@ -53,8 +70,6 @@
                 <!--通知内容-->
                 <div class="entry">
                     <div class="entryUrl">
-                        <!--<div data-src="https://b-gold-cdn.xitu.io/v3/static/img/zan.b81ee8a.svg"
-                             class="lazy icon loaded immediate"></div>-->
                         <span>
                             <span th:text="${notifyDTO.notifyType}"></span>:
                             <a th:href="@{'/notify/' + ${notifyDTO.id}}" th:text="${notifyDTO.outerTitle}"></a>

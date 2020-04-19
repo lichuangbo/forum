@@ -16,10 +16,10 @@
         select * from article
         <where>
             <if test="search != null and search != '' ">
-                and title regexp #{search}
+                and title LIKE  CONCAT('%',#{search},'%')
             </if>
             <if test="tag != null and tag != '' ">
-                and tag = #{tag}
+                and tag LIKE  CONCAT('%',#{tag},'%')
             </if>
         </where>
         order by gmt_modified desc
@@ -51,7 +51,7 @@
 
     <select id="selectRelative" parameterType="cn.edu.tit.forum.model.Article" resultMap="BaseResultMap">
       select * from article
-      where id != #{id} and tag = #{tag}
+      where id != #{id} and tag LIKE  CONCAT('%',#{tag},'%')
       order by view_count, gmt_create desc limit 6
     </select>
 

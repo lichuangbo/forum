@@ -2,12 +2,12 @@ package cn.edu.tit.forum.service.impl;
 
 import cn.edu.tit.forum.dto.AchieveDTO;
 import cn.edu.tit.forum.dto.ArticleDTO;
+import cn.edu.tit.forum.exception.CustomizeErrorCode;
+import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.mapper.ArticleExtMapper;
 import cn.edu.tit.forum.mapper.ArticleMapper;
 import cn.edu.tit.forum.mapper.ThumbUpMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
-import cn.edu.tit.forum.exception.CustomizeErrorCode;
-import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.model.*;
 import cn.edu.tit.forum.service.IArticleService;
 import cn.edu.tit.forum.utils.DateUtil;
@@ -24,9 +24,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author lichuangbo
@@ -57,17 +55,6 @@ public class ArticleService implements IArticleService {
     // 首页 文章列表
     @Override
     public PageInfo<ArticleDTO> queryList(Integer page, Integer size, String tag, String search) {
-        if (!StringUtils.isEmpty(search)) {
-            StringBuilder sb = new StringBuilder();
-            char[] chars = search.toCharArray();
-            for (char c : chars) {
-                if (c != '+' && c != '*') {
-                    sb.append(c);
-                }
-            }
-            search = sb.toString();
-        }
-
         PageHelper.startPage(page, size);
         List<Article> articles = articleExtMapper.selectBySearchAndTag(tag, search);
 
