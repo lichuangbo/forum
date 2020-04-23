@@ -53,7 +53,10 @@ public class NotifyController {
         if (NotifyTypeEnum.REPLY_COMMENT.getType() == notify.getType() ||
                 NotifyTypeEnum.REPLY_ARTICLE.getType() == notify.getType() ||
                 NotifyTypeEnum.LIKE_ARTICLE.getType() == notify.getType() ||
-                NotifyTypeEnum.LIKE_COMMENT.getType() == notify.getType()) {
+                NotifyTypeEnum.LIKE_COMMENT.getType() == notify.getType() ||
+                NotifyTypeEnum.ILLEGAL_ARTICLE.getType() == notify.getType() ||
+                NotifyTypeEnum.ILLEGAL_COMMENT.getType() == notify.getType() ||
+                NotifyTypeEnum.SYSTEM_NOTIFY.getType() == notify.getType()) {
             return "redirect:/article/" + notify.getOuterId();
         }
         return "redirect:/";

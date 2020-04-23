@@ -68,11 +68,19 @@
                     </div>
                 </div>
                 <!--通知内容-->
-                <div class="entry">
+                <div class="entry" th:if="${notifyDTO.type != 7}">
                     <div class="entryUrl">
                         <span>
-                            <span th:text="${notifyDTO.notifyType}"></span>:
+                            <span th:text="${notifyDTO.notifyType}" style="color: #999"></span>:
                             <a th:href="@{'/notify/' + ${notifyDTO.id}}" th:text="${notifyDTO.outerTitle}"></a>
+                        </span>
+                    </div>
+                </div>
+                <div class="entry" th:if="${notifyDTO.type == 7}">
+                    <div class="entryUrl">
+                        <span>
+                            <span th:text="${notifyDTO.notifyType}" style="color: #999"></span>:
+                            <span th:text="${notifyDTO.outerTitle}"></span>
                         </span>
                     </div>
                 </div>

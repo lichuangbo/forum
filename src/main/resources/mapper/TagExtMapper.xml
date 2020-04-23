@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.tit.forum.mapper.TagExtMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.tit.forum.model.Tag">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_update" jdbcType="TIMESTAMP" property="gmtUpdate" />
+  </resultMap>
+
+  <select id="findCategory" resultType="String">
+    select DISTINCT category
+    from tag
+  </select>
+
+  <select id="findTags" parameterType="String" resultType="String">
+    select tag
+    from tag
+    where category = #{category}
+  </select>
+</mapper>

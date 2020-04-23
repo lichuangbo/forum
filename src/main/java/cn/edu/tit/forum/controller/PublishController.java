@@ -15,7 +15,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,10 +29,13 @@ public class PublishController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private TagCache tagCache;
+
     // 写文章跳转
     @GetMapping("/publish")
     public String publish(Model model) {
-        model.addAttribute("tags", TagCache.get());
+        model.addAttribute("tags", tagCache.get());
         return "publish";
     }
 
@@ -50,14 +52,14 @@ public class PublishController {
         model.addAttribute("title", title);
         model.addAttribute("content", content);
         model.addAttribute("tag", tag);
-        model.addAttribute("tags", TagCache.get());
+        model.addAttribute("tags", tagCache.get());
 
         User user = (User) session.getAttribute("user");
         if (user == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
-        String invalid = TagCache.filterInvalid(tag);
+        String invalid = tagCache.filterInvalid(tag);
         if (!StringUtils.isEmpty(invalid)) {
             return ResultDTO.errorOf(CustomizeErrorCode.TAG_ILLEGAL);
         }
@@ -102,7 +104,7 @@ public class PublishController {
         model.addAttribute("content", articleDTO.getContent());
         model.addAttribute("tag", articleDTO.getTag());
         model.addAttribute("id", articleDTO.getId());
-        model.addAttribute("tags", TagCache.get());
+        model.addAttribute("tags", tagCache.get());
         return "publish";
     }
 }

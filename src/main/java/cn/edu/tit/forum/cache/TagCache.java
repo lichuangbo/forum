@@ -1,6 +1,9 @@
 package cn.edu.tit.forum.cache;
 
 import cn.edu.tit.forum.dto.TagDTO;
+import cn.edu.tit.forum.mapper.TagExtMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,34 +15,23 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @created 2019/12/15
  */
+@Component
 public class TagCache {
-    public static List<TagDTO> get() {
+
+    @Autowired
+    private TagExtMapper tagExtMapper;
+
+    public List<TagDTO> get() {
         ArrayList<TagDTO> tagDTOS = new ArrayList<>();
 
-        TagDTO program = new TagDTO();
-        program.setCategoryName("开发语言");
-        program.setTags(Arrays.asList("JavaScript","jQuery", "CSS", "HTML", "Java", "PHP", "Python", "C", "C++", "C#", "Shell"));
-        tagDTOS.add(program);
-
-        TagDTO framework = new TagDTO();
-        framework.setCategoryName("平台框架");
-        framework.setTags(Arrays.asList("Spring", "Spring MVC", "Spring Boot", "Spring Cloud", "Django", "MyBatis", "Struts", "Vue.js", "Node.js", "Angular JS","React"));
-        tagDTOS.add(framework);
-
-        TagDTO server = new TagDTO();
-        server.setCategoryName("服务器");
-        server.setTags(Arrays.asList("VMware", "Linux", "Unix", "Ubuntu", "CentOS", "Nginx", "Docker", "Tomcat"));
-        tagDTOS.add(server);
-
-        TagDTO db = new TagDTO();
-        db.setCategoryName("数据库");
-        db.setTags(Arrays.asList("SQL", "MySQL", "Oracle", "SQL Server", "DB2", "HBase", "MongoDb", "Redis"));
-        tagDTOS.add(db);
-
-        TagDTO tool = new TagDTO();
-        tool.setCategoryName("开发工具");
-        tool.setTags(Arrays.asList("IDE", "Git", "SVN", "VSCode", "Vim", "Sublime", "IDEA", "Eclipse", "Pycharm", "Maven"));
-        tagDTOS.add(tool);
+        List<String> categorys = tagExtMapper.findCategory();
+        for (String category : categorys) {
+            TagDTO tagDTO = new TagDTO();
+            tagDTO.setCategoryName(category);
+            List<String> tags = tagExtMapper.findTags(category);
+            tagDTO.setTags(tags);
+            tagDTOS.add(tagDTO);
+        }
         return tagDTOS;
     }
 
@@ -49,7 +41,7 @@ public class TagCache {
      * @param tags 标签字符串
      * @return
      */
-    public static String filterInvalid(String tags) {
+    public String filterInvalid(String tags) {
         String[] split = tags.split(",");
         List<TagDTO> tagDTOS = get();
 
