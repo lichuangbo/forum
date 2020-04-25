@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -19,13 +20,14 @@ import java.io.IOException;
  * @created 2019/12/16
  */
 @Controller
+@RequestMapping("/file")
 @Slf4j
 public class FileController {
 
     @Autowired
     private OBSProvider obsProvider;
 
-    @RequestMapping("/file/upload")
+    @RequestMapping("/upload")
     @ResponseBody
     public FileDTO upload(MultipartHttpServletRequest multipartRequest) {
         MultipartFile file = multipartRequest.getFile("editormd-image-file");
@@ -41,10 +43,9 @@ public class FileController {
         return null;
     }
 
-    @PostMapping("/file/uploadAvatar")
+    @RequestMapping("/uploadAvatar")
     @ResponseBody
-    public FileDTO uploadAvatar(MultipartHttpServletRequest multipartRequest) {
-        MultipartFile file = multipartRequest.getFile("avatar-img");
+    public FileDTO upload(@RequestParam("file") MultipartFile file) {
         try {
             String url = obsProvider.upload(file.getInputStream(), file.getContentType(), file.getOriginalFilename());
             FileDTO fileDTO = new FileDTO();
@@ -52,7 +53,7 @@ public class FileController {
             fileDTO.setUrl(url);
             return fileDTO;
         } catch (IOException e) {
-            log.error("upload image in BootStrap error, {}", e);
+            log.error("upload avatar image in editormd error, {}", e);
         }
         return null;
     }

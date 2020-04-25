@@ -34,7 +34,12 @@ public class PublishController {
 
     // 写文章跳转
     @GetMapping("/publish")
-    public String publish(Model model) {
+    public String publish(Model model,
+                          HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            throw new CustomizeException(CustomizeErrorCode.NO_LOGIN);
+        }
         model.addAttribute("tags", tagCache.get());
         return "publish";
     }
@@ -67,7 +72,7 @@ public class PublishController {
         if (StringUtils.isEmpty(repTag)) {
             return ResultDTO.errorOf(CustomizeErrorCode.TAG_ILLEGAL);
         }
-        String []str = tag.split(",");
+        String[] str = tag.split(",");
         Set<String> set = new HashSet<>();
         for (String s : str) {
             if (set.contains(s)) {

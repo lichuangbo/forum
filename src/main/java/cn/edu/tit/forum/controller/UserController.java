@@ -158,15 +158,21 @@ public class UserController {
 
     @RequestMapping("/savePassword")
     @ResponseBody
-    public ResultDTO savePassword(User user,
+    public ResultDTO savePassword(String oldPassword,
+                                  String newPassword,
                                   HttpSession session) {
         User sessionUser = (User) session.getAttribute("user");
         if (sessionUser == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
         }
 
-        String md5_password = MD5Util.encode2hex(user.getEmailPassword());
-        sessionUser.setEmailPassword(md5_password);
+        String _oldPassword = MD5Util.encode2hex(oldPassword);
+        if (!_oldPassword.equals(sessionUser.getEmailPassword())) {
+            return ResultDTO.errorOf(CustomizeErrorCode.OLD_PASSWORD_IS_NOT_RIGHT);
+        }
+
+        String _newPassword = MD5Util.encode2hex(newPassword);
+        sessionUser.setEmailPassword(_newPassword);
         int updateCount = userService.updateUser(sessionUser);
         if (updateCount == 1)
             return ResultDTO.okof();
