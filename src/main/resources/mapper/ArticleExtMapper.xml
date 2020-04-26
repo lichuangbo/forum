@@ -66,4 +66,10 @@
         where author_id = #{userId}
         order by gmt_modified desc
     </select>
+
+    <update id="decCommentCount" parameterType="cn.edu.tit.forum.model.Article">
+    update article
+    set comment_count = comment_count - #{commentCount,jdbcType=INTEGER}
+    where id=#{id}
+  </update>
 </mapper>

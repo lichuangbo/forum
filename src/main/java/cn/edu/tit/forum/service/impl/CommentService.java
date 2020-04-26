@@ -148,7 +148,7 @@ public class CommentService implements ICommentService {
             throw new CustomizeException(CustomizeErrorCode.TYPE_PARAM_WRONG);
         }
 
-        if (comment.getType() == CommentTypeEnum.COMMENT.getType()) {// 回复
+        if (comment.getType().equals(CommentTypeEnum.COMMENT.getType())) {// 回复
             // 回复的评论找不到异常
             Comment tempComment = commentMapper.selectByPrimaryKey(comment.getParentId());
             if (tempComment == null) throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
@@ -170,7 +170,7 @@ public class CommentService implements ICommentService {
             String content = commentMapper.selectByPrimaryKey(comment.getParentId()).getContent();
             // 添加通知
             createNotify(comment, comment.getRespUserId(), user, content, NotifyTypeEnum.REPLY_COMMENT, article);
-        } else if (comment.getType() == CommentTypeEnum.QUESTION.getType()) {// 评论
+        } else if (comment.getType().equals(CommentTypeEnum.QUESTION.getType())) {// 评论
             Article article = articleMapper.selectByPrimaryKey(comment.getParentId());
             if (article == null) throw new CustomizeException(CustomizeErrorCode.ARTICLE_NOT_FOUND);
 
@@ -211,6 +211,31 @@ public class CommentService implements ICommentService {
         commentExample.createCriteria().andParentIdEqualTo(articleId);
         long count = commentMapper.countByExample(commentExample);
         return (int) count;
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        int count = 0;
+        Comment comment = commentMapper.selectByPrimaryKey(id);
+        if (comment.getType() == 1) {// 根评论要先删除其一级回复和二级回复
+            Article article = new Article();
+            article.setId(comment.getParentId());
+            article.setCommentCount(1);
+            articleExtMapper.decCommentCount(article);
+
+            CommentExample comment2Example = new CommentExample();
+            comment2Example.createCriteria().andParentIdEqualTo(comment.getId());
+            count += commentMapper.deleteByExample(comment2Example);
+        }
+        // 删除该评论
+        count += commentMapper.deleteByPrimaryKey(id);
+        return count;
+    }
+
+    @Override
+    public Comment findById(Long id) {
+        Comment comment = commentMapper.selectByPrimaryKey(id);
+        return comment;
     }
 
     private void createNotify(Comment comment, Long respUserId, User user, String notifyTitle, NotifyTypeEnum notifyTypeEnum, Article article) {

@@ -1,6 +1,7 @@
 package cn.edu.tit.forum.service;
 
 import cn.edu.tit.forum.dto.NotifyDTO;
+import cn.edu.tit.forum.enums.NotifyTypeEnum;
 import cn.edu.tit.forum.model.Notify;
 import cn.edu.tit.forum.model.User;
 import com.github.pagehelper.PageInfo;
@@ -26,4 +27,6 @@ public interface INotifyService {
     void readNotify(Long userId);
 
     Notify read(Long id, User user);
+
+    void notifyAuthor(Long managerId, Long receiveUserId, Long outerId, NotifyTypeEnum notifyTypeEnum, String notifierName, String outerTitle);
 }

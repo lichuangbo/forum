@@ -26,6 +26,7 @@ public enum CustomizeErrorCode implements ICustomizeErrorCode {
     CURRENT_REQUEST_IS_NOT_ALLOW(2018, "当前请求不合法，请重试"),
     TAG_IS_REPEATED(2019, "标签重复，请检查选择的标签"),
     OLD_PASSWORD_IS_NOT_RIGHT(2020, "原密码不正确，请检查"),
+    AUTHORIRY_IS_NOT_ENOUGH(2021, "你的权限不足"),
     ;
 
     private Integer code;

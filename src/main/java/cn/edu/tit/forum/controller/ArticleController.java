@@ -4,6 +4,7 @@ import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.dto.CommentA;
 import cn.edu.tit.forum.dto.FollowUserDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
+import cn.edu.tit.forum.enums.NotifyTypeEnum;
 import cn.edu.tit.forum.enums.ThumbUpTypeEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
@@ -12,16 +13,14 @@ import cn.edu.tit.forum.model.Article;
 import cn.edu.tit.forum.model.Favorite;
 import cn.edu.tit.forum.model.Follow;
 import cn.edu.tit.forum.model.User;
+import cn.edu.tit.forum.service.INotifyService;
 import cn.edu.tit.forum.service.impl.*;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -54,6 +53,9 @@ public class ArticleController {
 
     @Autowired
     private ArticleMapper articleMapper;
+
+    @Autowired
+    private INotifyService notifyService;
 
     @GetMapping("/article/{id}")
     public String question(@PathVariable(name = "id") String id,
@@ -124,6 +126,33 @@ public class ArticleController {
         // 删除文章相关评论
         int delCommCount = commentService.deleteByArticle(article.getId());
 
+        return ResultDTO.okof("删除成功");
+    }
+
+    @RequestMapping("/deleteArticleByManager")
+    @ResponseBody
+    @Transactional
+    public ResultDTO deleteByManager(@RequestParam("id") Long id,
+                                     HttpSession session) {
+        User sessionUser = (User) session.getAttribute("user");
+        if (sessionUser == null) {
+            return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
+        }
+        if (sessionUser.getRole().equals("0")) {
+            return ResultDTO.errorOf(CustomizeErrorCode.AUTHORIRY_IS_NOT_ENOUGH);
+        }
+        Article article = articleMapper.selectByPrimaryKey(id);
+        if (article == null) {
+            return ResultDTO.errorOf(CustomizeErrorCode.ARTICLE_NOT_FOUND);
+        }
+
+        // 通知作者文章被管理员删除
+        notifyService.notifyAuthor(sessionUser.getId(), article.getAuthorId(), article.getId(), NotifyTypeEnum.ILLEGAL_ARTICLE, sessionUser.getNickname(), article.getTitle());
+
+        // 删除文章
+        int delArtiCount = articleService.delete(article.getId());
+        // 删除文章相关收藏
+        int delFavCount = favoriteService.deleteByArticle(article.getId());
         return ResultDTO.okof("删除成功");
     }
 

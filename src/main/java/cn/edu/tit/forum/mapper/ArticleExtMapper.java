@@ -27,4 +27,7 @@ public interface ArticleExtMapper {
     int decLikeCount(Article article);
 
     List<Article> findByUser(Long userId);
+
+    // 减少评论数
+    int decCommentCount(Article article);
 }

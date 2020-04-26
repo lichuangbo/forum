@@ -65,6 +65,24 @@ public class NotifyService implements INotifyService {
         return notify;
     }
 
+    @Override
+    public void notifyAuthor(Long managerId, Long receiveUserId, Long outerId, NotifyTypeEnum notifyTypeEnum, String notifierName, String outerTitle) {
+        // 管理员删除自己文章不用通知
+        if (managerId.equals(receiveUserId)) {
+            return;
+        }
+        Notify notify = new Notify();
+        notify.setNotifier(managerId);
+        notify.setReceiver(receiveUserId);
+        notify.setOuterId(outerId);
+        notify.setType(notifyTypeEnum.getType());
+        notify.setGmtCreate(System.currentTimeMillis());
+        notify.setStatus(NotifyStatusEnum.UNREAD.getStatus());
+        notify.setNotifierName(notifierName);
+        notify.setOuterTitle(outerTitle);
+        notifyMapper.insert(notify);
+    }
+
     // 通知问题被点赞用户
     @Override
     public void notifyRespArticleUser(Long userId, Long articleId) {

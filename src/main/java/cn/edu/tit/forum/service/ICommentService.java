@@ -24,4 +24,8 @@ public interface ICommentService {
     int deleteByArticle(Long id);
 
     int countComment1(Long articleId);
+
+    int deleteById(Long id);
+
+    Comment findById(Long id);
 }
