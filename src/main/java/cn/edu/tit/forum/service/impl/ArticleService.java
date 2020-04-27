@@ -2,6 +2,7 @@ package cn.edu.tit.forum.service.impl;
 
 import cn.edu.tit.forum.dto.AchieveDTO;
 import cn.edu.tit.forum.dto.ArticleDTO;
+import cn.edu.tit.forum.enums.ArticleDelStatusEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.mapper.ArticleExtMapper;
@@ -101,7 +102,7 @@ public class ArticleService implements IArticleService {
         Article article = articleMapper.selectByPrimaryKey(id);
 
         // 处理 question/{id} id手动输入，但查找不到的异常
-        if (article == null) {
+        if (article == null || article.getDelFlag().equals(ArticleDelStatusEnum.DELETE.getStatus())) {
             throw new CustomizeException(CustomizeErrorCode.ARTICLE_NOT_FOUND);
         }
 
@@ -241,7 +242,10 @@ public class ArticleService implements IArticleService {
 
     @Override
     public int delete(Long id) {
-        int i = articleMapper.deleteByPrimaryKey(id);
+        Article article = new Article();
+        article.setId(id);
+        article.setDelFlag(ArticleDelStatusEnum.DELETE.getStatus());
+        int i = articleMapper.updateByPrimaryKeySelective(article);
         return i;
     }
 

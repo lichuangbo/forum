@@ -123,8 +123,6 @@ public class ArticleController {
         int delArtiCount = articleService.delete(article.getId());
         // 删除文章相关收藏
         int delFavCount = favoriteService.deleteByArticle(article.getId());
-        // 删除文章相关评论
-        int delCommCount = commentService.deleteByArticle(article.getId());
 
         return ResultDTO.okof("删除成功");
     }

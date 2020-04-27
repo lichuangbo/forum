@@ -86,6 +86,46 @@ public class CommentController {
         return "article::comment-list";
     }
 
+    @RequestMapping(value = "/deleteComment1")
+    @ResponseBody
+    public ResultDTO deleteComment1(Long id,
+                                    HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            throw new CustomizeException(CustomizeErrorCode.NO_LOGIN);
+        }
+        Comment comment = commentService.findById(id);
+        if (comment == null) {
+            throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
+        }
+        if (!user.getId().equals(comment.getUserId())) {
+            throw new CustomizeException(CustomizeErrorCode.CURRENT_REQUEST_IS_NOT_ALLOW);
+        }
+        int count = commentService.deleteById(id);
+        int i = commentService.countComment1(comment.getParentId());
+        return ResultDTO.okof(i);
+    }
+
+    @RequestMapping(value = "/deleteComment1ByManager")
+    @ResponseBody
+    public ResultDTO deleteComment1ByManager(Long id,
+                                    HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            throw new CustomizeException(CustomizeErrorCode.NO_LOGIN);
+        }
+        if (user.getRole().equals("0")) {
+            return ResultDTO.errorOf(CustomizeErrorCode.AUTHORIRY_IS_NOT_ENOUGH);
+        }
+        Comment comment = commentService.findById(id);
+        if (comment == null) {
+            throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
+        }
+        int count = commentService.deleteById(id);
+        int i = commentService.countComment1(comment.getParentId());
+        return ResultDTO.okof(i);
+    }
+
     @RequestMapping(value = "/deleteComment")
     @ResponseBody
     public ResultDTO deleteComment(Long id,

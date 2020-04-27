@@ -90,6 +90,7 @@ public class AuthorizeController {
             user.setCredential(token);
             user.setIdentifyType("GitHub");
             user.setIdentifier(gitHubUser.getId());
+            user.setRole("0");
             userService.createOrUpdate(user);
 
             Cookie cookie = new Cookie("token", token);

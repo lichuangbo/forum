@@ -9,19 +9,19 @@
         <result column="view_count" jdbcType="INTEGER" property="viewCount" />
         <result column="like_count" jdbcType="INTEGER" property="likeCount" />
         <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
+        <result column="del_flag" jdbcType="CHAR" property="delFlag" />
         <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
         <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
     </resultMap>
     <select id="selectBySearchAndTag" resultMap="BaseResultMap">
         select * from article
-        <where>
-            <if test="search != null and search != '' ">
-                and title LIKE  CONCAT('%',#{search},'%')
-            </if>
-            <if test="tag != null and tag != '' ">
-                and tag LIKE  CONCAT('%',#{tag},'%')
-            </if>
-        </where>
+        where del_flag = '0'
+        <if test="search != null and search != '' ">
+            and title LIKE  CONCAT('%',#{search},'%')
+        </if>
+        <if test="tag != null and tag != '' ">
+            and tag LIKE  CONCAT('%',#{tag},'%')
+        </if>
         order by gmt_modified desc
     </select>
 
@@ -52,18 +52,21 @@
     <select id="selectRelative" parameterType="cn.edu.tit.forum.model.Article" resultMap="BaseResultMap">
       select * from article
       where id != #{id} and tag LIKE  CONCAT('%',#{tag},'%')
+      and del_flag = '0'
       order by view_count, gmt_create desc limit 6
     </select>
 
     <select id="selectOther" parameterType="cn.edu.tit.forum.model.Article" resultMap="BaseResultMap">
       select * from article
       where id != #{id} and author_id = #{authorId}
+      and del_flag = '0'
       order by view_count, gmt_create desc limit 3
     </select>
 
     <select id="findByUser" resultMap="BaseResultMap">
         select * from article
         where author_id = #{userId}
+        and del_flag = '0'
         order by gmt_modified desc
     </select>
 

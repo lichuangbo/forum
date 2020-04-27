@@ -3,6 +3,7 @@ package cn.edu.tit.forum.controller;
 import cn.edu.tit.forum.cache.TagCache;
 import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
+import cn.edu.tit.forum.enums.ArticleDelStatusEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
 import cn.edu.tit.forum.model.Article;
@@ -86,6 +87,7 @@ public class PublishController {
         article.setContent(content);
         article.setTag(tag);
         article.setAuthorId(user.getId());
+        article.setDelFlag(ArticleDelStatusEnum.UN_DELETE.getStatus());
         // 前端的处理是一个隐藏输入框，为了将它传到后端   后端要利用它来判断question是编辑还是发布
         article.setId(id);
         articleService.createOrUpdate(article);
