@@ -4,8 +4,6 @@ import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.enums.NotifyTypeEnum;
 import cn.edu.tit.forum.enums.ThumbUpTypeEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
-import cn.edu.tit.forum.mapper.ArticleMapper;
-import cn.edu.tit.forum.mapper.CommentMapper;
 import cn.edu.tit.forum.model.ThumbUp;
 import cn.edu.tit.forum.model.User;
 import cn.edu.tit.forum.service.impl.ArticleService;
@@ -44,12 +42,6 @@ public class ThumbUpController {
 
     @Autowired
     private NotifyService notifyService;
-
-    @Autowired
-    private ArticleMapper articleMapper;
-
-    @Autowired
-    private CommentMapper commentMapper;
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

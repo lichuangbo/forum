@@ -3,10 +3,10 @@ package cn.edu.tit.forum.controller;
 import cn.edu.tit.forum.dto.FollowMessageDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
-import cn.edu.tit.forum.mapper.ArticleMapper;
 import cn.edu.tit.forum.model.Article;
 import cn.edu.tit.forum.model.Follow;
 import cn.edu.tit.forum.model.User;
+import cn.edu.tit.forum.service.impl.ArticleService;
 import cn.edu.tit.forum.service.impl.FollowService;
 import cn.edu.tit.forum.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class FollowController {
     private UserService userService;
 
     @Autowired
-    private ArticleMapper articleMapper;
+    private ArticleService articleService;
 
     @RequestMapping("/followWriter")
     @ResponseBody
@@ -41,7 +41,7 @@ public class FollowController {
         User user = (User) session.getAttribute("user");
         if (user == null)
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
-        Article article = articleMapper.selectByPrimaryKey(articleId);
+        Article article = articleService.findById(articleId);
         if (article == null)
             return ResultDTO.errorOf(CustomizeErrorCode.ARTICLE_NOT_FOUND);
         User author = userService.findById(article.getAuthorId());

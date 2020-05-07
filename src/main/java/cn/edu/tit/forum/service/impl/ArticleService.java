@@ -249,6 +249,12 @@ public class ArticleService implements IArticleService {
         return i;
     }
 
+    @Override
+    public Article findById(Long id) {
+        Article article = articleMapper.selectByPrimaryKey(id);
+        return article;
+    }
+
     // 增加点赞数， 根据问题ID
     @Override
     public void incLikeCount(Long id) {

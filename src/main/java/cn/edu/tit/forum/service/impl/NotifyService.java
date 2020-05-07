@@ -110,6 +110,10 @@ public class NotifyService implements INotifyService {
         Notify notify = new Notify();
         notify.setNotifier(userId);
         Comment comment = commentMapper.selectByPrimaryKey(commentId);
+        // 自己点赞自己的评论不用通知
+        if (userId.equals(comment.getUserId())) {
+            return;
+        }
         notify.setReceiver(comment.getUserId());
 
         notify.setOuterTitle(comment.getContent());

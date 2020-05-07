@@ -76,7 +76,7 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-        <!--fastjson-->
+        <!--fastjson-->notify
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>

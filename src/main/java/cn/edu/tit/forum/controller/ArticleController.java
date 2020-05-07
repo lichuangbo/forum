@@ -8,7 +8,6 @@ import cn.edu.tit.forum.enums.NotifyTypeEnum;
 import cn.edu.tit.forum.enums.ThumbUpTypeEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
-import cn.edu.tit.forum.mapper.ArticleMapper;
 import cn.edu.tit.forum.model.Article;
 import cn.edu.tit.forum.model.Favorite;
 import cn.edu.tit.forum.model.Follow;
@@ -52,9 +51,6 @@ public class ArticleController {
     private UserService userService;
 
     @Autowired
-    private ArticleMapper articleMapper;
-
-    @Autowired
     private INotifyService notifyService;
 
     @GetMapping("/article/{id}")
@@ -87,7 +83,7 @@ public class ArticleController {
             if (favorite != null)
                 model.addAttribute("favorite", true);
 
-            Article article = articleMapper.selectByPrimaryKey(articleId);
+            Article article = articleService.findById(articleId);
             Follow follow = followService.find(user, article.getAuthorId());
             if (follow != null) {
                 model.addAttribute("follow", true);
@@ -113,7 +109,7 @@ public class ArticleController {
         User sessionUser = (User) session.getAttribute("user");
         if (sessionUser == null)
             return ResultDTO.errorOf(CustomizeErrorCode.NO_LOGIN);
-        Article article = articleMapper.selectByPrimaryKey(id);
+        Article article = articleService.findById(id);
         if (article == null)
             return ResultDTO.errorOf(CustomizeErrorCode.ARTICLE_NOT_FOUND);
         if (!article.getAuthorId().equals(sessionUser.getId()))
@@ -139,7 +135,7 @@ public class ArticleController {
         if (sessionUser.getRole().equals("0")) {
             return ResultDTO.errorOf(CustomizeErrorCode.AUTHORIRY_IS_NOT_ENOUGH);
         }
-        Article article = articleMapper.selectByPrimaryKey(id);
+        Article article = articleService.findById(id);
         if (article == null) {
             return ResultDTO.errorOf(CustomizeErrorCode.ARTICLE_NOT_FOUND);
         }

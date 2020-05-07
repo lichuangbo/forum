@@ -116,7 +116,7 @@ public class CommentService implements ICommentService {
                 List<User> users4 = userMapper.selectByExample(example4);
                 commentD1.setRespUser(users4.get(0));
                 commentD1.setLikeCount(comment1.getLikeCount());
-                commentD1.setGmtCreate(DateUtil.format(comment.getGmtCreate()));
+                commentD1.setGmtCreate(DateUtil.format(comment1.getGmtCreate()));
                 ThumbUp thumbUp1 = thumbUpService.find(userId, comment1.getId(), ThumbUpTypeEnum.COMMENT.getType());
                 if (thumbUp1 != null) {
                     commentD1.setLiked(true);
@@ -208,7 +208,7 @@ public class CommentService implements ICommentService {
     @Override
     public int countComment1(Long articleId) {
         CommentExample commentExample = new CommentExample();
-        commentExample.createCriteria().andParentIdEqualTo(articleId);
+        commentExample.createCriteria().andParentIdEqualTo(articleId).andTypeEqualTo(1);
         long count = commentMapper.countByExample(commentExample);
         return (int) count;
     }

@@ -38,4 +38,6 @@ public interface IArticleService {
     AchieveDTO countTotalByUser(Long userId);
 
     int delete(Long id);
+
+    Article findById(Long id);
 }

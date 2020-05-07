@@ -4,15 +4,19 @@ import cn.edu.tit.forum.dto.ArticleDTO;
 import cn.edu.tit.forum.dto.CommentA;
 import cn.edu.tit.forum.dto.CommentCreateDTO;
 import cn.edu.tit.forum.dto.ResultDTO;
+import cn.edu.tit.forum.enums.NotifyTypeEnum;
 import cn.edu.tit.forum.exception.CustomizeErrorCode;
 import cn.edu.tit.forum.exception.CustomizeException;
+import cn.edu.tit.forum.model.Article;
 import cn.edu.tit.forum.model.Comment;
 import cn.edu.tit.forum.model.User;
+import cn.edu.tit.forum.service.INotifyService;
 import cn.edu.tit.forum.service.impl.ArticleService;
 import cn.edu.tit.forum.service.impl.CommentService;
 import cn.edu.tit.forum.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +41,9 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private INotifyService notifyService;
 
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
@@ -108,6 +115,7 @@ public class CommentController {
 
     @RequestMapping(value = "/deleteComment1ByManager")
     @ResponseBody
+    @Transactional
     public ResultDTO deleteComment1ByManager(Long id,
                                     HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -122,6 +130,7 @@ public class CommentController {
             throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
         }
         int count = commentService.deleteById(id);
+        notifyService.notifyAuthor(user.getId(), comment.getUserId(), comment.getParentId(), NotifyTypeEnum.ILLEGAL_COMMENT, user.getNickname(), comment.getContent());
         int i = commentService.countComment1(comment.getParentId());
         return ResultDTO.okof(i);
     }
@@ -147,6 +156,7 @@ public class CommentController {
 
     @RequestMapping(value = "/deleteCommentByManager")
     @ResponseBody
+    @Transactional
     public ResultDTO deleteByManager(Long id,
                                      HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -162,6 +172,14 @@ public class CommentController {
         }
 
         int count = commentService.deleteById(id);
+        // 查找评论是那篇文章的
+        Comment tmp = comment;
+        while(tmp.getType() != 1) {
+            tmp = commentService.findById(tmp.getParentId());
+        }
+        Article article = articleService.findById(tmp.getParentId());
+
+        notifyService.notifyAuthor(user.getId(), comment.getUserId(), article.getId(), NotifyTypeEnum.ILLEGAL_COMMENT, user.getNickname(), comment.getContent());
         return ResultDTO.okof(count);
     }
 }
