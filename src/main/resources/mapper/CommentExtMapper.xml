@@ -10,7 +10,6 @@
     <result column="resp_user_id" jdbcType="BIGINT" property="respUserId" />
     <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
-    <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
   </resultMap>
   <update id="incCommentCount" parameterType="cn.edu.tit.forum.model.Comment">
     update comment

@@ -64,7 +64,6 @@ public class CommentController {
         comment.setParentId(commentCreateDTO.getParentId());
         comment.setType(commentCreateDTO.getType());
         comment.setLikeCount(0);
-        comment.setCommentCount(0);
         comment.setUserId(user.getId());
         comment.setRespUserId(commentCreateDTO.getRespUserId());
         comment.setGmtCreate(System.currentTimeMillis());

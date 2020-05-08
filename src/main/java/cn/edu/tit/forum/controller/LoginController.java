@@ -94,6 +94,7 @@ public class LoginController {
             user.setCredential(token);
             user.setDescript("暂无描述");
             user.setFollowCount(0);
+            user.setRole("0");
             user.setEmail("暂无");
             user.setIdentifyType("email");
             user.setAvatarUrl("https://cn-edu-tit-forum.obs.cn-north-4.myhuaweicloud.com/default-avatar.jpg");

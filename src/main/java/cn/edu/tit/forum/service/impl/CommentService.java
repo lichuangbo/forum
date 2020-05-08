@@ -161,11 +161,6 @@ public class CommentService implements ICommentService {
             if (article == null) throw new CustomizeException(CustomizeErrorCode.ARTICLE_NOT_FOUND);
 
             commentMapper.insert(comment);
-            // 增加评论回复数
-            Comment replyComment = new Comment();
-            replyComment.setId(comment.getParentId());
-            replyComment.setCommentCount(1);
-            commentExtMapper.incCommentCount(replyComment);
             // 二级评论显示一级评论的content
             String content = commentMapper.selectByPrimaryKey(comment.getParentId()).getContent();
             // 添加通知
