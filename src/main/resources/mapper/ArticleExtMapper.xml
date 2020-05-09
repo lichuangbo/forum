@@ -53,14 +53,14 @@
       select * from article
       where id != #{id} and tag LIKE  CONCAT('%',#{tag},'%')
       and del_flag = '0'
-      order by view_count, gmt_create desc limit 6
+      order by view_count desc limit 6
     </select>
 
     <select id="selectOther" parameterType="cn.edu.tit.forum.model.Article" resultMap="BaseResultMap">
       select * from article
       where id != #{id} and author_id = #{authorId}
       and del_flag = '0'
-      order by view_count, gmt_create desc limit 3
+      order by view_count desc limit 3
     </select>
 
     <select id="findByUser" resultMap="BaseResultMap">

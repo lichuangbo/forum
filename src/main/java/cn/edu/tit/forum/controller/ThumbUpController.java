@@ -106,8 +106,12 @@ public class ThumbUpController {
             }
         } else {// 没有key，从数据库中查询
             ThumbUp thumbUp = thumbUpService.find(user.getId(), targetId, ThumbUpTypeEnum.QUESTION.getType());
-            Integer likeCount = articleService.findLikeCount(targetId);
-            hashOps.put(k_count, hk_count, likeCount);
+            Integer dbLikeCount = articleService.findLikeCount(targetId);
+            Integer reLikeCount = 0;
+            if (hashOps.hasKey(k_count, hk_count)) {
+                reLikeCount = hashOps.get(k_count, hk_count);
+            }
+            hashOps.put(k_count, hk_count, dbLikeCount + reLikeCount);
             if (thumbUp != null) {// 当前用户点击了当前文章
                 // count缓存-1
                 hashOps.increment(k_count, hk_count, -1);

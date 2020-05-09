@@ -127,6 +127,7 @@ public class AuthorizeController {
             user.setIdentifyType("Weibo");
             user.setIdentifier(weiboUser.getIdstr());
             user.setCredential(token);
+            user.setRole("0");
             userService.createOrUpdate(user);
 
             Cookie cookie = new Cookie("token", token);
@@ -161,6 +162,7 @@ public class AuthorizeController {
             user.setCredential(token);
             user.setIdentifyType("QQ");
             user.setIdentifier(qqUser.getOpenId());
+            user.setRole("0");
             userService.createOrUpdate(user);
 
             Cookie cookie = new Cookie("token", token);
