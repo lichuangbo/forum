@@ -102,6 +102,11 @@ public class FavoriteService implements IFavoriteService {
             if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
                 articleDTO.setViewCount(hashOps.get(k_viewCount, hk_viewCount));
             }
+            String k_count = KeyUtil.ARTICLE_LIKE_COUNT;
+            String hk_count = KeyUtil.getHashArticleLikeCount(article.getId());
+            if (hashOps.hasKey(k_count, hk_count)) {
+                articleDTO.setLikeCount(hashOps.get(k_count, hk_count));
+            }
 
             String content = article.getContent();
             if (content.length() > 50) {

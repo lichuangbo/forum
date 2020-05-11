@@ -212,6 +212,11 @@ public class ArticleService implements IArticleService {
             if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
                 articleDTO.setViewCount(hashOps.get(k_viewCount, hk_viewCount));
             }
+            String k_count = KeyUtil.ARTICLE_LIKE_COUNT;
+            String hk_count = KeyUtil.getHashArticleLikeCount(article.getId());
+            if (hashOps.hasKey(k_count, hk_count)) {
+                articleDTO.setLikeCount(hashOps.get(k_count, hk_count));
+            }
 
             String content = article.getContent();
             if (content.length() > 50) {
@@ -230,9 +235,24 @@ public class ArticleService implements IArticleService {
     public AchieveDTO countTotalByUser(Long userId) {
         List<Article> articles = articleExtMapper.findByUser(userId);
         int totalLikeCount = 0, totalViewCount = 0;
+        String k_count = KeyUtil.ARTICLE_LIKE_COUNT;
+        String k_viewCount = KeyUtil.ARTICLE_VIEW_COUNT;
         for (Article article : articles) {
-            totalLikeCount += article.getLikeCount();
-            totalViewCount += article.getViewCount();
+            String hk_count = KeyUtil.getHashArticleLikeCount(article.getId());
+            String hk_viewCount = KeyUtil.getHashArticleViewCount(article.getId());
+            Integer reLikeCount = 0, reViewCount = 0;
+            if (hashOps.hasKey(k_count, hk_count)) {
+                reLikeCount = hashOps.get(k_count, hk_count);
+                totalLikeCount += reLikeCount;
+            } else {
+                totalLikeCount += article.getLikeCount();
+            }
+            if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
+                reViewCount = hashOps.get(k_viewCount, hk_viewCount);
+                totalViewCount += reViewCount;
+            } else {
+                totalViewCount += article.getViewCount();
+            }
         }
         AchieveDTO achieveDTO = new AchieveDTO();
         achieveDTO.setTotalLikeCount(totalLikeCount);
@@ -300,7 +320,13 @@ public class ArticleService implements IArticleService {
         article.setTag(regexTag);
         article.setId(questionDTO.getId());
         List<Article> articles = articleExtMapper.selectRelative(article);
-
+        for (Article item : articles) {
+            String k_viewCount = KeyUtil.ARTICLE_VIEW_COUNT;
+            String hk_viewCount = KeyUtil.getHashArticleViewCount(item.getId());
+            if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
+                item.setViewCount(hashOps.get(k_viewCount, hk_viewCount));
+            }
+        }
         if (articles != null && articles.size() > 0)
             return articles;
         else
@@ -314,6 +340,13 @@ public class ArticleService implements IArticleService {
         article.setAuthorId(articleDTO.getAuthorId());
         article.setId(articleDTO.getId());
         List<Article> articles = articleExtMapper.selectOther(article);
+        String k_viewCount = KeyUtil.ARTICLE_VIEW_COUNT;
+        for (Article it : articles) {
+            String hk_viewCount = KeyUtil.getHashArticleViewCount(it.getId());
+            if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
+                it.setViewCount(hashOps.get(k_viewCount, hk_viewCount));
+            }
+        }
         if (articles != null && articles.size() > 0)
             return articles;
         else

@@ -7,10 +7,14 @@ import cn.edu.tit.forum.mapper.UserExtMapper;
 import cn.edu.tit.forum.mapper.UserMapper;
 import cn.edu.tit.forum.model.*;
 import cn.edu.tit.forum.service.IUserService;
+import cn.edu.tit.forum.utils.KeyUtil;
 import cn.edu.tit.forum.utils.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +38,12 @@ public class UserService implements IUserService {
 
     @Autowired
     private FollowMapper followMapper;
+
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Resource(name = "redisTemplate")
+    private HashOperations<String, String, Integer> hashOps;
 
     public void createOrUpdate(User user) {
         // 用户登录，先判断用户是否存在
@@ -102,8 +112,23 @@ public class UserService implements IUserService {
             int totalLikeCount = 0, totalViewCount = 0;
             if (articles != null && articles.size() > 0) {
                 for (Article article : articles) {
-                    totalLikeCount += article.getLikeCount();
-                    totalViewCount += article.getViewCount();
+                    String k_count = KeyUtil.ARTICLE_LIKE_COUNT;
+                    String k_viewCount = KeyUtil.ARTICLE_VIEW_COUNT;
+                    String hk_count = KeyUtil.getHashArticleLikeCount(article.getId());
+                    String hk_viewCount = KeyUtil.getHashArticleViewCount(article.getId());
+                    Integer reLikeCount = 0, reViewCount = 0;
+                    if (hashOps.hasKey(k_count, hk_count)) {
+                        reLikeCount = hashOps.get(k_count, hk_count);
+                        totalLikeCount += reLikeCount;
+                    } else {
+                        totalLikeCount += article.getLikeCount();
+                    }
+                    if (hashOps.hasKey(k_viewCount, hk_viewCount)) {
+                        reViewCount = hashOps.get(k_viewCount, hk_viewCount);
+                        totalViewCount += reViewCount;
+                    } else {
+                        totalViewCount += article.getViewCount();
+                    }
                 }
             }
             recommendAuthor.setTotalLikeCount(totalLikeCount);
